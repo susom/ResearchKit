@@ -2976,4 +2976,50 @@ NSString *const ORKTouchAbilityHorizontalScrollStepIdentifier = @"touchAbilityHo
     return task;
 }
 
+#pragma mark - twentyThreeAndMeTask
+
++ (ORKOrderedTask *)twentyThreeAndMeTaskWithIdentifier:(NSString *)identifier
+                                           partnerLogo:(NSString *)logoName
+                                          authClientId:(NSString *)clientId
+                                            authScopes:(NSString *)scopes
+                                       sharingOptional:(BOOL)sharingOptional
+{
+    NSMutableArray *steps = [NSMutableArray array];
+    
+    {
+        ORKInstructionStep *step = [[ORKInstructionStep alloc] initWithIdentifier:ORKInstruction0StepIdentifier];
+        step.title = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_1_TITLE", nil);
+        step.text = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_1_TEXT", nil);
+        step.detailText = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_1_DETAIL_TEXT", nil);
+        step.shouldTintImages = YES;
+        
+        ORKStepArrayAddStep(steps, step);
+    }
+    
+    {
+        ORKInstructionStep *step = [[ORKInstructionStep alloc] initWithIdentifier:ORKInstruction1StepIdentifier];
+        step.title = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_2_TITLE", nil);
+        step.text = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_2_TEXT", nil);
+        step.detailText = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_2_DETAIL_TEXT", nil);
+        step.shouldTintImages = YES;
+        
+        ORKStepArrayAddStep(steps, step);
+    }
+    
+    //TODO: TwentyThreeAndMeConnectStep
+    
+    {
+        ORKCompletionStep *step = [[ORKCompletionStep alloc] initWithIdentifier:ORKConclusionStepIdentifier];
+        step.title = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_CONCLUSION_SUCCESS_NEW_TITLE", nil);
+        step.text = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_CONCLUSION_SUCCESS_NEW_TEXT", nil);
+        step.shouldTintImages = YES;
+        
+        ORKStepArrayAddStep(steps, step);
+    }
+    
+    ORKOrderedTask *task = [[ORKOrderedTask alloc] initWithIdentifier:identifier steps:steps];
+    
+    return task;
+}
+
 @end
