@@ -721,6 +721,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (ORKOrderedTask *)twentyThreeAndMeTaskWithIdentifier:(NSString *)identifier
                                            partnerLogo:(NSString *)logoName
                                           authClientId:(NSString *)clientId
+                                      authClientSecret:(NSString *)clientSecret
                                             authScopes:(NSString *)scopes
                                        sharingOptional:(BOOL)sharingOptional;
 
