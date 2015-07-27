@@ -43,6 +43,7 @@
 #import "ORKSpeechRecognitionStepViewController.h"
 #import "ORKStroopStepViewController.h"
 #import "ORKWalkingTaskStepViewController.h"
+#import "ORKTwentyThreeAndMeConnectStepViewController.h"
 
 #import "ORKAccelerometerRecorder.h"
 #import "ORKActiveStep_Internal.h"
@@ -81,6 +82,7 @@
 #import "ORKSpeechInNoiseStep.h"
 #import "ORKdBHLToneAudiometryStep.h"
 #import "ORKdBHLToneAudiometryOnboardingStep.h"
+#import "ORKTwentyThreeAndMeConnectStep.h"
 #import "ORKSkin.h"
 #import <ResearchKit/ResearchKit-Swift.h>
 #import "ORKTouchAbilityTapStep.h"
@@ -2978,6 +2980,8 @@ NSString *const ORKTouchAbilityHorizontalScrollStepIdentifier = @"touchAbilityHo
 
 #pragma mark - twentyThreeAndMeTask
 
+NSString * const ORKTwentyThreeAndMeConnectStepIdentifier = @"twentyThreeAndMe.connect";
+
 + (ORKOrderedTask *)twentyThreeAndMeTaskWithIdentifier:(NSString *)identifier
                                            partnerLogo:(NSString *)logoName
                                           authClientId:(NSString *)clientId
@@ -3006,7 +3010,11 @@ NSString *const ORKTouchAbilityHorizontalScrollStepIdentifier = @"touchAbilityHo
         ORKStepArrayAddStep(steps, step);
     }
     
-    //TODO: TwentyThreeAndMeConnectStep
+    {
+        ORKTwentyThreeAndMeConnectStep *step = [[ORKTwentyThreeAndMeConnectStep alloc] initWithIdentifier:ORKTwentyThreeAndMeConnectStepIdentifier];
+        
+        ORKStepArrayAddStep(steps, step);
+    }
     
     {
         ORKCompletionStep *step = [[ORKCompletionStep alloc] initWithIdentifier:ORKConclusionStepIdentifier];
