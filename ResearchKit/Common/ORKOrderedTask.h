@@ -410,19 +410,4 @@ typedef NS_OPTIONS(NSUInteger, ORKPredefinedTaskOption) {
 
 @end
 
-@interface ORKOrderedTask (ORKTwentyThreeAndMeTask)
-
-/**
- Returns a predefined task that connects a participant with 23andMe
- 
- TODO: Finish writing the detailed documentation for this method
- */
-+ (ORKOrderedTask *)twentyThreeAndMeTaskWithIdentifier:(NSString *)identifier
-                                           partnerLogo:(NSString *)logoName
-                                          authClientId:(NSString *)clientId
-                                            authScopes:(NSString *)scopes
-                                       sharingOptional:(BOOL)sharingOptional;
-
-@end
-
 NS_ASSUME_NONNULL_END

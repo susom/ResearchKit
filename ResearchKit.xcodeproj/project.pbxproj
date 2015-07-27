@@ -344,7 +344,6 @@
 		B17FE7FD1A8DBE7C00BF9C28 /* Artwork.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 861610BF1A8D8EDD00245F7A /* Artwork.xcassets */; };
 		B183A4A21A8535D100C76870 /* ResearchKit_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B1B894391A00345200C5CF2D /* ResearchKit_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		B183A4DD1A8535D100C76870 /* ResearchKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B1C1DE4F196F541F00F75544 /* ResearchKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B183A5011A8535D100C76870 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		B1A860EA1A9693C400EA57B7 /* consent_01@2x.m4v in Resources */ = {isa = PBXBuildFile; fileRef = B1A860DB1A9693C400EA57B7 /* consent_01@2x.m4v */; };
 		B1A860EB1A9693C400EA57B7 /* consent_02@2x.m4v in Resources */ = {isa = PBXBuildFile; fileRef = B1A860DC1A9693C400EA57B7 /* consent_02@2x.m4v */; };
 		B1A860EC1A9693C400EA57B7 /* consent_03@2x.m4v in Resources */ = {isa = PBXBuildFile; fileRef = B1A860DD1A9693C400EA57B7 /* consent_03@2x.m4v */; };
@@ -363,10 +362,14 @@
 		B1C7955E1A9FBF04007279BA /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C7955D1A9FBF04007279BA /* HealthKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B8760F2B1AFBEFB0007FA16F /* ORKScaleRangeDescriptionLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = B8760F291AFBEFB0007FA16F /* ORKScaleRangeDescriptionLabel.h */; };
 		B8760F2C1AFBEFB0007FA16F /* ORKScaleRangeDescriptionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B8760F2A1AFBEFB0007FA16F /* ORKScaleRangeDescriptionLabel.m */; };
-		BB6ACB661B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.h in Headers */ = {isa = PBXBuildFile; fileRef = BB6ACB641B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.h */; };
-		BB6ACB671B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6ACB651B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.m */; };
-		BB6ACB6B1B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BB6ACB691B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h */; };
-		BB6ACB6C1B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6ACB6A1B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m */; };
+		BB6ACB751B66E00F007C8B31 /* ORKOrderedTask+TwentyThreeAndMe.h in Headers */ = {isa = PBXBuildFile; fileRef = BB6ACB731B66E00F007C8B31 /* ORKOrderedTask+TwentyThreeAndMe.h */; };
+		BB6ACB761B66E00F007C8B31 /* ORKOrderedTask+TwentyThreeAndMe.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6ACB741B66E00F007C8B31 /* ORKOrderedTask+TwentyThreeAndMe.m */; };
+		BB6ACB7B1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStep.h in Headers */ = {isa = PBXBuildFile; fileRef = BB6ACB771B66E18F007C8B31 /* ORKTwentyThreeAndMeConnectStep.h */; };
+		BB6ACB7C1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStep.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6ACB781B66E18F007C8B31 /* ORKTwentyThreeAndMeConnectStep.m */; };
+		BB6ACB7D1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BB6ACB791B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h */; };
+		BB6ACB7E1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6ACB7A1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m */; };
+		BB6ACB8A1B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BB6ACB881B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BB6ACB8B1B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6ACB891B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.m */; };
 		BC01B0FB1B0EB99700863803 /* ORKTintedImageView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = BC01B0FA1B0EB99700863803 /* ORKTintedImageView_Internal.h */; };
 		BC13CE391B0660220044153C /* ORKNavigableOrderedTask.h in Headers */ = {isa = PBXBuildFile; fileRef = BC13CE371B0660220044153C /* ORKNavigableOrderedTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC13CE3A1B0660220044153C /* ORKNavigableOrderedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13CE381B0660220044153C /* ORKNavigableOrderedTask.m */; };
@@ -801,10 +804,14 @@
 		B1C7955D1A9FBF04007279BA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		B8760F291AFBEFB0007FA16F /* ORKScaleRangeDescriptionLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORKScaleRangeDescriptionLabel.h; sourceTree = "<group>"; };
 		B8760F2A1AFBEFB0007FA16F /* ORKScaleRangeDescriptionLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORKScaleRangeDescriptionLabel.m; sourceTree = "<group>"; };
-		BB6ACB641B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORKTwentyThreeAndMeConnectStep.h; sourceTree = "<group>"; };
-		BB6ACB651B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORKTwentyThreeAndMeConnectStep.m; sourceTree = "<group>"; };
-		BB6ACB691B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORKTwentyThreeAndMeConnectStepViewController.h; sourceTree = "<group>"; };
-		BB6ACB6A1B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORKTwentyThreeAndMeConnectStepViewController.m; sourceTree = "<group>"; };
+		BB6ACB731B66E00F007C8B31 /* ORKOrderedTask+TwentyThreeAndMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ORKOrderedTask+TwentyThreeAndMe.h"; path = "TwentyThreeAndMe/ORKOrderedTask+TwentyThreeAndMe.h"; sourceTree = "<group>"; };
+		BB6ACB741B66E00F007C8B31 /* ORKOrderedTask+TwentyThreeAndMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ORKOrderedTask+TwentyThreeAndMe.m"; path = "TwentyThreeAndMe/ORKOrderedTask+TwentyThreeAndMe.m"; sourceTree = "<group>"; };
+		BB6ACB771B66E18F007C8B31 /* ORKTwentyThreeAndMeConnectStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKTwentyThreeAndMeConnectStep.h; path = TwentyThreeAndMe/ORKTwentyThreeAndMeConnectStep.h; sourceTree = "<group>"; };
+		BB6ACB781B66E18F007C8B31 /* ORKTwentyThreeAndMeConnectStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORKTwentyThreeAndMeConnectStep.m; path = TwentyThreeAndMe/ORKTwentyThreeAndMeConnectStep.m; sourceTree = "<group>"; };
+		BB6ACB791B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKTwentyThreeAndMeConnectStepViewController.h; path = TwentyThreeAndMe/ORKTwentyThreeAndMeConnectStepViewController.h; sourceTree = "<group>"; };
+		BB6ACB7A1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORKTwentyThreeAndMeConnectStepViewController.m; path = TwentyThreeAndMe/ORKTwentyThreeAndMeConnectStepViewController.m; sourceTree = "<group>"; };
+		BB6ACB881B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKTwentyThreeAndMeConnectTaskViewController.h; path = TwentyThreeAndMe/ORKTwentyThreeAndMeConnectTaskViewController.h; sourceTree = "<group>"; };
+		BB6ACB891B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORKTwentyThreeAndMeConnectTaskViewController.m; path = TwentyThreeAndMe/ORKTwentyThreeAndMeConnectTaskViewController.m; sourceTree = "<group>"; };
 		BC01B0FA1B0EB99700863803 /* ORKTintedImageView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORKTintedImageView_Internal.h; sourceTree = "<group>"; };
 		BC13CE371B0660220044153C /* ORKNavigableOrderedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORKNavigableOrderedTask.h; sourceTree = "<group>"; };
 		BC13CE381B0660220044153C /* ORKNavigableOrderedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORKNavigableOrderedTask.m; sourceTree = "<group>"; };
@@ -940,6 +947,7 @@
 				86C40B511A8D7C5B00081FAC /* Common */,
 				86C40AF91A8D7C5B00081FAC /* ActiveTasks */,
 				86C40BEB1A8D7C5C00081FAC /* Consent */,
+				BB6ACB701B66DF70007C8B31 /* TwentyThreeAndMe */,
 				618DA0471A93D0D600E63AA8 /* Accessibility */,
 				B1A860D91A9693C400EA57B7 /* Animations */,
 				861610BF1A8D8EDD00245F7A /* Artwork.xcassets */,
@@ -1137,7 +1145,6 @@
 				B12EFF361AB2117B00A80147 /* Question Step */,
 				B12EFF3C1AB211FB00A80147 /* Form Step */,
 				D44239761AF17EE700559D96 /* Image Capture Step */,
-				BB6ACB681B65F5F2007C8B31 /* TwentyThreeAndMe */,
 			);
 			name = Step;
 			sourceTree = "<group>";
@@ -1707,15 +1714,35 @@
 			path = Localized;
 			sourceTree = "<group>";
 		};
-		BB6ACB681B65F5F2007C8B31 /* TwentyThreeAndMe */ = {
+		BB6ACB701B66DF70007C8B31 /* TwentyThreeAndMe */ = {
 			isa = PBXGroup;
 			children = (
-				BB6ACB641B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.h */,
-				BB6ACB651B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.m */,
-				BB6ACB691B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h */,
-				BB6ACB6A1B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m */,
+				BB6ACB711B66DF81007C8B31 /* Task */,
+				BB6ACB721B66DF89007C8B31 /* Step */,
 			);
 			name = TwentyThreeAndMe;
+			sourceTree = "<group>";
+		};
+		BB6ACB711B66DF81007C8B31 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				BB6ACB731B66E00F007C8B31 /* ORKOrderedTask+TwentyThreeAndMe.h */,
+				BB6ACB741B66E00F007C8B31 /* ORKOrderedTask+TwentyThreeAndMe.m */,
+				BB6ACB881B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.h */,
+				BB6ACB891B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.m */,
+			);
+			name = Task;
+			sourceTree = "<group>";
+		};
+		BB6ACB721B66DF89007C8B31 /* Step */ = {
+			isa = PBXGroup;
+			children = (
+				BB6ACB771B66E18F007C8B31 /* ORKTwentyThreeAndMeConnectStep.h */,
+				BB6ACB781B66E18F007C8B31 /* ORKTwentyThreeAndMeConnectStep.m */,
+				BB6ACB791B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h */,
+				BB6ACB7A1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m */,
+			);
+			name = Step;
 			sourceTree = "<group>";
 		};
 		BC4194261AE8451F00073D6B /* Misc */ = {
@@ -1771,9 +1798,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB6ACB8A1B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.h in Headers */,
 				BCA5C0351AEC05F20092AC8D /* ORKStepNavigationRule.h in Headers */,
 				BC13CE391B0660220044153C /* ORKNavigableOrderedTask.h in Headers */,
 				86C40C921A8D7C5C00081FAC /* ORKAudioRecorder.h in Headers */,
+				BB6ACB7D1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h in Headers */,
 				86C40D8E1A8D7C5C00081FAC /* ORKStep.h in Headers */,
 				618DA04E1A93D0D600E63AA8 /* ORKAccessibility.h in Headers */,
 				86B781BB1AA668ED00688151 /* ORKTimeIntervalPicker.h in Headers */,
@@ -1819,18 +1848,20 @@
 				86C40CA41A8D7C5C00081FAC /* ORKLocationRecorder.h in Headers */,
 				86C40D201A8D7C5C00081FAC /* ORKFormStep.h in Headers */,
 				86C40C761A8D7C5C00081FAC /* HKSample+ORKJSONDictionary.h in Headers */,
-				BB6ACB661B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.h in Headers */,
 				86C40CEA1A8D7C5C00081FAC /* ORKAnswerTextField.h in Headers */,
 				B12EA0191B0D76AD00F9F554 /* ORKToneAudiometryPracticeStepViewController.h in Headers */,
 				B183A4A21A8535D100C76870 /* ResearchKit_Private.h in Headers */,
 				86C40CE81A8D7C5C00081FAC /* ORKAnswerFormat_Internal.h in Headers */,
 				86C40D021A8D7C5C00081FAC /* ORKContinueButton.h in Headers */,
 				86C40D681A8D7C5C00081FAC /* ORKQuestionStepViewController_Private.h in Headers */,
+				BB6ACB7B1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStep.h in Headers */,
 				86C40D121A8D7C5C00081FAC /* ORKDefines.h in Headers */,
 				86C40D401A8D7C5C00081FAC /* ORKInstructionStep.h in Headers */,
 				147503B71AEE807C004B17F3 /* ORKToneAudiometryContentView.h in Headers */,
 				86C40D981A8D7C5C00081FAC /* ORKStepViewController_Internal.h in Headers */,
 				86B89ABB1AB3BECC001626A4 /* ORKStepHeaderView.h in Headers */,
+				BB6ACB751B66E00F007C8B31 /* ORKOrderedTask+TwentyThreeAndMe.h in Headers */,
+				BC13CE3E1B0662A80044153C /* ORKOrderedTask_Internal.h in Headers */,
 				D42FEFB81AF7557000A124F8 /* ORKImageCaptureView.h in Headers */,
 				86C40D1A1A8D7C5C00081FAC /* ORKFormItem_Internal.h in Headers */,
 				86C40E1C1A8D7C5C00081FAC /* ORKConsentSection_Internal.h in Headers */,
@@ -1893,14 +1924,12 @@
 				86C40CF61A8D7C5C00081FAC /* ORKBorderedButton.h in Headers */,
 				86C40D4A1A8D7C5C00081FAC /* ORKLabel.h in Headers */,
 				861D11A91AA691BB003C98A7 /* ORKScaleSliderView.h in Headers */,
-				BC13CE3E1B0662A80044153C /* ORKOrderedTask_Internal.h in Headers */,
 				86C40C3E1A8D7C5C00081FAC /* ORKSpatialSpanMemoryContentView.h in Headers */,
 				86C40CC01A8D7C5C00081FAC /* ORKCompletionStep.h in Headers */,
 				86C40DF61A8D7C5C00081FAC /* ORKConsentSignatureController.h in Headers */,
 				86C40CDC1A8D7C5C00081FAC /* ORKTintedImageView.h in Headers */,
 				86C40D281A8D7C5C00081FAC /* ORKFormTextView.h in Headers */,
 				86C40DEE1A8D7C5C00081FAC /* UIResponder+ResearchKit.h in Headers */,
-				BB6ACB6B1B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h in Headers */,
 				86C40E041A8D7C5C00081FAC /* ORKConsentLearnMoreViewController.h in Headers */,
 				25ECC09B1AFBD8B300F3D63B /* ORKReactionTimeViewController.h in Headers */,
 				86C40D061A8D7C5C00081FAC /* ORKCountdownLabel.h in Headers */,
@@ -2205,7 +2234,6 @@
 				86C40E2A1A8D7C5C00081FAC /* ORKSignatureView.m in Sources */,
 				BCFF24BD1B0798D10044EC35 /* ORKResultPredicate.m in Sources */,
 				25ECC0A41AFBDD2700F3D63B /* ORKReactionTimeStimulusView.m in Sources */,
-				BB6ACB6C1B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m in Sources */,
 				86C40CBA1A8D7C5C00081FAC /* ORKVoiceEngine.m in Sources */,
 				861D11B61AA7D073003C98A7 /* ORKTextChoiceCellGroup.m in Sources */,
 				86C40CCA1A8D7C5C00081FAC /* ORKFormItemCell.m in Sources */,
@@ -2224,8 +2252,11 @@
 				86C40E321A8D7C5C00081FAC /* ORKVisualConsentStepViewController.m in Sources */,
 				618DA0561A93D0D600E63AA8 /* UIView+ORKAccessibility.m in Sources */,
 				86C40D3A1A8D7C5C00081FAC /* ORKHTMLPDFWriter.m in Sources */,
+				BB6ACB7C1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStep.m in Sources */,
 				865EA1691ABA1AA10037C68E /* ORKPicker.m in Sources */,
+				BB6ACB7E1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m in Sources */,
 				86C40D321A8D7C5C00081FAC /* ORKHealthAnswerFormat.m in Sources */,
+				BB6ACB761B66E00F007C8B31 /* ORKOrderedTask+TwentyThreeAndMe.m in Sources */,
 				86C40D861A8D7C5C00081FAC /* ORKSelectionTitleLabel.m in Sources */,
 				86C40D001A8D7C5C00081FAC /* ORKChoiceViewCell.m in Sources */,
 				86C40C4C1A8D7C5C00081FAC /* ORKSpatialSpanTargetView.m in Sources */,
@@ -2236,7 +2267,6 @@
 				86AD910B1AB7AD1E00361FEB /* ORKNavigationContainerView.m in Sources */,
 				865EA1631AB8DF750037C68E /* ORKDateTimePicker.m in Sources */,
 				86C40C781A8D7C5C00081FAC /* HKSample+ORKJSONDictionary.m in Sources */,
-				BB6ACB671B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.m in Sources */,
 				86C40D421A8D7C5C00081FAC /* ORKInstructionStep.m in Sources */,
 				86C40C2C1A8D7C5C00081FAC /* ORKFitnessContentView.m in Sources */,
 				D458520B1AF6CCFA00A2DE13 /* ORKImageCaptureCameraPreviewView.m in Sources */,
@@ -2305,7 +2335,6 @@
 				86C40D361A8D7C5C00081FAC /* ORKHelpers.m in Sources */,
 				86C40C181A8D7C5C00081FAC /* ORKAudioContentView.m in Sources */,
 				86C40C8E1A8D7C5C00081FAC /* ORKActiveStepViewController.m in Sources */,
-				B183A5011A8535D100C76870 /* (null) in Sources */,
 				86C40CE61A8D7C5C00081FAC /* ORKAnswerFormat.m in Sources */,
 				25ECC0961AFBD68300F3D63B /* ORKReactionTimeStep.m in Sources */,
 				BC13CE3A1B0660220044153C /* ORKNavigableOrderedTask.m in Sources */,
@@ -2328,6 +2357,7 @@
 				86C40D0C1A8D7C5C00081FAC /* ORKCustomStepView.m in Sources */,
 				86C40C1C1A8D7C5C00081FAC /* ORKAudioStep.m in Sources */,
 				86C40D581A8D7C5C00081FAC /* ORKOrderedTask.m in Sources */,
+				BB6ACB8B1B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.m in Sources */,
 				86C40D601A8D7C5C00081FAC /* ORKQuestionStep.m in Sources */,
 				86C40E381A8D7C5C00081FAC /* ORKVisualConsentTransitionAnimator.m in Sources */,
 			);

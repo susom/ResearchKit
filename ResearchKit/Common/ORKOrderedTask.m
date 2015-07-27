@@ -41,9 +41,6 @@
 #import "ORKTappingIntervalStep.h"
 #import "ORKCountdownStepViewController.h"
 #import "ORKToneAudiometryStepViewController.h"
-#import "ORKTwentyThreeAndMeConnectStep.h"
-#import "ORKTwentyThreeAndMeConnectStepViewController.h"
-#import "ORKHelpers.h"
 #import "ORKFitnessStepViewController.h"
 #import "ORKCompletionStep.h"
 #import "ORKSpatialSpanMemoryStepViewController.h"
@@ -286,7 +283,6 @@ static NSString * const ORKSpatialSpanMemoryStepIdentifier = @"cognitive.memory.
 static NSString * const ORKToneAudiometryPracticeStepIdentifier = @"tone.audiometry.practice";
 static NSString * const ORKToneAudiometryStepIdentifier = @"tone.audiometry";
 static NSString * const ORKReactionTimeStepIdentifier = @"reactionTime";
-static NSString * const ORKTwentyThreeAndMeConnectStepIdentifier = @"twentyThreeAndMe.connect";
 static NSString * const ORKAudioRecorderIdentifier = @"audio";
 static NSString * const ORKAccelerometerRecorderIdentifier = @"accelerometer";
 static NSString * const ORKPedometerRecorderIdentifier = @"pedometer";
@@ -914,54 +910,6 @@ static void ORKStepArrayAddStep(NSMutableArray *array, ORKStep *step) {
     
     if (!(options & ORKPredefinedTaskOptionExcludeConclusion)) {
         ORKInstructionStep *step = [self makeCompletionStep];
-        ORKStepArrayAddStep(steps, step);
-    }
-    
-    ORKOrderedTask *task = [[ORKOrderedTask alloc] initWithIdentifier:identifier steps:steps];
-    
-    return task;
-}
-
-+ (ORKOrderedTask *)twentyThreeAndMeTaskWithIdentifier:(NSString *)identifier
-                                           partnerLogo:(NSString *)logoName
-                                          authClientId:(NSString *)clientId
-                                            authScopes:(NSString *)scopes
-                                       sharingOptional:(BOOL)sharingOptional
-{
-    NSMutableArray *steps = [NSMutableArray array];
- 
-    {
-        ORKInstructionStep *step = [[ORKInstructionStep alloc] initWithIdentifier:ORKInstruction0StepIdentifier];
-        step.title = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_1_TITLE", nil);
-        step.text = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_1_TEXT", nil);
-        step.detailText = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_1_DETAIL_TEXT", nil);
-        step.shouldTintImages = YES;
-        
-        ORKStepArrayAddStep(steps, step);
-    }
-    
-    {
-        ORKInstructionStep *step = [[ORKInstructionStep alloc] initWithIdentifier:ORKInstruction1StepIdentifier];
-        step.title = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_2_TITLE", nil);
-        step.text = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_2_TEXT", nil);
-        step.detailText = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_2_DETAIL_TEXT", nil);
-        step.shouldTintImages = YES;
-        
-        ORKStepArrayAddStep(steps, step);
-    }
-    
-    {
-        ORKTwentyThreeAndMeConnectStep *step = [[ORKTwentyThreeAndMeConnectStep alloc] initWithIdentifier:ORKTwentyThreeAndMeConnectStepIdentifier];
-        
-        ORKStepArrayAddStep(steps, step);
-    }
-    
-    {
-        ORKCompletionStep *step = [[ORKCompletionStep alloc] initWithIdentifier:ORKConclusionStepIdentifier];
-        step.title = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_CONCLUSION_SUCCESS_NEW_TITLE", nil);
-        step.text = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_CONCLUSION_SUCCESS_NEW_TEXT", nil);
-        step.shouldTintImages = YES;
-        
         ORKStepArrayAddStep(steps, step);
     }
     

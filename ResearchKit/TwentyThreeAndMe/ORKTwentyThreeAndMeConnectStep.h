@@ -18,7 +18,25 @@ NS_ASSUME_NONNULL_BEGIN
 ORK_CLASS_AVAILABLE
 @interface ORKTwentyThreeAndMeConnectStep : ORKStep
 
-//TODO: Init with Auth Data (Redirect, ClientId, Scope)
+/**
+ *
+ */
+@property (nonatomic, copy, nullable) NSString *redirectURI;
+
+/**
+ *
+ */
+@property (nonatomic, copy, nullable) NSString *clientId;
+
+/**
+ *
+ */
+@property (nonatomic, copy, nullable) NSString *clientSecret;
+
+/**
+ *
+ */
+@property (nonatomic, copy, nullable) NSString *scopes;
 
 @end
 
