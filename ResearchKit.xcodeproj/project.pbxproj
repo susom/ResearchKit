@@ -573,6 +573,10 @@
 		BABBB1B72097E58300CB29E5 /* ORKPDFViewerStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = BABBB1B52097E58300CB29E5 /* ORKPDFViewerStepView.m */; };
 		BABBB1BA2097EF3800CB29E5 /* ORKFreehandDrawingView.h in Headers */ = {isa = PBXBuildFile; fileRef = BABBB1B82097EF3800CB29E5 /* ORKFreehandDrawingView.h */; };
 		BABBB1BB2097EF3800CB29E5 /* ORKFreehandDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = BABBB1B92097EF3800CB29E5 /* ORKFreehandDrawingView.m */; };
+		BB6ACB661B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.h in Headers */ = {isa = PBXBuildFile; fileRef = BB6ACB641B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.h */; };
+		BB6ACB671B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6ACB651B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.m */; };
+		BB6ACB6B1B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BB6ACB691B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h */; };
+		BB6ACB6C1B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6ACB6A1B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m */; };
 		BC01B0FB1B0EB99700863803 /* ORKTintedImageView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = BC01B0FA1B0EB99700863803 /* ORKTintedImageView_Internal.h */; };
 		BC13CE391B0660220044153C /* ORKNavigableOrderedTask.h in Headers */ = {isa = PBXBuildFile; fileRef = BC13CE371B0660220044153C /* ORKNavigableOrderedTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC13CE3A1B0660220044153C /* ORKNavigableOrderedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13CE381B0660220044153C /* ORKNavigableOrderedTask.m */; };
@@ -1341,6 +1345,10 @@
 		BABBB1B52097E58300CB29E5 /* ORKPDFViewerStepView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ORKPDFViewerStepView.m; sourceTree = "<group>"; };
 		BABBB1B82097EF3800CB29E5 /* ORKFreehandDrawingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ORKFreehandDrawingView.h; sourceTree = "<group>"; };
 		BABBB1B92097EF3800CB29E5 /* ORKFreehandDrawingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ORKFreehandDrawingView.m; sourceTree = "<group>"; };
+		BB6ACB641B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORKTwentyThreeAndMeConnectStep.h; sourceTree = "<group>"; };
+		BB6ACB651B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORKTwentyThreeAndMeConnectStep.m; sourceTree = "<group>"; };
+		BB6ACB691B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORKTwentyThreeAndMeConnectStepViewController.h; sourceTree = "<group>"; };
+		BB6ACB6A1B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORKTwentyThreeAndMeConnectStepViewController.m; sourceTree = "<group>"; };
 		BC01B0FA1B0EB99700863803 /* ORKTintedImageView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORKTintedImageView_Internal.h; sourceTree = "<group>"; };
 		BC13CE371B0660220044153C /* ORKNavigableOrderedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORKNavigableOrderedTask.h; sourceTree = "<group>"; };
 		BC13CE381B0660220044153C /* ORKNavigableOrderedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORKNavigableOrderedTask.m; sourceTree = "<group>"; };
@@ -2269,6 +2277,7 @@
 				BF690AD61BAD3DC0009C5ADA /* Review Step */,
 				B12EFF491AB2155700A80147 /* Signature Step */,
 				8419D66B1FB73C800088D7E5 /* WebView Step */,
+				BB6ACB681B65F5F2007C8B31 /* TwentyThreeAndMe */,
 			);
 			name = Step;
 			sourceTree = "<group>";
@@ -2937,6 +2946,17 @@
 			name = PDFStep;
 			sourceTree = "<group>";
 		};
+		BB6ACB681B65F5F2007C8B31 /* TwentyThreeAndMe */ = {
+			isa = PBXGroup;
+			children = (
+				BB6ACB641B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.h */,
+				BB6ACB651B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.m */,
+				BB6ACB691B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h */,
+				BB6ACB6A1B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m */,
+			);
+			name = TwentyThreeAndMe;
+			sourceTree = "<group>";
+		};
 		BC4194261AE8451F00073D6B /* Misc */ = {
 			isa = PBXGroup;
 			children = (
@@ -3173,6 +3193,7 @@
 				BA0AA6961EAEC0B600671ACE /* ORKStroopStep.h in Headers */,
 				71769E2920880C4500A19914 /* ORKdBHLToneAudiometryResult.h in Headers */,
 				BABBB19D2093299A00CB29E5 /* ORKSurveyCardHeaderView.h in Headers */,
+				BB6ACB661B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.h in Headers */,
 				86C40CEA1A8D7C5C00081FAC /* ORKAnswerTextField.h in Headers */,
 				2429D5721BBB5397003A512F /* ORKRegistrationStep.h in Headers */,
 				B183A4A21A8535D100C76870 /* ResearchKit_Private.h in Headers */,
@@ -3319,6 +3340,7 @@
 				FF0CB38A1FD5C4C3002D838C /* ORKWebViewStepResult.h in Headers */,
 				BA87E26D20A79FA100B375A9 /* ORKRingView.h in Headers */,
 				86C40DEE1A8D7C5C00081FAC /* UIResponder+ResearchKit.h in Headers */,
+				BB6ACB6B1B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.h in Headers */,
 				86C40E041A8D7C5C00081FAC /* ORKConsentLearnMoreViewController.h in Headers */,
 				25ECC09B1AFBD8B300F3D63B /* ORKReactionTimeViewController.h in Headers */,
 				86C40D061A8D7C5C00081FAC /* ORKCountdownLabel.h in Headers */,
@@ -3717,6 +3739,7 @@
 				106FF2B51B71F18E004EACF2 /* ORKHolePegTestPlaceHoleView.m in Sources */,
 				106FF2A31B665B86004EACF2 /* ORKHolePegTestPlaceStepViewController.m in Sources */,
 				25ECC0A41AFBDD2700F3D63B /* ORKReactionTimeStimulusView.m in Sources */,
+				BB6ACB6C1B65F61E007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m in Sources */,
 				86C40CBA1A8D7C5C00081FAC /* ORKVoiceEngine.m in Sources */,
 				861D11B61AA7D073003C98A7 /* ORKTextChoiceCellGroup.m in Sources */,
 				86C40CCA1A8D7C5C00081FAC /* ORKFormItemCell.m in Sources */,
@@ -3783,6 +3806,7 @@
 				866DA5241D63D04700C9AF3F /* ORKDataCollectionManager.m in Sources */,
 				9550E6741D58DBCF00C691B8 /* ORKTouchAnywhereStep.m in Sources */,
 				86C40C781A8D7C5C00081FAC /* HKSample+ORKJSONDictionary.m in Sources */,
+				BB6ACB671B65F5EB007C8B31 /* ORKTwentyThreeAndMeConnectStep.m in Sources */,
 				86C40D421A8D7C5C00081FAC /* ORKInstructionStep.m in Sources */,
 				86C40C2C1A8D7C5C00081FAC /* ORKFitnessContentView.m in Sources */,
 				BA95AA9F20ACD0E700E7FF8E /* ORKAmslerGridContentView.m in Sources */,
