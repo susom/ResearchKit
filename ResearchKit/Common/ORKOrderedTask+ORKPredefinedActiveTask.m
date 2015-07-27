@@ -2636,6 +2636,7 @@ NSString * const ORKTwentyThreeAndMeConnectStepIdentifier = @"twentyThreeAndMe.c
 + (ORKOrderedTask *)twentyThreeAndMeTaskWithIdentifier:(NSString *)identifier
                                            partnerLogo:(NSString *)logoName
                                           authClientId:(NSString *)clientId
+                                      authClientSecret:(NSString *)clientSecret
                                             authScopes:(NSString *)scopes
                                        sharingOptional:(BOOL)sharingOptional
 {
@@ -2663,6 +2664,10 @@ NSString * const ORKTwentyThreeAndMeConnectStepIdentifier = @"twentyThreeAndMe.c
     
     {
         ORKTwentyThreeAndMeConnectStep *step = [[ORKTwentyThreeAndMeConnectStep alloc] initWithIdentifier:ORKTwentyThreeAndMeConnectStepIdentifier];
+        step.redirectURI = @"http://localhost:5000/receive_code/&response_type=code";
+        step.clientId = clientId;
+        step.clientSecret = clientSecret;
+        step.scopes = scopes;
         
         ORKStepArrayAddStep(steps, step);
     }
