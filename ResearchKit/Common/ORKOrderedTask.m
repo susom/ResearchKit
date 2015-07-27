@@ -41,6 +41,8 @@
 #import "ORKTappingIntervalStep.h"
 #import "ORKCountdownStepViewController.h"
 #import "ORKToneAudiometryStepViewController.h"
+#import "ORKTwentyThreeAndMeConnectStep.h"
+#import "ORKTwentyThreeAndMeConnectStepViewController.h"
 #import "ORKHelpers.h"
 #import "ORKFitnessStepViewController.h"
 #import "ORKCompletionStep.h"
@@ -284,6 +286,7 @@ static NSString * const ORKSpatialSpanMemoryStepIdentifier = @"cognitive.memory.
 static NSString * const ORKToneAudiometryPracticeStepIdentifier = @"tone.audiometry.practice";
 static NSString * const ORKToneAudiometryStepIdentifier = @"tone.audiometry";
 static NSString * const ORKReactionTimeStepIdentifier = @"reactionTime";
+static NSString * const ORKTwentyThreeAndMeConnectStepIdentifier = @"twentyThreeAndMe.connect";
 static NSString * const ORKAudioRecorderIdentifier = @"audio";
 static NSString * const ORKAccelerometerRecorderIdentifier = @"accelerometer";
 static NSString * const ORKPedometerRecorderIdentifier = @"pedometer";
@@ -947,7 +950,11 @@ static void ORKStepArrayAddStep(NSMutableArray *array, ORKStep *step) {
         ORKStepArrayAddStep(steps, step);
     }
     
-    //TODO: TwentyThreeAndMeConnectStep
+    {
+        ORKTwentyThreeAndMeConnectStep *step = [[ORKTwentyThreeAndMeConnectStep alloc] initWithIdentifier:ORKTwentyThreeAndMeConnectStepIdentifier];
+        
+        ORKStepArrayAddStep(steps, step);
+    }
     
     {
         ORKCompletionStep *step = [[ORKCompletionStep alloc] initWithIdentifier:ORKConclusionStepIdentifier];
