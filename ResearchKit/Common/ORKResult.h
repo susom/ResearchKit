@@ -928,4 +928,15 @@ ORK_CLASS_AVAILABLE
 
 @end
 
+/**
+ */
+ORK_CLASS_AVAILABLE
+@interface ORKTwentyThreeAndMeConnectResult : ORKResult
+
+/**
+ */
+@property (nonatomic, copy, nullable) NSString *authToken;
+
+@end
+
 NS_ASSUME_NONNULL_END

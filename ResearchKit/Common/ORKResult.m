@@ -1404,3 +1404,41 @@
 }
 
 @end
+
+@implementation ORKTwentyThreeAndMeConnectResult
+
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    ORK_ENCODE_OBJ(aCoder, authToken);
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        ORK_DECODE_OBJ_CLASS(aDecoder, authToken, NSString);
+    }
+    return self;
+}
+
+- (BOOL)isEqual:(id)object {
+    BOOL isParentSame = [super isEqual:object];
+    
+    __typeof(self) castObject = object;
+    return (isParentSame &&
+            ORKEqualObjects(self.authToken, castObject.authToken));
+}
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+    ORKTwentyThreeAndMeConnectResult *result = [super copyWithZone:zone];
+    result.authToken = [self.authToken copy];
+    return result;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@ %@", [super description], self.authToken];
+}
+
+@end

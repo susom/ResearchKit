@@ -10,6 +10,7 @@
 #import "ORKTwentyThreeAndMeConnectStep.h"
 #import "ORKHelpers.h"
 #import "ORKSkin.h"
+#import "ORKResult.h"
 
 @interface ORKTwentyThreeAndMeConnectStepViewController ()<UIWebViewDelegate>
 
@@ -21,6 +22,8 @@
 
 @property (nonatomic, strong) NSURLRequest *failedRequest;
 
+@property (nonatomic, strong) NSString *authToken;
+
 @end
 
 @implementation ORKTwentyThreeAndMeConnectStepViewController
@@ -31,7 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
     self.view.backgroundColor = ORKColor(ORKBackgroundColorKey);
     
     _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
@@ -73,6 +76,26 @@
     [NSLayoutConstraint activateConstraints:constraints];
 }
 
+- (ORKStepResult *)result {
+    ORKStepResult *sResult = [super result];
+    
+    // "Now" is the end time of the result, which is either actually now,
+    // or the last time we were in the responder chain.
+    NSDate *now = sResult.endDate;
+    
+    NSMutableArray *results = [NSMutableArray arrayWithArray:sResult.results];
+    
+    ORKTwentyThreeAndMeConnectResult *connectResult = [[ORKTwentyThreeAndMeConnectResult alloc] initWithIdentifier:self.step.identifier];
+    connectResult.startDate = sResult.startDate;
+    connectResult.endDate = now;
+    connectResult.authToken = self.authToken;
+    
+    [results addObject:connectResult];
+    sResult.results = [results copy];
+    
+    return sResult;
+}
+
 #pragma mark - WebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -101,7 +124,7 @@
             
             if (authCode) {
                 NSString *data = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=authorization_code&code=%@&redirect_uri=%@&scope=%@", [self connectStep].clientId, [self connectStep].clientSecret, authCode, [self connectStep].redirectURI, [self connectStep].scopes];
-                NSString *tokenURL = @"https://api.23andme.com/token/";
+                NSString *tokenURL = @"https://api.researchkit.23andme.io/token/";
                 NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:tokenURL]];
                 [request setHTTPMethod:@"POST"];
                 [request setHTTPBody:[data dataUsingEncoding:NSUTF8StringEncoding]];
@@ -162,9 +185,23 @@
     if( self.authenticated &&
         self.receivedData )
     {
-        NSLog( @"%@", self.receivedData );
+        //NSLog( @"%@", self.receivedData );
         
-        // Need to parse data from JSON here...
+        // DEBUGGING for Parse Issues
+        const unsigned char *ptr = [self.receivedData bytes];
+        NSString *jsonParsed = @"";
+        for(int i=0; i<[self.receivedData length]; ++i) {
+            unsigned char c = *ptr++;
+            jsonParsed = [jsonParsed stringByAppendingFormat:@"%c", c];
+        }
+        NSLog( @"Json Parsed: %@", jsonParsed );
+        
+        NSError *localError = nil;
+        NSDictionary *parsedData = [NSJSONSerialization JSONObjectWithData:self.receivedData options:NSJSONReadingAllowFragments error:&localError];
+        if( parsedData )
+        {
+            self.authToken = parsedData[@"access_token"];
+        }
         
         [self goForward];
     }
