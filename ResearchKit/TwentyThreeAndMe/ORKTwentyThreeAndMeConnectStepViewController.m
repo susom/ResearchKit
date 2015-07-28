@@ -17,6 +17,10 @@
 
 @property (strong, nonatomic) NSMutableData *receivedData;
 
+@property (nonatomic) BOOL authenticated;
+
+@property (nonatomic, strong) NSURLRequest *failedRequest;
+
 @end
 
 @implementation ORKTwentyThreeAndMeConnectStepViewController
@@ -43,7 +47,7 @@
     
     [_webView setScalesPageToFit:YES];
     
-    NSURL *contentURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.23andme.com/authorize/?redirect_uri=%@&client_id=%@&scope=%@", [self connectStep].redirectURI, [self connectStep].clientId, [self connectStep].scopes]];
+    NSURL *contentURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.researchkit.23andme.io/authorize/?redirect_uri=%@&client_id=%@&scope=%@", [self connectStep].redirectURI, [self connectStep].clientId, [self connectStep].scopes]];
     [_webView loadRequest:[NSURLRequest requestWithURL:contentURL]];
     
     _webView.delegate = self;
@@ -69,46 +73,49 @@
     [NSLayoutConstraint activateConstraints:constraints];
 }
 
+#pragma mark - WebViewDelegate
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-//    if( navigationType == UIWebViewNavigationTypeLinkClicked )
-//    {
-//        [self goForward];
-//        return NO;
-//    }
-    
-    if ([[[request URL] host] isEqualToString:@"localhost"])
-    {
-        // Extract oauth_verifier from URL query
-        NSString* authCode = nil;
-        NSArray* urlParams = [[[request URL] query] componentsSeparatedByString:@"&"];
-        for (NSString* param in urlParams)
-        {
-            NSArray* keyValue = [param componentsSeparatedByString:@"="];
-            NSString* key = [keyValue objectAtIndex:0];
-            if ([key isEqualToString:@"code"])
+    BOOL result = self.authenticated;
+    if( ! self.authenticated ) {
+        self.failedRequest = request;
+        NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [urlConnection start];
+        return result;
+    }
+    else {
+        if ([[[request URL] host] isEqualToString:@"localhost"]) {
+            // Extract oauth_verifier from URL query
+            NSString* authCode = nil;
+            NSArray* urlParams = [[[request URL] query] componentsSeparatedByString:@"&"];
+            for (NSString* param in urlParams)
             {
-                authCode = [keyValue objectAtIndex:1];
-                break;
+                NSArray* keyValue = [param componentsSeparatedByString:@"="];
+                NSString* key = [keyValue objectAtIndex:0];
+                if ([key isEqualToString:@"code"])
+                {
+                    authCode = [keyValue objectAtIndex:1];
+                    break;
+                }
             }
-        }
-        
-        if (authCode)
-        {
-            NSString *data = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=authorization_code&code=%@&redirect_uri=%@&scope=%@", [self connectStep].clientId, [self connectStep].clientSecret, authCode, [self connectStep].redirectURI, [self connectStep].scopes];
-            NSString *tokenURL = @"https://api.23andme.com/token/";
-            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:tokenURL]];
-            [request setHTTPMethod:@"POST"];
-            [request setHTTPBody:[data dataUsingEncoding:NSUTF8StringEncoding]];
             
-            self.receivedData = [[NSMutableData alloc] init];
-            NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            if (authCode) {
+                NSString *data = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=authorization_code&code=%@&redirect_uri=%@&scope=%@", [self connectStep].clientId, [self connectStep].clientSecret, authCode, [self connectStep].redirectURI, [self connectStep].scopes];
+                NSString *tokenURL = @"https://api.23andme.com/token/";
+                NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:tokenURL]];
+                [request setHTTPMethod:@"POST"];
+                [request setHTTPBody:[data dataUsingEncoding:NSUTF8StringEncoding]];
+                
+                self.receivedData = [[NSMutableData alloc] init];
+                NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+                [theConnection start];
+            }
+            else {
+                // ERROR!
+            }
+            
+            return NO;
         }
-        else
-        {
-            // ERROR!
-        }
-        
-        return NO;
     }
     
     return YES;
@@ -116,10 +123,33 @@
 
 #pragma mark - NSURLConnectionDelegate
 
+-(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        NSURL* baseURL = [NSURL URLWithString:@"https://api.researchkit.23andme.io/"];
+        if ([challenge.protectionSpace.host isEqualToString:baseURL.host]) {
+            NSLog(@"trusting connection to host %@", challenge.protectionSpace.host);
+            [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+        } else
+        NSLog(@"Not trusting connection to host %@", challenge.protectionSpace.host);
+    }
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)pResponse {
+    if( ! self.authenticated ) {
+        self.authenticated = YES;
+        [connection cancel];
+        [self.webView loadRequest:self.failedRequest];
+    }
+}
+
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    [self.receivedData appendData:data];
-    NSLog(@"verifier %@",self.receivedData);
+    if( self.receivedData )
+    {
+        [self.receivedData appendData:data];
+        //NSLog(@"verifier %@",self.receivedData);
+    }
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -129,26 +159,15 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog( @"%@", self.receivedData );
-    [self goForward];
-//    SBJson4ValueBlock block = ^(id parsedValue, BOOL *stop)
-//    {
-//        if( [parsedValue isKindOfClass:[NSDictionary class]] )
-//        {
-//            NSDictionary *tokenResponse = (NSDictionary*)parsedValue;
-//            [[Rest23Manager sharedManager] setupWithAuthDict:tokenResponse];
-//            
-//            [self.presenter performSelector:@selector(loginComplete)];
-//        }
-//    };
-//    
-//    SBJson4ErrorBlock eh = ^(NSError* err)
-//    {
-//        NSLog(@"Connection: Received JSON data failed to parse: %@", err);
-//    };
-//    
-//    SBJson4Parser *parser = [SBJson4Parser parserWithBlock:block allowMultiRoot:NO unwrapRootArray:NO errorHandler:eh];
-//    [parser parse:self.receivedData];
+    if( self.authenticated &&
+        self.receivedData )
+    {
+        NSLog( @"%@", self.receivedData );
+        
+        // Need to parse data from JSON here...
+        
+        [self goForward];
+    }
 }
 
 @end
