@@ -45,3 +45,4 @@
 #import <ResearchKit/ORKdBHLToneAudiometryResult.h>
 #import <ResearchKit/ORKTowerOfHanoiResult.h>
 #import <ResearchKit/ORKTrailmakingResult.h>
+#import <ResearchKit/ORKTwentyThreeAndMeConnectResult.h>
