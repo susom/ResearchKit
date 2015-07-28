@@ -56,6 +56,14 @@
     }
     else if( reason == ORKTaskViewControllerFinishReasonCompleted ) {
         if( self.twentyThreeAndMeConnectDelegate ) {
+            ORKTaskResult *taskResult = [taskViewController result];
+            ORKCollectionResult *connectResultCollection = (ORKCollectionResult *)[taskResult resultForIdentifier:@"twentyThreeAndMe.connect"];
+            ORKTwentyThreeAndMeConnectResult *connectResult = (ORKTwentyThreeAndMeConnectResult *)[connectResultCollection.results firstObject];
+            if( connectResult )
+            {
+                [resultDict setObject:connectResult.authToken forKey:@"authToken"];
+            }
+            
             [resultDict setObject:@"success" forKey:@"completionType"];
             [self.twentyThreeAndMeConnectDelegate twentyThreeAndMeConnectTaskViewController:self didFinishWithResults:resultDict error:nil];
         }

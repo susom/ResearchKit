@@ -795,6 +795,8 @@
 		D442397E1AF17F7600559D96 /* ORKImageCaptureStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D442397C1AF17F7600559D96 /* ORKImageCaptureStepViewController.m */; };
 		D458520A1AF6CCFA00A2DE13 /* ORKImageCaptureCameraPreviewView.h in Headers */ = {isa = PBXBuildFile; fileRef = D45852081AF6CCFA00A2DE13 /* ORKImageCaptureCameraPreviewView.h */; };
 		D458520B1AF6CCFA00A2DE13 /* ORKImageCaptureCameraPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = D45852091AF6CCFA00A2DE13 /* ORKImageCaptureCameraPreviewView.m */; };
+		F417347622269C0D008B87D2 /* ORKTwentyThreeAndMeConnectResult.h in Headers */ = {isa = PBXBuildFile; fileRef = F417347422269C0D008B87D2 /* ORKTwentyThreeAndMeConnectResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F417347722269C0D008B87D2 /* ORKTwentyThreeAndMeConnectResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F417347522269C0D008B87D2 /* ORKTwentyThreeAndMeConnectResult.m */; };
 		FA7A9D2B1B082688005A2BEA /* ORKConsentDocumentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7A9D2A1B082688005A2BEA /* ORKConsentDocumentTests.m */; };
 		FA7A9D2F1B083DD3005A2BEA /* ORKConsentSectionFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = FA7A9D2D1B083DD3005A2BEA /* ORKConsentSectionFormatter.h */; };
 		FA7A9D301B083DD3005A2BEA /* ORKConsentSectionFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7A9D2E1B083DD3005A2BEA /* ORKConsentSectionFormatter.m */; };
@@ -1703,6 +1705,8 @@
 		D442397C1AF17F7600559D96 /* ORKImageCaptureStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORKImageCaptureStepViewController.m; sourceTree = "<group>"; };
 		D45852081AF6CCFA00A2DE13 /* ORKImageCaptureCameraPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORKImageCaptureCameraPreviewView.h; sourceTree = "<group>"; };
 		D45852091AF6CCFA00A2DE13 /* ORKImageCaptureCameraPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORKImageCaptureCameraPreviewView.m; sourceTree = "<group>"; };
+		F417347422269C0D008B87D2 /* ORKTwentyThreeAndMeConnectResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ORKTwentyThreeAndMeConnectResult.h; path = TwentyThreeAndMe/ORKTwentyThreeAndMeConnectResult.h; sourceTree = "<group>"; };
+		F417347522269C0D008B87D2 /* ORKTwentyThreeAndMeConnectResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ORKTwentyThreeAndMeConnectResult.m; path = TwentyThreeAndMe/ORKTwentyThreeAndMeConnectResult.m; sourceTree = "<group>"; };
 		FA7A9D2A1B082688005A2BEA /* ORKConsentDocumentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORKConsentDocumentTests.m; sourceTree = "<group>"; };
 		FA7A9D2D1B083DD3005A2BEA /* ORKConsentSectionFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORKConsentSectionFormatter.h; sourceTree = "<group>"; };
 		FA7A9D2E1B083DD3005A2BEA /* ORKConsentSectionFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORKConsentSectionFormatter.m; sourceTree = "<group>"; };
@@ -3510,6 +3514,7 @@
 			children = (
 				BB6ACB711B66DF81007C8B31 /* Task */,
 				BB6ACB721B66DF89007C8B31 /* Step */,
+				F417347322269BCC008B87D2 /* Result */,
 			);
 			name = TwentyThreeAndMe;
 			sourceTree = "<group>";
@@ -3595,6 +3600,15 @@
 				D42FEFB71AF7557000A124F8 /* ORKImageCaptureView.m */,
 			);
 			name = "Image Capture Step";
+			sourceTree = "<group>";
+		};
+		F417347322269BCC008B87D2 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				F417347422269C0D008B87D2 /* ORKTwentyThreeAndMeConnectResult.h */,
+				F417347522269C0D008B87D2 /* ORKTwentyThreeAndMeConnectResult.m */,
+			);
+			name = Result;
 			sourceTree = "<group>";
 		};
 		FA7A9D2C1B083D90005A2BEA /* Formatters */ = {
@@ -3989,6 +4003,7 @@
 				86C40C2E1A8D7C5C00081FAC /* ORKFitnessStep.h in Headers */,
 				86C40C821A8D7C5C00081FAC /* ORKActiveStep_Internal.h in Headers */,
 				86C40D481A8D7C5C00081FAC /* ORKInstructionStepViewController_Internal.h in Headers */,
+				F417347622269C0D008B87D2 /* ORKTwentyThreeAndMeConnectResult.h in Headers */,
 				71769E3920882CED00A19914 /* ORKdBHLToneAudiometryStep.h in Headers */,
 				BA0AA6941EAEC0B600671ACE /* ORKStroopContentView.h in Headers */,
 				FA7A9D2F1B083DD3005A2BEA /* ORKConsentSectionFormatter.h in Headers */,
@@ -4532,6 +4547,7 @@
 				86C40C6C1A8D7C5C00081FAC /* CMDeviceMotion+ORKJSONDictionary.m in Sources */,
 				86C40DF01A8D7C5C00081FAC /* UIResponder+ResearchKit.m in Sources */,
 				65EEE16721B130D9007858E8 /* ORKTouchAbilityLongPressContentView.m in Sources */,
+				F417347722269C0D008B87D2 /* ORKTwentyThreeAndMeConnectResult.m in Sources */,
 				865EA16D1ABA1BE20037C68E /* ORKSurveyAnswerCellForPicker.m in Sources */,
 				BF9155AA1BDE8DA9007FA459 /* ORKWaitStepView.m in Sources */,
 				86C40D261A8D7C5C00081FAC /* ORKFormStepViewController.m in Sources */,

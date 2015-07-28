@@ -51,3 +51,4 @@
 #import <ResearchKit/ORKTouchAbilityScrollResult.h>
 #import <ResearchKit/ORKTouchAbilityPinchResult.h>
 #import <ResearchKit/ORKTouchAbilityRotationResult.h>
+#import <ResearchKit/ORKTwentyThreeAndMeConnectResult.h>
