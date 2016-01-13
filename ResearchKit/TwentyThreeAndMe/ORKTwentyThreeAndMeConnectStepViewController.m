@@ -49,8 +49,8 @@
     _webView.opaque = NO; // If opaque is set to YES, _webView shows a black right margin during transition when modally presented. This is an artifact due to disabling clipsToBounds to be able to show the scroll indicator outside the view.
     
     [_webView setScalesPageToFit:YES];
-    
-    NSURL *contentURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.researchkit.23andme.io/authorize/?redirect_uri=%@&client_id=%@&scope=%@", [self connectStep].redirectURI, [self connectStep].clientId, [self connectStep].scopes]];
+    NSString *stringUrl = [NSString stringWithFormat:@"https://api.researchkit.23andme.io/authorize/?redirect_uri=%@&client_id=%@&scope=%@", [self connectStep].redirectURI, [self connectStep].clientId, [self connectStep].scopes];
+    NSURL *contentURL = [NSURL URLWithString: [stringUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     [_webView loadRequest:[NSURLRequest requestWithURL:contentURL]];
     
     _webView.delegate = self;
@@ -177,6 +177,7 @@
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+    NSLog(@"%@",error);
     //Error
 }
 
