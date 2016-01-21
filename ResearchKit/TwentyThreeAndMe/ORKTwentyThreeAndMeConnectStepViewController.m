@@ -24,6 +24,8 @@
 
 @property (nonatomic, strong) NSString *authToken;
 
+@property (nonatomic, strong) NSString *refreshToken;
+
 @end
 
 @implementation ORKTwentyThreeAndMeConnectStepViewController
@@ -89,6 +91,7 @@
     connectResult.startDate = sResult.startDate;
     connectResult.endDate = now;
     connectResult.authToken = self.authToken;
+    connectResult.refreshToken = self.refreshToken;
     
     [results addObject:connectResult];
     sResult.results = [results copy];
@@ -202,6 +205,7 @@
         if( parsedData )
         {
             self.authToken = parsedData[@"access_token"];
+            self.refreshToken = parsedData[@"refresh_token"];
         }
         
         [self goForward];

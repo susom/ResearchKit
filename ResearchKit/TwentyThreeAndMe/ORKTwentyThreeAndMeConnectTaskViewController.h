@@ -45,11 +45,12 @@ ORK_CLASS_AVAILABLE
  TODO: Finish writing the detailed documentation for this method
  */
 + (ORKTwentyThreeAndMeConnectTaskViewController *)twentyThreeAndMeTaskViewControllerWithIdentifier:(NSString *)identifier
-                                                                                       partnerLogo:(NSString *)logoName
                                                                                       authClientId:(NSString *)clientId
                                                                                   authClientSecret:(NSString *)clientSecret
                                                                                         authScopes:(NSString *)scopes
-                                                                                   sharingOptional:(BOOL)sharingOptional;
+                                                                           investigatorDisplayName:(NSString *)investigatorDisplayName
+                                                                                  studyDisplayName:(NSString *)studyDisplayName
+                                                                                 studyContactEmail:(NSString *)studyContactEmail;
 
 @end
 
