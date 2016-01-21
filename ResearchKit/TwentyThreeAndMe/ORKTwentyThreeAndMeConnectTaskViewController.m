@@ -19,17 +19,19 @@
 @implementation ORKTwentyThreeAndMeConnectTaskViewController
 
 + (ORKTwentyThreeAndMeConnectTaskViewController *)twentyThreeAndMeTaskViewControllerWithIdentifier:(NSString *)identifier
-                                                                                       partnerLogo:(NSString *)logoName
                                                                                       authClientId:(NSString *)clientId
                                                                                   authClientSecret:(NSString *)clientSecret
                                                                                         authScopes:(NSString *)scopes
-                                                                                   sharingOptional:(BOOL)sharingOptional {
+                                                                           investigatorDisplayName:(NSString *)investigatorDisplayName
+                                                                                  studyDisplayName:(NSString *)studyDisplayName
+                                                                                 studyContactEmail:(NSString *)studyContactEmail {
     ORKOrderedTask *ttamTask = [ORKOrderedTask twentyThreeAndMeTaskWithIdentifier:identifier
-                                                                      partnerLogo:logoName
-                                                                     authClientId:clientId // mobile-tech internal api client
+                                                                     authClientId:clientId
                                                                  authClientSecret:clientSecret
                                                                        authScopes:scopes
-                                                                  sharingOptional:sharingOptional];
+                                                          investigatorDisplayName:investigatorDisplayName
+                                                                 studyDisplayName:studyDisplayName
+                                                                studyContactEmail:studyContactEmail];
     
     ORKTwentyThreeAndMeConnectTaskViewController *ttamTaskViewController = [[ORKTwentyThreeAndMeConnectTaskViewController alloc] initWithTask:ttamTask
                                                                                                                                   taskRunUUID:nil];
@@ -62,6 +64,7 @@
             if( connectResult )
             {
                 [resultDict setObject:connectResult.authToken forKey:@"authToken"];
+                [resultDict setObject:connectResult.refreshToken forKey:@"refreshToken"];
             }
             
             [resultDict setObject:@"success" forKey:@"completionType"];

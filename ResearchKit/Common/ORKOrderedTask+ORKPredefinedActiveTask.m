@@ -2634,11 +2634,12 @@ NSString *const ORKTrailmakingStepIdentifier = @"trailmaking";
 NSString * const ORKTwentyThreeAndMeConnectStepIdentifier = @"twentyThreeAndMe.connect";
 
 + (ORKOrderedTask *)twentyThreeAndMeTaskWithIdentifier:(NSString *)identifier
-                                           partnerLogo:(NSString *)logoName
                                           authClientId:(NSString *)clientId
                                       authClientSecret:(NSString *)clientSecret
                                             authScopes:(NSString *)scopes
-                                       sharingOptional:(BOOL)sharingOptional
+                               investigatorDisplayName:(NSString *)investigatorDisplayName
+                                      studyDisplayName:(NSString *)studyDisplayName
+                                     studyContactEmail:(NSString *)studyContactEmail
 {
     NSMutableArray *steps = [NSMutableArray array];
     

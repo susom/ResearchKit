@@ -19,6 +19,10 @@ ORK_CLASS_AVAILABLE
  */
 @property (nonatomic, copy, nullable) NSString *authToken;
 
+/**
+ */
+@property (nonatomic, copy, nullable) NSString *refreshToken;
+
 @end
 
 NS_ASSUME_NONNULL_END
