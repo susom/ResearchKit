@@ -19,22 +19,22 @@ ORK_CLASS_AVAILABLE
 @interface ORKTwentyThreeAndMeConnectStep : ORKStep
 
 /**
- *
+ *  RedirectURI used by auth. Should match what is in developer portal.
  */
 @property (nonatomic, copy, nullable) NSString *redirectURI;
 
 /**
- *
+ *  ClientId used by auth. Should match what is in developer portal.
  */
 @property (nonatomic, copy, nullable) NSString *clientId;
 
 /**
- *
+ *  ClientSecret used by auth. Should match what is in developer portal.
  */
 @property (nonatomic, copy, nullable) NSString *clientSecret;
 
 /**
- *
+ *  Scopes used by auth.
  */
 @property (nonatomic, copy, nullable) NSString *scopes;
 

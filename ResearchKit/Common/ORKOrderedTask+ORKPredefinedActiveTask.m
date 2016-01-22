@@ -43,7 +43,6 @@
 #import "ORKSpeechRecognitionStepViewController.h"
 #import "ORKStroopStepViewController.h"
 #import "ORKWalkingTaskStepViewController.h"
-#import "ORKTwentyThreeAndMeConnectStepViewController.h"
 
 #import "ORKAccelerometerRecorder.h"
 #import "ORKActiveStep_Internal.h"
@@ -82,7 +81,10 @@
 #import "ORKSpeechInNoiseStep.h"
 #import "ORKdBHLToneAudiometryStep.h"
 #import "ORKdBHLToneAudiometryOnboardingStep.h"
+#import "ORKTwentyThreeAndMeIntroStep.h"
 #import "ORKTwentyThreeAndMeConnectStep.h"
+#import "ORKTwentyThreeAndMeSuccessExistingStep.h"
+#import "ORKTwentyThreeAndMeFailureStep.h"
 #import "ORKSkin.h"
 #import <ResearchKit/ResearchKit-Swift.h>
 #import "ORKTouchAbilityTapStep.h"
@@ -2980,7 +2982,10 @@ NSString *const ORKTouchAbilityHorizontalScrollStepIdentifier = @"touchAbilityHo
 
 #pragma mark - twentyThreeAndMeTask
 
+NSString * const ORKTwentyThreeAndMeIntroStepIdentifier = @"twentyThreeAndMe.intro";
 NSString * const ORKTwentyThreeAndMeConnectStepIdentifier = @"twentyThreeAndMe.connect";
+NSString * const ORKTwentyThreeAndMeSuccessExistingStepIdentifier = @"twentyThreeAndMe.successExisting";
+NSString * const ORKTwentyThreeAndMeFailureStepIdentifier = @"twentyThreeAndMe.failure";
 
 + (ORKOrderedTask *)twentyThreeAndMeTaskWithIdentifier:(NSString *)identifier
                                           authClientId:(NSString *)clientId
@@ -2993,22 +2998,10 @@ NSString * const ORKTwentyThreeAndMeConnectStepIdentifier = @"twentyThreeAndMe.c
     NSMutableArray *steps = [NSMutableArray array];
     
     {
-        ORKInstructionStep *step = [[ORKInstructionStep alloc] initWithIdentifier:ORKInstruction0StepIdentifier];
-        step.title = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_1_TITLE", nil);
-        step.text = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_1_TEXT", nil);
-        step.detailText = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_1_DETAIL_TEXT", nil);
-        step.shouldTintImages = YES;
-        
-        ORKStepArrayAddStep(steps, step);
-    }
-    
-    {
-        ORKInstructionStep *step = [[ORKInstructionStep alloc] initWithIdentifier:ORKInstruction1StepIdentifier];
-        step.title = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_2_TITLE", nil);
-        step.text = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_2_TEXT", nil);
-        step.detailText = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_2_DETAIL_TEXT", nil);
-        step.shouldTintImages = YES;
-        
+        ORKTwentyThreeAndMeIntroStep *step = [[ORKTwentyThreeAndMeIntroStep alloc] initWithIdentifier:ORKTwentyThreeAndMeIntroStepIdentifier];
+        step.investigatorDisplayName = investigatorDisplayName;
+        step.studyDisplayName = studyDisplayName;
+        step.studyContactEmail = studyContactEmail;
         ORKStepArrayAddStep(steps, step);
     }
     
@@ -3018,16 +3011,19 @@ NSString * const ORKTwentyThreeAndMeConnectStepIdentifier = @"twentyThreeAndMe.c
         step.clientId = clientId;
         step.clientSecret = clientSecret;
         step.scopes = scopes;
-        
         ORKStepArrayAddStep(steps, step);
     }
     
     {
-        ORKCompletionStep *step = [[ORKCompletionStep alloc] initWithIdentifier:ORKConclusionStepIdentifier];
-        step.title = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_CONCLUSION_SUCCESS_NEW_TITLE", nil);
-        step.text = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_CONCLUSION_SUCCESS_NEW_TEXT", nil);
-        step.shouldTintImages = YES;
-        
+        ORKTwentyThreeAndMeSuccessExistingStep *step = [[ORKTwentyThreeAndMeSuccessExistingStep alloc] initWithIdentifier:ORKTwentyThreeAndMeSuccessExistingStepIdentifier];
+        step.studyDisplayName = studyDisplayName;
+        ORKStepArrayAddStep(steps, step);
+    }
+    
+    {
+        ORKTwentyThreeAndMeFailureStep *step = [[ORKTwentyThreeAndMeFailureStep alloc] initWithIdentifier:ORKTwentyThreeAndMeFailureStepIdentifier];
+        step.studyDisplayName = studyDisplayName;
+        step.studyContactEmail = studyContactEmail;
         ORKStepArrayAddStep(steps, step);
     }
     
