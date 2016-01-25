@@ -59,6 +59,7 @@
 #import <ResearchKit/ORKFitnessStep.h>
 #import <ResearchKit/ORKTappingIntervalStep.h>
 #import <ResearchKit/ORKCompletionStep.h>
+#import <ResearchKit/ORKIncompletionStep.h>
 
 #import <ResearchKit/ORKAudioStepViewController.h>
 #import <ResearchKit/ORKToneAudiometryStepViewController.h>
@@ -69,6 +70,7 @@
 #import <ResearchKit/ORKFitnessStepViewController.h>
 #import <ResearchKit/ORKTappingIntervalStepViewController.h>
 #import <ResearchKit/ORKCompletionStepViewController.h>
+#import <ResearchKit/ORKIncompletionStepViewController.h>
 
 // More internal stuff
 #import <ResearchKit/ORKResult_Private.h>
