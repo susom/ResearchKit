@@ -45,3 +45,16 @@
 }
 
 @end
+
+
+@implementation ORKIncompletionStep
+
++ (Class)stepViewControllerClass {
+    return [ORKIncompletionStepViewController class];
+}
+
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
+@end

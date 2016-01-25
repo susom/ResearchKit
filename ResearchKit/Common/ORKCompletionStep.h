@@ -45,4 +45,14 @@ ORK_CLASS_AVAILABLE
 
 @end
 
+/**
+ The `ORKIncompletionStep` class is a subclass of `ORKInstructionStep` which behaves like
+ an instruction step, but includes animated imagery that thanks the user
+ for participating in the task.
+ */
+ORK_CLASS_AVAILABLE
+@interface ORKIncompletionStep : ORKInstructionStep
+
+@end
+
 NS_ASSUME_NONNULL_END

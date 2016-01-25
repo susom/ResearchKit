@@ -225,3 +225,86 @@ static const CGFloat TickViewSize = 122;
 }
 
 @end
+
+
+@interface ORKIncompletionCrossmarkView : ORKCompletionCheckmarkView
+
+@end
+
+@implementation ORKIncompletionCrossmarkView {
+    CAShapeLayer *_shapeLayer;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.layer.cornerRadius = TickViewSize/2;
+        [self tintColorDidChange];
+        
+        UIBezierPath *path = [UIBezierPath new];
+        [path moveToPoint:(CGPoint){37,37}];
+        [path addLineToPoint:(CGPoint){87,78}];
+        [path moveToPoint:(CGPoint){87,37}];
+        [path addLineToPoint:(CGPoint){37,78}];
+        path.lineCapStyle = kCGLineCapRound;
+        path.lineWidth = 5;
+        
+        CAShapeLayer *shapeLayer = [CAShapeLayer new];
+        shapeLayer.path = path.CGPath;
+        shapeLayer.lineWidth = 5;
+        shapeLayer.lineCap = kCALineCapRound;
+        shapeLayer.lineJoin = kCALineJoinRound;
+        shapeLayer.frame = self.layer.bounds;
+        shapeLayer.strokeColor = [UIColor whiteColor].CGColor;
+        shapeLayer.backgroundColor = [UIColor clearColor].CGColor;
+        shapeLayer.fillColor = nil;
+        [self.layer addSublayer:shapeLayer];
+        _shapeLayer = shapeLayer;
+        
+        [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    }
+    return self;
+}
+
+- (NSString *)accessibilityLabel {
+    return ORKLocalizedString(@"AX_INCOMPLETION_ILLUSTRATION", nil);
+}
+
+@end
+
+
+@interface ORKIncompletionStepView : ORKCompletionStepView
+
+@end
+
+
+@implementation ORKIncompletionStepView
+
+@dynamic completionCheckmarkView;
+
+- (void)setupCheckmarkView {
+    if (!self.completionCheckmarkView) {
+        self.completionCheckmarkView = [ORKIncompletionCrossmarkView new];
+    }
+    [self addSubview:self.completionCheckmarkView];
+}
+
+@end
+
+
+@implementation ORKIncompletionStepViewController {
+    ORKCompletionStepView *_completionStepView;
+}
+
+- (void)stepDidChange {
+    [super stepDidChange];
+    
+    _completionStepView = [ORKIncompletionStepView new];
+    if (self.checkmarkColor) {
+        _completionStepView.tintColor = self.checkmarkColor;
+    }
+    self.stepView.customContentFillsAvailableSpace = YES;
+    self.stepView.customContentView = _completionStepView;
+}
+
+@end

@@ -63,4 +63,19 @@ ORK_CLASS_AVAILABLE
 
 @end
 
+
+/**
+ An `ORKIncompletionStepViewController` object is the step view controller for an
+`ORKIncompletionStep` object.
+ 
+ Typically, you don't need to instantiate a completion step view controller directly.
+ Instead, add a completion step to a task, and present the task with a
+ task view controller. The task view controller instantiates the step
+ view controller for the completion step.
+ */
+ORK_CLASS_AVAILABLE
+@interface ORKIncompletionStepViewController : ORKCompletionStepViewController
+
+@end
+
 NS_ASSUME_NONNULL_END
