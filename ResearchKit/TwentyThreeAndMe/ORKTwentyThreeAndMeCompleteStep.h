@@ -1,14 +1,15 @@
 //
-//  ORKTwentyThreeAndMeFailureStep.h
+//  ORKTwentyThreeAndMeCompleteStep.h
 //  ResearchKit
 //
-//  Created by Andrew Schramm on 1/21/16.
+//  Created by Andrew Schramm on 1/26/16.
 //  Copyright © 2016 researchkit.org. All rights reserved.
 //
 
 #import <ResearchKit/ResearchKit.h>
 
-@interface ORKTwentyThreeAndMeFailureStep : ORKStep
+ORK_CLASS_AVAILABLE
+@interface ORKTwentyThreeAndMeCompleteStep : ORKStep
 
 /**
  * The display name of the study

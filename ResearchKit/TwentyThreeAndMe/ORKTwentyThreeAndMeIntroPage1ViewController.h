@@ -6,8 +6,9 @@
 //  Copyright © 2016 researchkit.org. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <ResearchKit/ResearchKit.h>
 
+ORK_CLASS_AVAILABLE
 @interface ORKTwentyThreeAndMeIntroPage1ViewController : UIViewController
 
 @property (nonatomic) NSString *investigatorDisplayName;

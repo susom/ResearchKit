@@ -38,7 +38,7 @@
                                                              toItem:self.view
                                                           attribute:NSLayoutAttributeTop
                                                          multiplier:1.0
-                                                           constant:40.0]];
+                                                           constant:0.0]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
                                                           attribute:NSLayoutAttributeLeading
                                                           relatedBy:NSLayoutRelationEqual
@@ -56,7 +56,7 @@
     
     //--------------------
     // About Description Label
-    NSString *aboutDescriptionText = [NSString stringWithFormat:@"In order to participate in this study, you will need to authorize 23andMe to share portions of your genetic data with %@.", @"<study_name>"];
+    NSString *aboutDescriptionText = [NSString stringWithFormat:@"In order to participate in this study, you will need to authorize 23andMe to share portions of your genetic data with %@.", self.studyDisplayName];
     UILabel *aboutDescriptionLabel = [UILabel t23BodyLabelWithText:aboutDescriptionText];
     [self.view addSubview:aboutDescriptionLabel];
     aboutDescriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -138,7 +138,8 @@
     
     //--------------------
     // Gene Pill Image View
-    UIImageView *genePillImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"intro_chromosome_green"]];
+    UIImage *genePillImage = [UIImage imageNamed:@"intro_chromosome_green" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
+    UIImageView *genePillImageView = [[UIImageView alloc] initWithImage:genePillImage];
     [self.view addSubview:genePillImageView];
     genePillImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:genePillImageView

@@ -112,7 +112,8 @@
     else {
         if ([[[request URL] host] isEqualToString:@"localhost"]) {
             // Extract oauth_verifier from URL query
-            NSString* authCode = nil;
+            NSString *authCode = nil;
+            NSString *errorCode = nil;
             NSArray* urlParams = [[[request URL] query] componentsSeparatedByString:@"&"];
             for (NSString* param in urlParams)
             {
@@ -121,6 +122,11 @@
                 if ([key isEqualToString:@"code"])
                 {
                     authCode = [keyValue objectAtIndex:1];
+                    break;
+                }
+                else if([key isEqualToString:@"error"])
+                {
+                    errorCode = [keyValue objectAtIndex:1];
                     break;
                 }
             }
@@ -136,8 +142,11 @@
                 NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
                 [theConnection start];
             }
+            else if (errorCode && [errorCode isEqualToString:@"access_denied"]) {
+                [self goForward];
+            }
             else {
-                // ERROR!
+                // Unexpected Request. Drop on floor for now.
             }
             
             return NO;
@@ -155,8 +164,9 @@
         if ([challenge.protectionSpace.host isEqualToString:baseURL.host]) {
             NSLog(@"trusting connection to host %@", challenge.protectionSpace.host);
             [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
-        } else
-        NSLog(@"Not trusting connection to host %@", challenge.protectionSpace.host);
+        } else {
+            NSLog(@"Not trusting connection to host %@", challenge.protectionSpace.host);
+        }
     }
     [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }

@@ -62,10 +62,13 @@
                                       direction:UIPageViewControllerNavigationDirectionForward
                                        animated:NO
                                      completion:nil];
+    
+    self.cancelButtonItem = nil;
+    self.backButtonItem = nil;
 }
 
 - (void)shareButtonPressed:(UIButton *)sender {
-    // Advance to next screen in RK Module flow
+    [self goForward];
 }
 
 - (void)declineButtonPressed:(UIButton *)sender {
@@ -74,12 +77,13 @@
                                                                                  message:alertMessage
                                                                           preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                           style:UIAlertActionStyleDestructive
+                                                           style:UIAlertActionStyleDefault
                                                          handler:nil];
     UIAlertAction *declineAction = [UIAlertAction actionWithTitle:@"Decline"
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * _Nonnull action) {
-                                                             // Tell RK Module to advance to failure
+                                                             [self.taskViewController.delegate taskViewController:self.taskViewController didFinishWithReason:ORKTaskViewControllerFinishReasonDiscarded error:nil];
+                                                             
                                                          }];
     [alertViewController addAction:cancelAction];
     [alertViewController addAction:declineAction];
