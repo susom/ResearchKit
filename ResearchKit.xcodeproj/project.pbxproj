@@ -583,8 +583,6 @@
 		BB6ACB7E1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6ACB7A1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m */; };
 		BB6ACB8A1B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BB6ACB881B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB6ACB8B1B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6ACB891B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.m */; };
-		BB78FD441C51B3DE00030475 /* ORKTwentyThreeAndMeFailureStep.h in Headers */ = {isa = PBXBuildFile; fileRef = BB78FD2E1C51B3DE00030475 /* ORKTwentyThreeAndMeFailureStep.h */; };
-		BB78FD451C51B3DE00030475 /* ORKTwentyThreeAndMeFailureStep.m in Sources */ = {isa = PBXBuildFile; fileRef = BB78FD2F1C51B3DE00030475 /* ORKTwentyThreeAndMeFailureStep.m */; };
 		BB78FD461C51B3DE00030475 /* ORKTwentyThreeAndMeFailureViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BB78FD301C51B3DE00030475 /* ORKTwentyThreeAndMeFailureViewController.h */; };
 		BB78FD471C51B3DE00030475 /* ORKTwentyThreeAndMeFailureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB78FD311C51B3DE00030475 /* ORKTwentyThreeAndMeFailureViewController.m */; };
 		BB78FD481C51B3DE00030475 /* ORKTwentyThreeAndMeIntroPage1ViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BB78FD321C51B3DE00030475 /* ORKTwentyThreeAndMeIntroPage1ViewController.h */; };
@@ -597,14 +595,16 @@
 		BB78FD4F1C51B3DE00030475 /* ORKTwentyThreeAndMeIntroStep.m in Sources */ = {isa = PBXBuildFile; fileRef = BB78FD391C51B3DE00030475 /* ORKTwentyThreeAndMeIntroStep.m */; };
 		BB78FD501C51B3DE00030475 /* ORKTwentyThreeAndMeIntroViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BB78FD3A1C51B3DE00030475 /* ORKTwentyThreeAndMeIntroViewController.h */; };
 		BB78FD511C51B3DE00030475 /* ORKTwentyThreeAndMeIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB78FD3B1C51B3DE00030475 /* ORKTwentyThreeAndMeIntroViewController.m */; };
-		BB78FD521C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingStep.h in Headers */ = {isa = PBXBuildFile; fileRef = BB78FD3C1C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingStep.h */; };
-		BB78FD531C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingStep.m in Sources */ = {isa = PBXBuildFile; fileRef = BB78FD3D1C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingStep.m */; };
 		BB78FD541C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BB78FD3E1C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingViewController.h */; };
 		BB78FD551C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB78FD3F1C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingViewController.m */; };
 		BB78FD561C51B3DE00030475 /* UIButton+T23.h in Headers */ = {isa = PBXBuildFile; fileRef = BB78FD401C51B3DE00030475 /* UIButton+T23.h */; };
 		BB78FD571C51B3DE00030475 /* UIButton+T23.m in Sources */ = {isa = PBXBuildFile; fileRef = BB78FD411C51B3DE00030475 /* UIButton+T23.m */; };
 		BB78FD581C51B3DE00030475 /* UILabel+T23.h in Headers */ = {isa = PBXBuildFile; fileRef = BB78FD421C51B3DE00030475 /* UILabel+T23.h */; };
 		BB78FD591C51B3DE00030475 /* UILabel+T23.m in Sources */ = {isa = PBXBuildFile; fileRef = BB78FD431C51B3DE00030475 /* UILabel+T23.m */; };
+		BB9649E11C57FA0500881331 /* ORKTwentyThreeAndMeCompleteStep.h in Headers */ = {isa = PBXBuildFile; fileRef = BB9649DF1C57FA0500881331 /* ORKTwentyThreeAndMeCompleteStep.h */; };
+		BB9649E21C57FA0500881331 /* ORKTwentyThreeAndMeCompleteStep.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9649E01C57FA0500881331 /* ORKTwentyThreeAndMeCompleteStep.m */; };
+		BB9649E61C57FB9E00881331 /* ORKTwentyThreeAndMeCompleteViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BB9649E41C57FB9E00881331 /* ORKTwentyThreeAndMeCompleteViewController.h */; };
+		BB9649E71C57FB9E00881331 /* ORKTwentyThreeAndMeCompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9649E51C57FB9E00881331 /* ORKTwentyThreeAndMeCompleteViewController.m */; };
 		BC01B0FB1B0EB99700863803 /* ORKTintedImageView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = BC01B0FA1B0EB99700863803 /* ORKTintedImageView_Internal.h */; };
 		BC13CE391B0660220044153C /* ORKNavigableOrderedTask.h in Headers */ = {isa = PBXBuildFile; fileRef = BC13CE371B0660220044153C /* ORKNavigableOrderedTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC13CE3A1B0660220044153C /* ORKNavigableOrderedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13CE381B0660220044153C /* ORKNavigableOrderedTask.m */; };
@@ -1385,8 +1385,6 @@
 		BB6ACB7A1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORKTwentyThreeAndMeConnectStepViewController.m; path = TwentyThreeAndMe/ORKTwentyThreeAndMeConnectStepViewController.m; sourceTree = "<group>"; };
 		BB6ACB881B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKTwentyThreeAndMeConnectTaskViewController.h; path = TwentyThreeAndMe/ORKTwentyThreeAndMeConnectTaskViewController.h; sourceTree = "<group>"; };
 		BB6ACB891B66EB5A007C8B31 /* ORKTwentyThreeAndMeConnectTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORKTwentyThreeAndMeConnectTaskViewController.m; path = TwentyThreeAndMe/ORKTwentyThreeAndMeConnectTaskViewController.m; sourceTree = "<group>"; };
-		BB78FD2E1C51B3DE00030475 /* ORKTwentyThreeAndMeFailureStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKTwentyThreeAndMeFailureStep.h; path = TwentyThreeAndMe/ORKTwentyThreeAndMeFailureStep.h; sourceTree = "<group>"; };
-		BB78FD2F1C51B3DE00030475 /* ORKTwentyThreeAndMeFailureStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORKTwentyThreeAndMeFailureStep.m; path = TwentyThreeAndMe/ORKTwentyThreeAndMeFailureStep.m; sourceTree = "<group>"; };
 		BB78FD301C51B3DE00030475 /* ORKTwentyThreeAndMeFailureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKTwentyThreeAndMeFailureViewController.h; path = TwentyThreeAndMe/ORKTwentyThreeAndMeFailureViewController.h; sourceTree = "<group>"; };
 		BB78FD311C51B3DE00030475 /* ORKTwentyThreeAndMeFailureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORKTwentyThreeAndMeFailureViewController.m; path = TwentyThreeAndMe/ORKTwentyThreeAndMeFailureViewController.m; sourceTree = "<group>"; };
 		BB78FD321C51B3DE00030475 /* ORKTwentyThreeAndMeIntroPage1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKTwentyThreeAndMeIntroPage1ViewController.h; path = TwentyThreeAndMe/ORKTwentyThreeAndMeIntroPage1ViewController.h; sourceTree = "<group>"; };
@@ -1399,14 +1397,16 @@
 		BB78FD391C51B3DE00030475 /* ORKTwentyThreeAndMeIntroStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORKTwentyThreeAndMeIntroStep.m; path = TwentyThreeAndMe/ORKTwentyThreeAndMeIntroStep.m; sourceTree = "<group>"; };
 		BB78FD3A1C51B3DE00030475 /* ORKTwentyThreeAndMeIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKTwentyThreeAndMeIntroViewController.h; path = TwentyThreeAndMe/ORKTwentyThreeAndMeIntroViewController.h; sourceTree = "<group>"; };
 		BB78FD3B1C51B3DE00030475 /* ORKTwentyThreeAndMeIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORKTwentyThreeAndMeIntroViewController.m; path = TwentyThreeAndMe/ORKTwentyThreeAndMeIntroViewController.m; sourceTree = "<group>"; };
-		BB78FD3C1C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKTwentyThreeAndMeSuccessExistingStep.h; path = TwentyThreeAndMe/ORKTwentyThreeAndMeSuccessExistingStep.h; sourceTree = "<group>"; };
-		BB78FD3D1C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORKTwentyThreeAndMeSuccessExistingStep.m; path = TwentyThreeAndMe/ORKTwentyThreeAndMeSuccessExistingStep.m; sourceTree = "<group>"; };
 		BB78FD3E1C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKTwentyThreeAndMeSuccessExistingViewController.h; path = TwentyThreeAndMe/ORKTwentyThreeAndMeSuccessExistingViewController.h; sourceTree = "<group>"; };
 		BB78FD3F1C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORKTwentyThreeAndMeSuccessExistingViewController.m; path = TwentyThreeAndMe/ORKTwentyThreeAndMeSuccessExistingViewController.m; sourceTree = "<group>"; };
 		BB78FD401C51B3DE00030475 /* UIButton+T23.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+T23.h"; path = "TwentyThreeAndMe/UIButton+T23.h"; sourceTree = "<group>"; };
 		BB78FD411C51B3DE00030475 /* UIButton+T23.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+T23.m"; path = "TwentyThreeAndMe/UIButton+T23.m"; sourceTree = "<group>"; };
 		BB78FD421C51B3DE00030475 /* UILabel+T23.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+T23.h"; path = "TwentyThreeAndMe/UILabel+T23.h"; sourceTree = "<group>"; };
 		BB78FD431C51B3DE00030475 /* UILabel+T23.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+T23.m"; path = "TwentyThreeAndMe/UILabel+T23.m"; sourceTree = "<group>"; };
+		BB9649DF1C57FA0500881331 /* ORKTwentyThreeAndMeCompleteStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKTwentyThreeAndMeCompleteStep.h; path = TwentyThreeAndMe/ORKTwentyThreeAndMeCompleteStep.h; sourceTree = "<group>"; };
+		BB9649E01C57FA0500881331 /* ORKTwentyThreeAndMeCompleteStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORKTwentyThreeAndMeCompleteStep.m; path = TwentyThreeAndMe/ORKTwentyThreeAndMeCompleteStep.m; sourceTree = "<group>"; };
+		BB9649E41C57FB9E00881331 /* ORKTwentyThreeAndMeCompleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKTwentyThreeAndMeCompleteViewController.h; path = TwentyThreeAndMe/ORKTwentyThreeAndMeCompleteViewController.h; sourceTree = "<group>"; };
+		BB9649E51C57FB9E00881331 /* ORKTwentyThreeAndMeCompleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORKTwentyThreeAndMeCompleteViewController.m; path = TwentyThreeAndMe/ORKTwentyThreeAndMeCompleteViewController.m; sourceTree = "<group>"; };
 		BC01B0FA1B0EB99700863803 /* ORKTintedImageView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORKTintedImageView_Internal.h; sourceTree = "<group>"; };
 		BC13CE371B0660220044153C /* ORKNavigableOrderedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORKNavigableOrderedTask.h; sourceTree = "<group>"; };
 		BC13CE381B0660220044153C /* ORKNavigableOrderedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORKNavigableOrderedTask.m; sourceTree = "<group>"; };
@@ -3043,8 +3043,7 @@
 			children = (
 				BB78FD2B1C51B39900030475 /* Intro */,
 				BB78FD2A1C51B39100030475 /* Connect */,
-				BB78FD2C1C51B39D00030475 /* Success */,
-				BB78FD2D1C51B3A900030475 /* Failure */,
+				BB9649E31C57FA0A00881331 /* Complete */,
 			);
 			name = Step;
 			sourceTree = "<group>";
@@ -3077,28 +3076,6 @@
 			name = Intro;
 			sourceTree = "<group>";
 		};
-		BB78FD2C1C51B39D00030475 /* Success */ = {
-			isa = PBXGroup;
-			children = (
-				BB78FD3C1C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingStep.h */,
-				BB78FD3D1C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingStep.m */,
-				BB78FD3E1C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingViewController.h */,
-				BB78FD3F1C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingViewController.m */,
-			);
-			name = Success;
-			sourceTree = "<group>";
-		};
-		BB78FD2D1C51B3A900030475 /* Failure */ = {
-			isa = PBXGroup;
-			children = (
-				BB78FD2E1C51B3DE00030475 /* ORKTwentyThreeAndMeFailureStep.h */,
-				BB78FD2F1C51B3DE00030475 /* ORKTwentyThreeAndMeFailureStep.m */,
-				BB78FD301C51B3DE00030475 /* ORKTwentyThreeAndMeFailureViewController.h */,
-				BB78FD311C51B3DE00030475 /* ORKTwentyThreeAndMeFailureViewController.m */,
-			);
-			name = Failure;
-			sourceTree = "<group>";
-		};
 		BB78FD5A1C51B3E900030475 /* UIHelpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -3108,6 +3085,21 @@
 				BB78FD431C51B3DE00030475 /* UILabel+T23.m */,
 			);
 			name = UIHelpers;
+			sourceTree = "<group>";
+		};
+		BB9649E31C57FA0A00881331 /* Complete */ = {
+			isa = PBXGroup;
+			children = (
+				BB9649DF1C57FA0500881331 /* ORKTwentyThreeAndMeCompleteStep.h */,
+				BB9649E01C57FA0500881331 /* ORKTwentyThreeAndMeCompleteStep.m */,
+				BB9649E41C57FB9E00881331 /* ORKTwentyThreeAndMeCompleteViewController.h */,
+				BB9649E51C57FB9E00881331 /* ORKTwentyThreeAndMeCompleteViewController.m */,
+				BB78FD3E1C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingViewController.h */,
+				BB78FD3F1C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingViewController.m */,
+				BB78FD301C51B3DE00030475 /* ORKTwentyThreeAndMeFailureViewController.h */,
+				BB78FD311C51B3DE00030475 /* ORKTwentyThreeAndMeFailureViewController.m */,
+			);
+			name = Complete;
 			sourceTree = "<group>";
 		};
 		BC4194261AE8451F00073D6B /* Misc */ = {
@@ -3279,7 +3271,6 @@
 				86C40C361A8D7C5C00081FAC /* ORKSpatialSpanGame.h in Headers */,
 				2E557D2C2032AB6D007B39D6 /* ORKSpeechRecognitionError.h in Headers */,
 				86C40CAC1A8D7C5C00081FAC /* ORKRecorder.h in Headers */,
-				BB78FD521C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingStep.h in Headers */,
 				865EA1681ABA1AA10037C68E /* ORKPicker.h in Headers */,
 				86C40CC81A8D7C5C00081FAC /* ORKFormItemCell.h in Headers */,
 				86C40DF21A8D7C5C00081FAC /* ORKConsentReviewController.h in Headers */,
@@ -3413,6 +3404,7 @@
 				2441034F1B966D4C00EEAB0C /* ORKPasscodeViewController.h in Headers */,
 				B11C549F1A9EF4A700265E61 /* ORKConsentSharingStepViewController.h in Headers */,
 				BC4A213F1C85FC0000BFC271 /* ORKBarGraphChartView.h in Headers */,
+				BB9649E61C57FB9E00881331 /* ORKTwentyThreeAndMeCompleteViewController.h in Headers */,
 				86C40D621A8D7C5C00081FAC /* ORKQuestionStep_Internal.h in Headers */,
 				86C40D641A8D7C5C00081FAC /* ORKQuestionStepViewController.h in Headers */,
 				10BAA2CA1B5FCB4F004FE478 /* ORKProgressView.h in Headers */,
@@ -3461,7 +3453,6 @@
 				2433C9E31B9A506F0052D375 /* ORKKeychainWrapper.h in Headers */,
 				86C40CEE1A8D7C5C00081FAC /* ORKAnswerTextView.h in Headers */,
 				FF919A271E81A87B005C2A1E /* ORKActiveTaskResult.h in Headers */,
-				BB78FD441C51B3DE00030475 /* ORKTwentyThreeAndMeFailureStep.h in Headers */,
 				86C40C421A8D7C5C00081FAC /* ORKSpatialSpanMemoryStep.h in Headers */,
 				86C40C6E1A8D7C5C00081FAC /* CMMotionActivity+ORKJSONDictionary.h in Headers */,
 				B11C54991A9EEF8800265E61 /* ORKConsentSharingStep.h in Headers */,
@@ -3483,6 +3474,7 @@
 				FFDDD8491D3555EA00446806 /* ORKPageStep.h in Headers */,
 				147503AF1AEE8071004B17F3 /* ORKAudioGenerator.h in Headers */,
 				71769E352088291B00A19914 /* ORKdBHLToneAudiometryContentView.h in Headers */,
+				BB9649E11C57FA0500881331 /* ORKTwentyThreeAndMeCompleteStep.h in Headers */,
 				86AD91141AB7B97E00361FEB /* ORKQuestionStepView.h in Headers */,
 				86C40C621A8D7C5C00081FAC /* CLLocation+ORKJSONDictionary.h in Headers */,
 				86C40D801A8D7C5C00081FAC /* ORKSelectionSubTitleLabel.h in Headers */,
@@ -3964,7 +3956,6 @@
 				10FF9AC41B79EF2800ECB5B4 /* ORKHolePegTestRemoveStep.m in Sources */,
 				10BAA2CB1B5FCB4F004FE478 /* ORKProgressView.m in Sources */,
 				BB6ACB7E1B66E190007C8B31 /* ORKTwentyThreeAndMeConnectStepViewController.m in Sources */,
-				BB78FD451C51B3DE00030475 /* ORKTwentyThreeAndMeFailureStep.m in Sources */,
 				BB6ACB761B66E00F007C8B31 /* ORKOrderedTask+TwentyThreeAndMe.m in Sources */,
 				86C40D861A8D7C5C00081FAC /* ORKSelectionTitleLabel.m in Sources */,
 				FF36A49E1D1A15FC00DE8470 /* ORKTableStepViewController.m in Sources */,
@@ -3994,6 +3985,7 @@
 				CBD34A571BB1FB9000F204EA /* ORKLocationSelectionView.m in Sources */,
 				FF919A5A1E81C628005C2A1E /* ORKQuestionResult.m in Sources */,
 				D458520B1AF6CCFA00A2DE13 /* ORKImageCaptureCameraPreviewView.m in Sources */,
+				BB9649E71C57FB9E00881331 /* ORKTwentyThreeAndMeCompleteViewController.m in Sources */,
 				86C40E1A1A8D7C5C00081FAC /* ORKConsentSection.m in Sources */,
 				86C40C241A8D7C5C00081FAC /* ORKCountdownStep.m in Sources */,
 				BCB6E65C1B7D534C000D5B34 /* ORKDiscreteGraphChartView.m in Sources */,
@@ -4145,6 +4137,7 @@
 				861D2AE91B840991008C4CD0 /* ORKTimedWalkStep.m in Sources */,
 				BB78FD4D1C51B3DE00030475 /* ORKTwentyThreeAndMeIntroPage3ViewController.m in Sources */,
 				86C40D661A8D7C5C00081FAC /* ORKQuestionStepViewController.m in Sources */,
+				BB9649E21C57FA0500881331 /* ORKTwentyThreeAndMeCompleteStep.m in Sources */,
 				86C40DF41A8D7C5C00081FAC /* ORKConsentReviewController.m in Sources */,
 				242C9E121BBE06DE0088B7F4 /* ORKVerificationStepView.m in Sources */,
 				2489F7B01D65214D008DEF20 /* ORKVideoCaptureCameraPreviewView.m in Sources */,
@@ -4156,7 +4149,6 @@
 				86C40D2A1A8D7C5C00081FAC /* ORKFormTextView.m in Sources */,
 				242C9E0E1BBE03F90088B7F4 /* ORKVerificationStepViewController.m in Sources */,
 				86C40DD41A8D7C5C00081FAC /* ORKTextButton.m in Sources */,
-				BB78FD531C51B3DE00030475 /* ORKTwentyThreeAndMeSuccessExistingStep.m in Sources */,
 				86C40C981A8D7C5C00081FAC /* ORKDataLogger.m in Sources */,
 				86C40D0C1A8D7C5C00081FAC /* ORKCustomStepView.m in Sources */,
 				FF919A231E81A56F005C2A1E /* ORKTappingIntervalResult.m in Sources */,

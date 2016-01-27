@@ -83,8 +83,7 @@
 #import "ORKdBHLToneAudiometryOnboardingStep.h"
 #import "ORKTwentyThreeAndMeIntroStep.h"
 #import "ORKTwentyThreeAndMeConnectStep.h"
-#import "ORKTwentyThreeAndMeSuccessExistingStep.h"
-#import "ORKTwentyThreeAndMeFailureStep.h"
+#import "ORKTwentyThreeAndMeCompleteStep.h"
 #import "ORKSkin.h"
 
 #import "ORKHelpers_Internal.h"
@@ -2635,8 +2634,7 @@ NSString *const ORKTrailmakingStepIdentifier = @"trailmaking";
 
 NSString * const ORKTwentyThreeAndMeIntroStepIdentifier = @"twentyThreeAndMe.intro";
 NSString * const ORKTwentyThreeAndMeConnectStepIdentifier = @"twentyThreeAndMe.connect";
-NSString * const ORKTwentyThreeAndMeSuccessExistingStepIdentifier = @"twentyThreeAndMe.successExisting";
-NSString * const ORKTwentyThreeAndMeFailureStepIdentifier = @"twentyThreeAndMe.failure";
+NSString * const ORKTwentyThreeAndMeCompleteStepIdentifier = @"twentyThreeAndMe.complete";
 
 + (ORKOrderedTask *)twentyThreeAndMeTaskWithIdentifier:(NSString *)identifier
                                           authClientId:(NSString *)clientId
@@ -2666,13 +2664,7 @@ NSString * const ORKTwentyThreeAndMeFailureStepIdentifier = @"twentyThreeAndMe.f
     }
     
     {
-        ORKTwentyThreeAndMeSuccessExistingStep *step = [[ORKTwentyThreeAndMeSuccessExistingStep alloc] initWithIdentifier:ORKTwentyThreeAndMeSuccessExistingStepIdentifier];
-        step.studyDisplayName = studyDisplayName;
-        ORKStepArrayAddStep(steps, step);
-    }
-    
-    {
-        ORKTwentyThreeAndMeFailureStep *step = [[ORKTwentyThreeAndMeFailureStep alloc] initWithIdentifier:ORKTwentyThreeAndMeFailureStepIdentifier];
+        ORKTwentyThreeAndMeCompleteStep *step = [[ORKTwentyThreeAndMeCompleteStep alloc] initWithIdentifier:ORKTwentyThreeAndMeCompleteStepIdentifier];
         step.studyDisplayName = studyDisplayName;
         step.studyContactEmail = studyContactEmail;
         ORKStepArrayAddStep(steps, step);

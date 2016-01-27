@@ -8,6 +8,20 @@
 
 #import <ResearchKit/ResearchKit.h>
 
-@interface ORKTwentyThreeAndMeSuccessExistingViewController : ORKStepViewController
+@protocol ORKTwentyThreeAndMeSuccessExistingViewControllerDelegate <NSObject>
+
+- (void)doneButtonPressed;
+
+@end
+
+ORK_CLASS_AVAILABLE
+@interface ORKTwentyThreeAndMeSuccessExistingViewController : UIViewController
+
+/**
+ The delegate for this view controller.
+ */
+@property (nonatomic, weak, nullable) id<ORKTwentyThreeAndMeSuccessExistingViewControllerDelegate> delegate;
+
+@property (nonatomic) NSString *studyDisplayName;
 
 @end

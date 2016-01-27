@@ -29,7 +29,8 @@
     
     //--------------------
     // 23andMe Logo Image View
-    UIImageView *logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"intro_23andMe_logo"]];
+    UIImage *logoImage = [UIImage imageNamed:@"intro_23andMe_logo" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
+    UIImageView *logoImageView = [[UIImageView alloc] initWithImage:logoImage];
     [self.view addSubview:logoImageView];
     logoImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:logoImageView
@@ -38,7 +39,7 @@
                                                              toItem:self.view
                                                           attribute:NSLayoutAttributeTop
                                                          multiplier:1.0
-                                                           constant:60.0]];
+                                                           constant:0.0]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:logoImageView
                                                           attribute:NSLayoutAttributeCenterX
                                                           relatedBy:NSLayoutRelationEqual
@@ -76,7 +77,7 @@
     
     //--------------------
     // Description Label
-    NSString *descriptionText = [NSString stringWithFormat:@"%@  has selected 23andMe to collect genetic data for the  %@ study", @"<Investigator>", @"<study_name>"];
+    NSString *descriptionText = [NSString stringWithFormat:@"%@ has selected 23andMe to collect genetic data for the %@ study", self.investigatorDisplayName, self.studyDisplayName];
     UILabel *descriptionLabel = [UILabel t23BodyLabelWithText:descriptionText];
     [self.view addSubview:descriptionLabel];
     descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -138,7 +139,8 @@
     
     //--------------------
     // Gene Pill Image View
-    UIImageView *genePillImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"intro_chromosome_green_striped"]];
+    UIImage *genePillImage = [UIImage imageNamed:@"intro_chromosome_green_striped" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
+    UIImageView *genePillImageView = [[UIImageView alloc] initWithImage:genePillImage];
     [self.view addSubview:genePillImageView];
     genePillImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:genePillImageView
