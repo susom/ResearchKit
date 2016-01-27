@@ -8,6 +8,7 @@
 
 #import <ResearchKit/ResearchKit.h>
 
+ORK_CLASS_AVAILABLE
 @interface ORKTwentyThreeAndMeIntroViewController : ORKStepViewController
 
 @end

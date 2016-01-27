@@ -10,8 +10,7 @@
 
 #import "ORKTwentyThreeAndMeIntroStep.h"
 #import "ORKTwentyThreeAndMeConnectStep.h"
-#import "ORKTwentyThreeAndMeSuccessExistingStep.h"
-#import "ORKTwentyThreeAndMeFailureStep.h"
+#import "ORKTwentyThreeAndMeCompleteStep.h"
 #import "ORKHelpers.h"
 #import "ORKStep_Private.h"
 #import "ORKDefines_Private.h"
@@ -21,9 +20,7 @@
 
 static NSString * const ORKTwentyThreeAndMeIntroStepIdentifier = @"twentyThreeAndMe.intro";
 static NSString * const ORKTwentyThreeAndMeConnectStepIdentifier = @"twentyThreeAndMe.connect";
-static NSString * const ORKTwentyThreeAndMeSuccessExistingStepIdentifier = @"twentyThreeAndMe.successExisting";
-static NSString * const ORKTwentyThreeAndMeFailureStepIdentifier = @"twentyThreeAndMe.failure";
-
+static NSString * const ORKTwentyThreeAndMeCompleteStepIdentifier = @"twentyThreeAndMe.complete";
 
 static void ORKStepArrayAddStep(NSMutableArray *array, ORKStep *step) {
     [step validateParameters];
@@ -58,13 +55,7 @@ static void ORKStepArrayAddStep(NSMutableArray *array, ORKStep *step) {
     }
     
     {
-        ORKTwentyThreeAndMeSuccessExistingStep *step = [[ORKTwentyThreeAndMeSuccessExistingStep alloc] initWithIdentifier:ORKTwentyThreeAndMeSuccessExistingStepIdentifier];
-        step.studyDisplayName = studyDisplayName;
-        ORKStepArrayAddStep(steps, step);
-    }
-    
-    {
-        ORKTwentyThreeAndMeFailureStep *step = [[ORKTwentyThreeAndMeFailureStep alloc] initWithIdentifier:ORKTwentyThreeAndMeFailureStepIdentifier];
+        ORKTwentyThreeAndMeCompleteStep *step = [[ORKTwentyThreeAndMeCompleteStep alloc] initWithIdentifier:ORKTwentyThreeAndMeCompleteStepIdentifier];
         step.studyDisplayName = studyDisplayName;
         step.studyContactEmail = studyContactEmail;
         ORKStepArrayAddStep(steps, step);

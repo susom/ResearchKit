@@ -36,6 +36,7 @@
     ORKTwentyThreeAndMeConnectTaskViewController *ttamTaskViewController = [[ORKTwentyThreeAndMeConnectTaskViewController alloc] initWithTask:ttamTask
                                                                                                                                   taskRunUUID:nil];
     ttamTaskViewController.delegate = ttamTaskViewController;
+    ttamTaskViewController.showsProgressInNavigationBar = NO;
     
     return ttamTaskViewController;
 }
@@ -73,43 +74,9 @@
     }
 }
 
-- (BOOL)taskViewController:(ORKTaskViewController *)taskViewController hasLearnMoreForStep:(ORKStep *)step {
-    if( [step.identifier isEqualToString:@"instruction"] ) {
-        return YES;
-    }
-    else if( [step.identifier isEqualToString:@"instruction1"] ) {
-        return YES;
-    }
-
-    return NO;
-}
-
-- (void)taskViewController:(ORKTaskViewController *)taskViewController learnMoreForStep:(ORKStepViewController *)stepViewController {
-    if( [stepViewController.step.identifier isEqualToString:@"instruction"] ) {
-        UIViewController *learnMoreInstruction1VC = [[UIViewController alloc] init];
-        learnMoreInstruction1VC.view.backgroundColor = [UIColor purpleColor];
-        learnMoreInstruction1VC.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(learnMoreDone:)];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:learnMoreInstruction1VC];
-        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentViewController:navigationController animated:YES completion:nil];
-    }
-    else if( [stepViewController.step.identifier isEqualToString:@"instruction1"] ) {
-        UIViewController *learnMoreInstruction1VC = [[UIViewController alloc] init];
-        learnMoreInstruction1VC.view.backgroundColor = [UIColor purpleColor];
-        learnMoreInstruction1VC.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(learnMoreDone:)];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:learnMoreInstruction1VC];
-        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentViewController:navigationController animated:YES completion:nil];
-    }
-}
-
-- (void)taskViewController:(ORKTaskViewController *)taskViewController stepViewControllerWillAppear:(ORKStepViewController *)stepViewController {
-    if( [stepViewController.step.identifier isEqualToString:@"instruction"] ) {
-        stepViewController.learnMoreButtonTitle = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_1_LEARN_MORE", nil);
-    }
-    else if( [stepViewController.step.identifier isEqualToString:@"instruction1"] ) {
-        stepViewController.learnMoreButtonTitle = ORKLocalizedString(@"TWENTYTHREEANDME_CONNECT_TASK_INTRO_2_LEARN_MORE", nil);
-    }
+- (void)taskViewController:(ORKTaskViewController *)taskViewController stepViewControllerWillAppear:(ORKStepViewController *)stepViewController {    
+    [stepViewController.backButtonItem setTintColor:[UIColor colorWithRed:146.0/255.0 green:199.0/255.0 blue:70.0/255.0 alpha:1.0]];
+    [stepViewController.cancelButtonItem setTintColor:[UIColor colorWithRed:146.0/255.0 green:199.0/255.0 blue:70.0/255.0 alpha:1.0]];
 }
 
 @end

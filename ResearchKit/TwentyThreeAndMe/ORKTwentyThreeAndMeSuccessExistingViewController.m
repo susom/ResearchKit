@@ -7,29 +7,23 @@
 //
 
 #import "ORKTwentyThreeAndMeSuccessExistingViewController.h"
-#import "ORKTwentyThreeAndMeSuccessExistingStep.h"
 #import "UIButton+T23.h"
 #import "UILabel+T23.h"
 
 @interface ORKTwentyThreeAndMeSuccessExistingViewController ()
 
-@property (nonatomic) NSString *studyDisplayName;
-
 @end
 
 @implementation ORKTwentyThreeAndMeSuccessExistingViewController
 
-- (ORKTwentyThreeAndMeSuccessExistingStep *)successExistingStep {
-    return (ORKTwentyThreeAndMeSuccessExistingStep *)self.step;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    ORKTwentyThreeAndMeSuccessExistingStep *successExistingStep = [self successExistingStep];
-    self.studyDisplayName = successExistingStep.studyDisplayName;
-    
     [self setupAppearance];
+}
+
+- (void)doneButtonPressed:(UIButton *)sender {
+    [self.delegate doneButtonPressed];
 }
 
 - (void)setupAppearance {
@@ -39,7 +33,8 @@
     
     //--------------------
     // Gene Pill Image View
-    UIImageView *genePillImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"congratulations_chromosome_blue"]];
+    UIImage *genePillImage = [UIImage imageNamed:@"congratulations_chromosome_blue" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
+    UIImageView *genePillImageView = [[UIImageView alloc] initWithImage:genePillImage];
     [self.view addSubview:genePillImageView];
     genePillImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:genePillImageView
@@ -113,7 +108,8 @@
     
     //--------------------
     // Description Label
-    UILabel *descriptionLabel = [UILabel t23BodyLabelWithText:@"You have successfully signed up for 23andMe. <study_name> will be able to access your data as soon as it’s available."];
+    NSString *descriptionLabelText = [NSString stringWithFormat:@"You have successfully signed up for 23andMe. %@ will be able to access your data as soon as it’s available.", self.studyDisplayName];
+    UILabel *descriptionLabel = [UILabel t23BodyLabelWithText:descriptionLabelText];
     [textContentView addSubview:descriptionLabel];
     descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [textContentView addConstraint:[NSLayoutConstraint constraintWithItem:descriptionLabel
@@ -149,6 +145,7 @@
     // Done Button
     UIButton *doneButton = [UIButton t23ButtonWithText:@"Done" andHasBorder:YES];
     [self.view addSubview:doneButton];
+    [doneButton addTarget:self action:@selector(doneButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     doneButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:doneButton
                                                           attribute:NSLayoutAttributeBottom

@@ -22,6 +22,14 @@
     [self setupAppearance];
 }
 
+- (void)contactStudyButtonPressed:(UIButton *)sender {
+    NSString *contactStudyByMail = [NSString stringWithFormat:@"mailto:?to=%@&subject=%@&body=%@",
+        [self.studyContactEmail stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
+        [self.studyDisplayName stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
+        @""];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:contactStudyByMail]];
+}
+
 - (void)setupAppearance {
     //--------------------
     // Style
@@ -65,7 +73,7 @@
                                                               toItem:scrollView
                                                            attribute:NSLayoutAttributeTop
                                                           multiplier:1.0
-                                                            constant:40.0]];
+                                                            constant:0.0]];
     [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
                                                            attribute:NSLayoutAttributeLeading
                                                            relatedBy:NSLayoutRelationEqual
@@ -202,7 +210,9 @@
     //--------------------
     // - Contact Study Button
     UIButton *contactStudyButton = [[UIButton alloc] init];
-    [contactStudyButton setTitle:@"Contact <study_name>" forState:UIControlStateNormal];
+    NSString *contactStudyText = [NSString stringWithFormat:@"Contact %@", self.studyDisplayName];
+    [contactStudyButton addTarget:self action:@selector(contactStudyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [contactStudyButton setTitle:contactStudyText forState:UIControlStateNormal];
     UIColor *t23BlueColor = [UIColor colorWithRed:53.0/255.0 green:149.0/255.0 blue:214.0/255.0 alpha:1.0];
     [contactStudyButton setTitleColor:t23BlueColor forState:UIControlStateNormal];
     contactStudyButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
@@ -239,13 +249,14 @@
                                                            attribute:NSLayoutAttributeBottom
                                                           multiplier:1.0
                                                             constant:0.0]];
-//
+
     //--------------------
     // - Gene Pill Image View
     if( CGRectGetHeight( [UIScreen mainScreen].bounds ) > 480.0 )
     {
-        UIImageView *genePillImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"intro_chromosome_pink"]];
-        [self.view addSubview:genePillImageView];
+        UIImage *genePillImage = [UIImage imageNamed:@"intro_chromosome_pink" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
+        UIImageView *genePillImageView = [[UIImageView alloc] initWithImage:genePillImage];
+        [scrollView addSubview:genePillImageView];
         genePillImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:genePillImageView
                                                                attribute:NSLayoutAttributeTop

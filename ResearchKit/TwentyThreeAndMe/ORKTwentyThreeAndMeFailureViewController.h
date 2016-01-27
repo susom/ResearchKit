@@ -8,6 +8,24 @@
 
 #import <ResearchKit/ResearchKit.h>
 
-@interface ORKTwentyThreeAndMeFailureViewController : ORKStepViewController
+@protocol ORKTwentyThreeAndMeFailureViewControllerDelegate <NSObject>
+
+- (void)tryAgainButtonPressed;
+
+- (void)declineButtonPressed;
+
+@end
+
+ORK_CLASS_AVAILABLE
+@interface ORKTwentyThreeAndMeFailureViewController : UIViewController
+
+/**
+ The delegate for this view controller.
+ */
+@property (nonatomic, weak, nullable) id<ORKTwentyThreeAndMeFailureViewControllerDelegate> delegate;
+
+@property (nonatomic) NSString *studyDisplayName;
+
+@property (nonatomic) NSString *studyContactEmail;
 
 @end
