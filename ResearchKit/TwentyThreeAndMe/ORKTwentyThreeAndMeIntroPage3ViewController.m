@@ -101,7 +101,7 @@
     
     //--------------------
     // - Mission Description Label
-    UILabel *missionDescriptionLabel = [UILabel t23BodyLabelWithText:@"The 23andMe mission is to help people access, understand, and benefit from the human genome. 23andMe provides easy to understand reports about genetic markers related to health, traits, and ancestry."];
+    UILabel *missionDescriptionLabel = [UILabel t23BodyLabelWithText:@"23andMe provides easy to understand reports about genetic markers related to health, traits, and ancestry."];
     [scrollView addSubview:missionDescriptionLabel];
     missionDescriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:missionDescriptionLabel

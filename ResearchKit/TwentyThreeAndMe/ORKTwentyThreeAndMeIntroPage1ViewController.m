@@ -77,7 +77,7 @@
     
     //--------------------
     // Description Label
-    NSString *descriptionText = [NSString stringWithFormat:@"%@ has selected 23andMe to collect genetic data for the %@ study", self.investigatorDisplayName, self.studyDisplayName];
+    NSString *descriptionText = [NSString stringWithFormat:@"%@ is colaborating with 23andMe to collect genetic data for the %@ study", self.investigatorDisplayName, self.studyDisplayName];
     UILabel *descriptionLabel = [UILabel t23BodyLabelWithText:descriptionText];
     [self.view addSubview:descriptionLabel];
     descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
