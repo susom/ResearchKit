@@ -2659,7 +2659,7 @@ NSString * const ORKTwentyThreeAndMeCompleteStepIdentifier = @"twentyThreeAndMe.
         step.redirectURI = @"http://localhost:5000/receive_code/&response_type=code";
         step.clientId = clientId;
         step.clientSecret = clientSecret;
-        step.scopes = scopes;
+        step.scopes = [scopes stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         ORKStepArrayAddStep(steps, step);
     }
     

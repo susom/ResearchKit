@@ -51,8 +51,8 @@
     _webView.opaque = NO; // If opaque is set to YES, _webView shows a black right margin during transition when modally presented. This is an artifact due to disabling clipsToBounds to be able to show the scroll indicator outside the view.
     
     [_webView setScalesPageToFit:YES];
-    NSString *stringUrl = [NSString stringWithFormat:@"https://api.researchkit.23andme.io/authorize/?redirect_uri=%@&client_id=%@&scope=%@", [self connectStep].redirectURI, [self connectStep].clientId, [self connectStep].scopes];
-    NSURL *contentURL = [NSURL URLWithString: [stringUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURL *contentURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.product.researchkit.23andme.us/authorize/?redirect_uri=%@&client_id=%@&select_profile=true&scope=%@", [self connectStep].redirectURI, [self connectStep].clientId, [self connectStep].scopes]];
     [_webView loadRequest:[NSURLRequest requestWithURL:contentURL]];
     
     _webView.delegate = self;
@@ -133,7 +133,7 @@
             
             if (authCode) {
                 NSString *data = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=authorization_code&code=%@&redirect_uri=%@&scope=%@", [self connectStep].clientId, [self connectStep].clientSecret, authCode, [self connectStep].redirectURI, [self connectStep].scopes];
-                NSString *tokenURL = @"https://api.researchkit.23andme.io/token/";
+                NSString *tokenURL = @"https://api.product.researchkit.23andme.us/token/";
                 NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:tokenURL]];
                 [request setHTTPMethod:@"POST"];
                 [request setHTTPBody:[data dataUsingEncoding:NSUTF8StringEncoding]];
@@ -160,7 +160,7 @@
 
 -(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        NSURL* baseURL = [NSURL URLWithString:@"https://api.researchkit.23andme.io/"];
+        NSURL* baseURL = [NSURL URLWithString:@"https://api.product.researchkit.23andme.us/"];
         if ([challenge.protectionSpace.host isEqualToString:baseURL.host]) {
             NSLog(@"trusting connection to host %@", challenge.protectionSpace.host);
             [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
