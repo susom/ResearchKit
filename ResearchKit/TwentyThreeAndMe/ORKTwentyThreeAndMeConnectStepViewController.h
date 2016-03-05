@@ -8,6 +8,8 @@
 
 #import <ResearchKit/ResearchKit.h>
 
+@import WebKit;
+
 /**
  *
  */
