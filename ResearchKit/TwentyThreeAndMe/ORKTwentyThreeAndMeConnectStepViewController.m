@@ -158,19 +158,6 @@
 
 #pragma mark - NSURLConnectionDelegate
 
--(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        NSURL* baseURL = [NSURL URLWithString:@"https://api.product.researchkit.23andme.us/"];
-        if ([challenge.protectionSpace.host isEqualToString:baseURL.host]) {
-            NSLog(@"trusting connection to host %@", challenge.protectionSpace.host);
-            [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
-        } else {
-            NSLog(@"Not trusting connection to host %@", challenge.protectionSpace.host);
-        }
-    }
-    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
-}
-
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)pResponse {
     if( ! self.authenticated ) {
         self.authenticated = YES;
@@ -184,7 +171,6 @@
     if( self.receivedData )
     {
         [self.receivedData appendData:data];
-        //NSLog(@"verifier %@",self.receivedData);
     }
 }
 
@@ -208,7 +194,7 @@
             unsigned char c = *ptr++;
             jsonParsed = [jsonParsed stringByAppendingFormat:@"%c", c];
         }
-        NSLog( @"Json Parsed: %@", jsonParsed );
+        //NSLog( @"Json Parsed: %@", jsonParsed );
         
         NSError *localError = nil;
         NSDictionary *parsedData = [NSJSONSerialization JSONObjectWithData:self.receivedData options:NSJSONReadingAllowFragments error:&localError];
