@@ -128,7 +128,7 @@
     
     //--------------------
     // - Mission Description Label
-    UILabel *missionDescriptionLabel = [UILabel t23BodyLabelWithText:@"23andMe provides easy to understand reports about genetic markers related to health, traits, and ancestry."];
+    UILabel *missionDescriptionLabel = [UILabel t23BodyLabelWithText:@"23andMe is a genetic service available directly to U.S. customers that includes reports that meet FDA standards for being scientifically and clinically valid. 23andMe helps people understand what’s in their DNA. The 23andMe Personal Genome Service includes more than 60 personalized genetic health, trait and ancestry reports."];
     [scrollView addSubview:missionDescriptionLabel];
     missionDescriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:missionDescriptionLabel
@@ -176,8 +176,35 @@
                                                               toItem:missionDescriptionLabel
                                                            attribute:NSLayoutAttributeBottom
                                                           multiplier:1.0
-                                                            constant:0.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreButton
+                                                            constant:15.0]];
+    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreHeaderLabel
+                                                           attribute:NSLayoutAttributeLeading
+                                                           relatedBy:NSLayoutRelationEqual
+                                                              toItem:scrollView
+                                                           attribute:NSLayoutAttributeLeading
+                                                          multiplier:1.0
+                                                            constant:15.0]];
+    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreHeaderLabel
+                                                           attribute:NSLayoutAttributeTrailing
+                                                           relatedBy:NSLayoutRelationEqual
+                                                              toItem:scrollView
+                                                           attribute:NSLayoutAttributeTrailing
+                                                          multiplier:1.0
+                                                            constant:-15.0]];
+    
+    //--------------------
+    // - Learn More Description Label
+    UILabel *learnMoreDescriptionLabel = [UILabel t23BodyLabelWithText:@"Learn more about 23andMe."];
+    [scrollView addSubview:learnMoreDescriptionLabel];
+    learnMoreDescriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreDescriptionLabel
+                                                           attribute:NSLayoutAttributeTop
+                                                           relatedBy:NSLayoutRelationEqual
+                                                              toItem:learnMoreHeaderLabel
+                                                           attribute:NSLayoutAttributeBottom
+                                                          multiplier:1.0
+                                                            constant:8.0]];
+    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreDescriptionLabel
                                                            attribute:NSLayoutAttributeLeading
                                                            relatedBy:NSLayoutRelationEqual
                                                               toItem:scrollView
