@@ -1,10 +1,32 @@
-//
-//  ORKTwentyThreeAndMeIntroPage3ViewController.m
-//  ResearchKit
-//
-//  Created by Andrew Schramm on 1/21/16.
-//  Copyright © 2016 researchkit.org. All rights reserved.
-//
+/*
+ Copyright (c) 2016, 23andMe, Inc. All rights reserved.
+ 
+ Redistribution and use in source and binary forms, with or without modification,
+ are permitted provided that the following conditions are met:
+ 
+ 1.  Redistributions of source code must retain the above copyright notice, this
+ list of conditions and the following disclaimer.
+ 
+ 2.  Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation and/or
+ other materials provided with the distribution.
+ 
+ 3.  Neither the name of the copyright holder(s) nor the names of any contributors
+ may be used to endorse or promote products derived from this software without
+ specific prior written permission. No license is granted to the trademarks of
+ the copyright holders even if such marks are included in this software.
+ 
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 
 #import "ORKTwentyThreeAndMeIntroPage3ViewController.h"
 #import "UIButton+T23.h"
@@ -30,10 +52,15 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:contactStudyByMail]];
 }
 
+- (void)learnMoreButtonPressed:(UIButton *)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.23andme.com/service/"]];
+}
+
 - (void)setupAppearance {
     //--------------------
     // Style
     self.view.backgroundColor = [UIColor whiteColor];
+    UIColor *t23BlueColor = [UIColor colorWithRed:53.0/255.0 green:149.0/255.0 blue:214.0/255.0 alpha:1.0];
     
     //--------------------
     // Scroll View
@@ -127,58 +154,36 @@
                                                             constant:-15.0]];
     
     //--------------------
-    // - Learn More Header Label
-    UILabel *learnMoreHeaderLabel = [UILabel t23SubheaderLabelWithText:@"Lean more"];
-    [scrollView addSubview:learnMoreHeaderLabel];
-    learnMoreHeaderLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreHeaderLabel
+    // - Learn More Button
+    UIButton *learnMoreButton = [[UIButton alloc] init];
+    NSString *learnMoreText = @"Learn more about 23andMe";
+    [learnMoreButton addTarget:self action:@selector(learnMoreButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [learnMoreButton setTitle:learnMoreText forState:UIControlStateNormal];
+    [learnMoreButton setTitleColor:t23BlueColor forState:UIControlStateNormal];
+    learnMoreButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+    [scrollView addSubview:learnMoreButton];
+    learnMoreButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [learnMoreButton addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreButton
+                                                                attribute:NSLayoutAttributeHeight
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:nil
+                                                                attribute:NSLayoutAttributeNotAnAttribute
+                                                               multiplier:1.0
+                                                                 constant:45.0]];
+    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreButton
                                                            attribute:NSLayoutAttributeTop
                                                            relatedBy:NSLayoutRelationEqual
                                                               toItem:missionDescriptionLabel
                                                            attribute:NSLayoutAttributeBottom
                                                           multiplier:1.0
-                                                            constant:15.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreHeaderLabel
+                                                            constant:0.0]];
+    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreButton
                                                            attribute:NSLayoutAttributeLeading
                                                            relatedBy:NSLayoutRelationEqual
                                                               toItem:scrollView
                                                            attribute:NSLayoutAttributeLeading
                                                           multiplier:1.0
                                                             constant:15.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreHeaderLabel
-                                                           attribute:NSLayoutAttributeTrailing
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeTrailing
-                                                          multiplier:1.0
-                                                            constant:-15.0]];
-    
-    //--------------------
-    // - Learn More Description Label
-    UILabel *learnMoreDescriptionLabel = [UILabel t23BodyLabelWithText:@"Learn more about 23andMe and the Personal Genome service."];
-    [scrollView addSubview:learnMoreDescriptionLabel];
-    learnMoreDescriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreDescriptionLabel
-                                                           attribute:NSLayoutAttributeTop
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:learnMoreHeaderLabel
-                                                           attribute:NSLayoutAttributeBottom
-                                                          multiplier:1.0
-                                                            constant:8.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreDescriptionLabel
-                                                           attribute:NSLayoutAttributeLeading
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeLeading
-                                                          multiplier:1.0
-                                                            constant:15.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreDescriptionLabel
-                                                           attribute:NSLayoutAttributeTrailing
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeTrailing
-                                                          multiplier:1.0
-                                                            constant:-15.0]];
     
     //--------------------
     // - Questions Header Label
@@ -188,10 +193,10 @@
     [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:questionsHeaderLabel
                                                            attribute:NSLayoutAttributeTop
                                                            relatedBy:NSLayoutRelationEqual
-                                                              toItem:learnMoreDescriptionLabel
+                                                              toItem:learnMoreButton
                                                            attribute:NSLayoutAttributeBottom
                                                           multiplier:1.0
-                                                            constant:15.0]];
+                                                            constant:10.0]];
     [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:questionsHeaderLabel
                                                            attribute:NSLayoutAttributeLeading
                                                            relatedBy:NSLayoutRelationEqual
@@ -213,7 +218,6 @@
     NSString *contactStudyText = [NSString stringWithFormat:@"Contact %@", self.studyDisplayName];
     [contactStudyButton addTarget:self action:@selector(contactStudyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [contactStudyButton setTitle:contactStudyText forState:UIControlStateNormal];
-    UIColor *t23BlueColor = [UIColor colorWithRed:53.0/255.0 green:149.0/255.0 blue:214.0/255.0 alpha:1.0];
     [contactStudyButton setTitleColor:t23BlueColor forState:UIControlStateNormal];
     contactStudyButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [scrollView addSubview:contactStudyButton];

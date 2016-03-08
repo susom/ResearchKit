@@ -683,9 +683,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- Returns a predefined task that connects a participant with 23andMe
- 
- TODO: Finish writing the detailed documentation for this method
+ *  Returns a predefined task that connects a participant with 23andMe
+ *
+ *  @param identifier              Task identifier
+ *  @param clientId                oauth client id
+ *  @param clientSecret            oauth client secret
+ *  @param scopes                  oauth scopes string (will be url encoded)
+ *  @param investigatorDisplayName User facing investigator name
+ *  @param studyDisplayName        User facing study name
+ *  @param studyContactEmail       Study contact email used in module
+ *
+ *  @return ORKOrderedTask
  */
 + (ORKOrderedTask *)twentyThreeAndMeTaskWithIdentifier:(NSString *)identifier
                                           authClientId:(NSString *)clientId
