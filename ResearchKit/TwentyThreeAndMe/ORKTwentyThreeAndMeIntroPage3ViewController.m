@@ -176,35 +176,8 @@
                                                               toItem:missionDescriptionLabel
                                                            attribute:NSLayoutAttributeBottom
                                                           multiplier:1.0
-                                                            constant:15.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreHeaderLabel
-                                                           attribute:NSLayoutAttributeLeading
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeLeading
-                                                          multiplier:1.0
-                                                            constant:15.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreHeaderLabel
-                                                           attribute:NSLayoutAttributeTrailing
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeTrailing
-                                                          multiplier:1.0
-                                                            constant:-15.0]];
-    
-    //--------------------
-    // - Learn More Description Label
-    UILabel *learnMoreDescriptionLabel = [UILabel t23BodyLabelWithText:@"Learn more about 23andMe."];
-    [scrollView addSubview:learnMoreDescriptionLabel];
-    learnMoreDescriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreDescriptionLabel
-                                                           attribute:NSLayoutAttributeTop
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:learnMoreHeaderLabel
-                                                           attribute:NSLayoutAttributeBottom
-                                                          multiplier:1.0
-                                                            constant:8.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreDescriptionLabel
+                                                            constant:0.0]];
+    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreButton
                                                            attribute:NSLayoutAttributeLeading
                                                            relatedBy:NSLayoutRelationEqual
                                                               toItem:scrollView
