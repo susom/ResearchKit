@@ -64,10 +64,10 @@
     self.studyDisplayName = introStep.studyDisplayName;
     self.studyContactEmail = introStep.studyContactEmail;
     
-    ORKTwentyThreeAndMeIntroPage1ViewController *pageVC1 = [[ORKTwentyThreeAndMeIntroPage1ViewController alloc] init];
-    pageVC1.investigatorDisplayName = self.investigatorDisplayName;
-    pageVC1.studyDisplayName = self.studyDisplayName;
-    pageVC1.studyContactEmail = self.studyContactEmail;
+//    ORKTwentyThreeAndMeIntroPage1ViewController *pageVC1 = [[ORKTwentyThreeAndMeIntroPage1ViewController alloc] init];
+//    pageVC1.investigatorDisplayName = self.investigatorDisplayName;
+//    pageVC1.studyDisplayName = self.studyDisplayName;
+//    pageVC1.studyContactEmail = self.studyContactEmail;
     ORKTwentyThreeAndMeIntroPage2ViewController *pageVC2 = [[ORKTwentyThreeAndMeIntroPage2ViewController alloc] init];
     pageVC2.investigatorDisplayName = self.investigatorDisplayName;
     pageVC2.studyDisplayName = self.studyDisplayName;
@@ -76,11 +76,12 @@
     pageVC3.investigatorDisplayName = self.investigatorDisplayName;
     pageVC3.studyDisplayName = self.studyDisplayName;
     pageVC3.studyContactEmail = self.studyContactEmail;
-    self.pages = @[pageVC1, pageVC2, pageVC3];
+//    self.pages = @[pageVC1, pageVC2, pageVC3];
+    self.pages = @[pageVC2, pageVC3];
     
     [self setupAppearance];
     
-    [self.pageViewController setViewControllers:@[pageVC1]
+    [self.pageViewController setViewControllers:@[pageVC2]
                                       direction:UIPageViewControllerNavigationDirectionForward
                                        animated:NO
                                      completion:nil];
