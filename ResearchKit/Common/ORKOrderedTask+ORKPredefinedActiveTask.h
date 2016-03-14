@@ -723,6 +723,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param investigatorDisplayName User facing investigator name
  *  @param studyDisplayName        User facing study name
  *  @param studyContactEmail       Study contact email used in module
+ *  @param baseURLOverride         Optional override for connection URL.
  *
  *  @return ORKOrderedTask
  */
@@ -732,7 +733,8 @@ NS_ASSUME_NONNULL_BEGIN
                                             authScopes:(NSString *)scopes
                                investigatorDisplayName:(NSString *)investigatorDisplayName
                                       studyDisplayName:(NSString *)studyDisplayName
-                                     studyContactEmail:(NSString *)studyContactEmail;
+                                     studyContactEmail:(NSString *)studyContactEmail
+                                       baseURLOverride:(nullable NSString *)baseURLOverride;
 
 @end
 

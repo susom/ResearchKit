@@ -80,7 +80,8 @@ ORK_CLASS_AVAILABLE
                                                                                         authScopes:(NSString *)scopes
                                                                            investigatorDisplayName:(NSString *)investigatorDisplayName
                                                                                   studyDisplayName:(NSString *)studyDisplayName
-                                                                                 studyContactEmail:(NSString *)studyContactEmail;
+                                                                                 studyContactEmail:(NSString *)studyContactEmail
+                                                                                   baseURLOverride:(nullable NSString *)baseURLOverride;
 
 @end
 

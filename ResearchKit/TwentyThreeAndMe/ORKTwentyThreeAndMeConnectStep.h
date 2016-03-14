@@ -60,6 +60,11 @@ ORK_CLASS_AVAILABLE
  */
 @property (nonatomic, copy, nullable) NSString *scopes;
 
+/**
+ *  Base URL to use for connections
+ */
+@property (nonatomic, copy, nullable) NSString *baseURL;
+
 @end
 
 NS_ASSUME_NONNULL_END

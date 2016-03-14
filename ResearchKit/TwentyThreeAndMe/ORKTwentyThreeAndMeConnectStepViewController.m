@@ -58,7 +58,8 @@
     WKWebViewConfiguration *wkConfiguration = [[WKWebViewConfiguration alloc] init];
     self.webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:wkConfiguration];
     self.webView.navigationDelegate = self;
-    NSURL *contentURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.product.researchkit.23andme.us/authorize/?redirect_uri=%@&client_id=%@&hide_signup=true&select_profile=true&scope=%@", [self connectStep].redirectURI, [self connectStep].clientId, [self connectStep].scopes]];
+    NSString *contentURLString = [NSString stringWithFormat:@"%@/authorize/?redirect_uri=%@&client_id=%@&hide_signup=true&select_profile=true&scope=%@", [self connectStep].baseURL, [self connectStep].redirectURI, [self connectStep].clientId, [self connectStep].scopes];
+    NSURL *contentURL = [NSURL URLWithString:contentURLString];
     NSURLRequest *nsRequest=[NSURLRequest requestWithURL:contentURL];
     [self.webView loadRequest:nsRequest];
     [self.view addSubview:self.webView];
