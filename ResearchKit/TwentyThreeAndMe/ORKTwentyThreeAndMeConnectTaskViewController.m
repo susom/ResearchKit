@@ -46,14 +46,16 @@
                                                                                         authScopes:(NSString *)scopes
                                                                            investigatorDisplayName:(NSString *)investigatorDisplayName
                                                                                   studyDisplayName:(NSString *)studyDisplayName
-                                                                                 studyContactEmail:(NSString *)studyContactEmail {
+                                                                                 studyContactEmail:(NSString *)studyContactEmail
+                                                                                   baseURLOverride:(nullable NSString *)baseURLOverride {
     ORKOrderedTask *ttamTask = [ORKOrderedTask twentyThreeAndMeTaskWithIdentifier:identifier
                                                                      authClientId:clientId
                                                                  authClientSecret:clientSecret
                                                                        authScopes:scopes
                                                           investigatorDisplayName:investigatorDisplayName
                                                                  studyDisplayName:studyDisplayName
-                                                                studyContactEmail:studyContactEmail];
+                                                                studyContactEmail:studyContactEmail
+                                                                  baseURLOverride:baseURLOverride];
     
     ORKTwentyThreeAndMeConnectTaskViewController *ttamTaskViewController = [[ORKTwentyThreeAndMeConnectTaskViewController alloc] initWithTask:ttamTask
                                                                                                                                   taskRunUUID:nil];

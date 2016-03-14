@@ -56,6 +56,7 @@ static void ORKStepArrayAddStep(NSMutableArray *array, ORKStep *step) {
                                investigatorDisplayName:(NSString *)investigatorDisplayName
                                       studyDisplayName:(NSString *)studyDisplayName
                                      studyContactEmail:(NSString *)studyContactEmail
+                                       baseURLOverride:(nullable NSString *)baseURLOverride
 {
     NSMutableArray *steps = [NSMutableArray array];
     
@@ -69,6 +70,7 @@ static void ORKStepArrayAddStep(NSMutableArray *array, ORKStep *step) {
     
     {
         ORKTwentyThreeAndMeConnectStep *step = [[ORKTwentyThreeAndMeConnectStep alloc] initWithIdentifier:ORKTwentyThreeAndMeConnectStepIdentifier];
+        step.baseURL = baseURLOverride ? baseURLOverride : @"https://api.23andme.com";
         step.redirectURI = @"http://localhost:5000/receive_code/&response_type=code";
         step.clientId = clientId;
         step.clientSecret = clientSecret;
