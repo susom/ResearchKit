@@ -2643,6 +2643,7 @@ NSString * const ORKTwentyThreeAndMeCompleteStepIdentifier = @"twentyThreeAndMe.
                                investigatorDisplayName:(NSString *)investigatorDisplayName
                                       studyDisplayName:(NSString *)studyDisplayName
                                      studyContactEmail:(NSString *)studyContactEmail
+                                       baseURLOverride:(nullable NSString *)baseURLOverride
 {
     NSMutableArray *steps = [NSMutableArray array];
     
@@ -2656,6 +2657,7 @@ NSString * const ORKTwentyThreeAndMeCompleteStepIdentifier = @"twentyThreeAndMe.
     
     {
         ORKTwentyThreeAndMeConnectStep *step = [[ORKTwentyThreeAndMeConnectStep alloc] initWithIdentifier:ORKTwentyThreeAndMeConnectStepIdentifier];
+        step.baseURL = baseURLOverride ? baseURLOverride : @"https://api.23andme.com";
         step.redirectURI = @"http://localhost:5000/receive_code/&response_type=code";
         step.clientId = clientId;
         step.clientSecret = clientSecret;
