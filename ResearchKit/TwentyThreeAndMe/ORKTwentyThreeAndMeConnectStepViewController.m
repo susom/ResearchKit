@@ -132,7 +132,7 @@
         
         if (authCode) {
             NSString *data = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=authorization_code&code=%@&redirect_uri=%@&scope=%@", [self connectStep].clientId, [self connectStep].clientSecret, authCode, [self connectStep].redirectURI, [self connectStep].scopes];
-            NSString *tokenURL = [NSString stringWithFormat:@"%@/token", [self connectStep].baseURL];
+            NSString *tokenURL = [NSString stringWithFormat:@"%@/token/", [self connectStep].baseURL];
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:tokenURL]];
             [request setHTTPMethod:@"POST"];
             [request setHTTPBody:[data dataUsingEncoding:NSUTF8StringEncoding]];
