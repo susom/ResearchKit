@@ -65,6 +65,13 @@
     [self.view addSubview:self.webView];
 }
 
+-(void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if ([UIApplication sharedApplication].isNetworkActivityIndicatorVisible) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }
+}
+
 #pragma mark - ORKStepResult
 
 - (ORKStepResult *)result {
@@ -89,6 +96,15 @@
 }
 
 #pragma mark - WebViewDelegate
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+}
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
