@@ -95,7 +95,7 @@
 }
 
 - (void)declineButtonPressed:(UIButton *)sender {
-    NSString *alertMessage = [NSString stringWithFormat:@"Are you sure you want to decline adding your genetic data to %@? Declining may impact your eligibility for this study.", self.studyDisplayName];
+    NSString *alertMessage = [NSString stringWithFormat:@"Are you sure you want to decline adding your genetic data to %@?", self.studyDisplayName];
     UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:nil
                                                                                  message:alertMessage
                                                                           preferredStyle:UIAlertControllerStyleAlert];
