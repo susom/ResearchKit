@@ -130,7 +130,7 @@
     
     //--------------------
     // Description Label
-    NSString *descriptionLabelText = [NSString stringWithFormat:@"Congratulations, you’ve successfully enrolled in %@. %@ is now authorized to access your genetic data.", self.studyDisplayName, self.studyDisplayName];
+    NSString *descriptionLabelText = [NSString stringWithFormat:@"Congratulations, %@ is now authorized to access your genetic data.", self.studyDisplayName];
     UILabel *descriptionLabel = [UILabel t23BodyLabelWithText:descriptionLabelText];
     [textContentView addSubview:descriptionLabel];
     descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
