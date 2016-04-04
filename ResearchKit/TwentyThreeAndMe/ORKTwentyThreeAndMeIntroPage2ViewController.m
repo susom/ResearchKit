@@ -78,7 +78,7 @@
     
     //--------------------
     // About Description Label
-    NSString *aboutDescriptionText = [NSString stringWithFormat:@"In order to participate in this study, you will need to authorize 23andMe to share portions of your genetic data with %@.", self.studyDisplayName];
+    NSString *aboutDescriptionText = [NSString stringWithFormat:@"In order to participate in this part of the study, you will need to authorize 23andMe to share portions of your genetic data with %@.", self.studyDisplayName];
     UILabel *aboutDescriptionLabel = [UILabel t23BodyLabelWithText:aboutDescriptionText];
     [self.view addSubview:aboutDescriptionLabel];
     aboutDescriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
