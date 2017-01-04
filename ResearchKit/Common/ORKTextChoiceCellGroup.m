@@ -107,9 +107,32 @@
         }
     } else {
         touchedCell.selectedItem = !touchedCell.selectedItem;
+        if ([self isNoneOfTheAbove:index]) {
+            if(touchedCell.selectedItem) {
+                for (ORKChoiceViewCell *cell in [_cells allValues]) {
+                    if (cell != touchedCell) {
+                        cell.selectedItem = NO;
+                        cell.shortLabel.textColor = [UIColor grayColor];
+                        cell.userInteractionEnabled = NO;
+                    }
+                }
+            } else {
+                for (ORKChoiceViewCell *cell in [_cells allValues]) {
+                    if (cell != touchedCell) {
+                        cell.shortLabel.textColor = [UIColor blackColor];
+                        cell.userInteractionEnabled = YES;
+                    }
+                }
+            }
+        }
     }
     
     _answer = [_helper answerForSelectedIndexes:[self selectedIndexes]];
+}
+
+-(BOOL) isNoneOfTheAbove:(NSUInteger) index {
+    ORKTextChoice *textChoice = [_helper textChoiceAtIndex:index];
+    return textChoice.ignoreOthers;
 }
 
 - (void)didSelectCellAtIndexPath:(NSIndexPath *)indexPath {
@@ -135,6 +158,18 @@
             // In case the cell has not been created, need to create cell
             ORKChoiceViewCell *cell = [self cellAtIndex:index withReuseIdentifier:nil];
             cell.selectedItem = YES;
+            
+            if ([self isNoneOfTheAbove:index]) {
+                for (ORKChoiceViewCell *otherCell in [_cells allValues]) {
+                    if (otherCell != cell) {
+                        otherCell.selectedItem = NO;
+                        otherCell.shortLabel.textColor = [UIColor grayColor];
+                        otherCell.userInteractionEnabled = NO;
+                    }
+                }
+            }
+            
+            
         } else {
             // It is ok to not create the cell at here
             ORKChoiceViewCell *cell = _cells[@(index)];

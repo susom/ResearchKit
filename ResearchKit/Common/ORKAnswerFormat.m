@@ -652,10 +652,16 @@ static NSArray *ork_processTextChoices(NSArray *textChoices) {
 @implementation ORKTextChoice {
     NSString *_text;
     id<NSCopying, NSCoding, NSObject> _value;
+    BOOL _ignoreOthers;
 }
 
 + (instancetype)choiceWithText:(NSString *)text detailText:(NSString *)detailText value:(id<NSCopying, NSCoding, NSObject>)value {
     ORKTextChoice *option = [[ORKTextChoice alloc] initWithText:text detailText:detailText value:value];
+    return option;
+}
+
++ (instancetype)choiceWithText:(NSString *)text detailText:(NSString *)detailText value:(id<NSCopying, NSCoding, NSObject>)value ignoreOthers: (BOOL) ignoreOthers {
+    ORKTextChoice *option = [[ORKTextChoice alloc] initWithText:text detailText:detailText value:value ignoreOthers:ignoreOthers];
     return option;
 }
 
@@ -669,6 +675,19 @@ static NSArray *ork_processTextChoices(NSArray *textChoices) {
         _text = [text copy];
         _detailText = [detailText copy];
         _value = value;
+        _ignoreOthers = NO;
+    }
+    return self;
+}
+
+- (instancetype)initWithText:(NSString *)text
+                  detailText:(NSString *)detailText
+                       value:(id<NSCopying,NSCoding,NSObject>)value
+                ignoreOthers:(BOOL) ignoreOthers
+{
+    self = [self initWithText:text detailText:detailText value:value];
+    if (self) {
+        _ignoreOthers = ignoreOthers;
     }
     return self;
 }
@@ -704,6 +723,7 @@ static NSArray *ork_processTextChoices(NSArray *textChoices) {
         ORK_DECODE_OBJ_CLASS(aDecoder, text, NSString);
         ORK_DECODE_OBJ_CLASS(aDecoder, detailText, NSString);
         ORK_DECODE_OBJ(aDecoder, value);
+        ORK_DECODE_BOOL(aDecoder, ignoreOthers);
     }
     return self;
 }
@@ -712,6 +732,7 @@ static NSArray *ork_processTextChoices(NSArray *textChoices) {
     ORK_ENCODE_OBJ(aCoder, text);
     ORK_ENCODE_OBJ(aCoder, value);
     ORK_ENCODE_OBJ(aCoder, detailText);
+    ORK_ENCODE_BOOL(aCoder, ignoreOthers);
 }
 
 @end

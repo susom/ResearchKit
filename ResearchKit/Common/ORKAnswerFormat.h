@@ -580,6 +580,8 @@ ORK_CLASS_AVAILABLE
  */
 + (instancetype)choiceWithText:(NSString *)text detailText:(nullable NSString *)detailText value:(id<NSCopying, NSCoding, NSObject>)value;
 
++ (instancetype)choiceWithText:(NSString *)text detailText:(NSString *)detailText value:(id<NSCopying, NSCoding, NSObject>)value ignoreOthers: (BOOL) ignoreOthers;
+
 /**
  Returns a choice object that includes the specified primary text.
  
@@ -605,6 +607,11 @@ ORK_CLASS_AVAILABLE
                   detailText:(nullable NSString *)detailText
                        value:(id<NSCopying, NSCoding, NSObject>)value NS_DESIGNATED_INITIALIZER;
 
+- (instancetype)initWithText:(NSString *)text
+                  detailText:(NSString *)detailText
+                       value:(id<NSCopying,NSCoding,NSObject>)value
+                ignoreOthers:(BOOL) ignoreOthers;
+
 /**
  The text that describes the choice in a localized string.
  
@@ -627,6 +634,8 @@ ORK_CLASS_AVAILABLE
  The detail text can span multiple lines. Note that `ORKValuePickerAnswerFormat` ignores detail text.
   */
 @property (copy, readonly, nullable) NSString *detailText;
+
+@property (readonly) BOOL ignoreOthers;
 
 @end
 
