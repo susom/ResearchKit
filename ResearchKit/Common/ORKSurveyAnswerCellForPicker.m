@@ -79,44 +79,35 @@
     }
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    if (_picker) {
-        CGSize pickerSize = [_picker.pickerView sizeThatFits:(CGSize){self.bounds.size.width,CGFLOAT_MAX}];
-        pickerSize.width = MIN(pickerSize.width, self.bounds.size.width);
-        _picker.pickerView.frame = (CGRect){{0,0}, pickerSize};
-    }
-    
-    if (_tempPicker) {
-        CGSize pickerSize = [_tempPicker sizeThatFits:(CGSize){self.bounds.size.width,CGFLOAT_MAX}];
-        pickerSize.width = MIN(pickerSize.width, self.bounds.size.width);
-        _tempPicker.frame = (CGRect){{0,0}, pickerSize};
-    }
-}
-
 - (void)updateConstraints {
     
     if (!_customConstraints) {
         _customConstraints = [NSMutableArray new];
     }
     
-    [self addHorizontalHuggingConstraintForView:_tempPicker];
-    [self addHorizontalHuggingConstraintForView:_picker.pickerView];
+    [self addHuggingConstraintForView:_tempPicker];
+    [self addHuggingConstraintForView:_picker.pickerView];
     
     [super updateConstraints];
 }
 
-- (void)addHorizontalHuggingConstraintForView:(UIView *)view {
+- (void)addHuggingConstraintForView:(UIView *)view {
     if (view) {
         view.translatesAutoresizingMaskIntoConstraints = NO;
         
-        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|"
+        NSArray *hconstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|"
                                                                        options:NSLayoutFormatDirectionLeadingToTrailing
                                                                        metrics:nil
                                                                          views:@{ @"view": view }];
-        [self addConstraints:constraints];
-        [_customConstraints addObjectsFromArray:constraints];
+        
+        NSArray *vconstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|"
+                                                                       options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                       metrics:nil
+                                                                         views:@{ @"view": view }];
+        [self addConstraints:hconstraints];
+        [self addConstraints:vconstraints];
+        [_customConstraints addObjectsFromArray:hconstraints];
+        [_customConstraints addObjectsFromArray:vconstraints];
     }
 }
 
