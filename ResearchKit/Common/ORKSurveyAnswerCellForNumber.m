@@ -94,11 +94,11 @@
     [self answerDidChange];
 }
 
-- (void)setNeedsUpdateConstraints {
-    [NSLayoutConstraint deactivateConstraints:[self constraints]];
-    [NSLayoutConstraint deactivateConstraints:[_containerView constraints]];
-    [super setNeedsUpdateConstraints];
-}
+//- (void)setNeedsUpdateConstraints {
+////    [NSLayoutConstraint deactivateConstraints:[self constraints]];
+////    [NSLayoutConstraint deactivateConstraints:[_containerView constraints]];
+//    [super setNeedsUpdateConstraints];
+//}
 
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
     self.layoutMargins = ORKStandardLayoutMarginsForTableViewCell(self);
