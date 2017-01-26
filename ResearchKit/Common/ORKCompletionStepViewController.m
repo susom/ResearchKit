@@ -129,6 +129,27 @@ static const CGFloat TickViewSize = 122;
     return [super accessibilityTraits] | UIAccessibilityTraitImage;
 }
 
+- (void)updateConstraints {
+  [super updateConstraints];
+  NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self
+                                                                      attribute:NSLayoutAttributeWidth
+                                                                      relatedBy:NSLayoutRelationEqual
+                                                                         toItem:nil
+                                                                      attribute:NSLayoutAttributeNotAnAttribute
+                                                                     multiplier:1.0
+                                                                       constant:TickViewSize];
+  
+  NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self
+                                                                      attribute:NSLayoutAttributeHeight
+                                                                      relatedBy:NSLayoutRelationEqual
+                                                                         toItem:nil
+                                                                      attribute:NSLayoutAttributeNotAnAttribute
+                                                                     multiplier:1.0
+                                                                       constant:TickViewSize];
+
+  [self addConstraints:@[widthConstraint, heightConstraint]];
+}
+
 @end
 
 
