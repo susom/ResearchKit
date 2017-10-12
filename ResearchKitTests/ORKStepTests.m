@@ -272,8 +272,8 @@
     ORKHeartRateCaptureStep *beforeStep = (ORKHeartRateCaptureStep *)[workoutStep stepWithIdentifier:ORKWorkoutBeforeStepIdentifier];
     XCTAssertNotNil(beforeStep);
     XCTAssertTrue([beforeStep isKindOfClass:[ORKHeartRateCaptureStep class]]);
-    XCTAssertEqual(beforeStep.minimumDuration, 0);
-    XCTAssertEqual(beforeStep.stepDuration, 0);
+    XCTAssertEqual(beforeStep.minimumDuration, 30);
+    XCTAssertEqual(beforeStep.stepDuration, 30);
     XCTAssertTrue(beforeStep.isBeforeWorkout);
     
     ORKStep *motionStep = [workoutStep stepWithIdentifier:@"audio"];

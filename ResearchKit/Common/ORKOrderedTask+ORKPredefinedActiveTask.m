@@ -283,8 +283,8 @@ NSString *const ORKWorkoutTiredAfterQuestionStepIdentifier = @"tiredAfter";
                                                                    standingStill:YES];
         restStep.recorderConfigurations = [restStep.recorderConfigurations arrayByAddingObjectsFromArray:restConfig];
         restStep.shouldConsolidateRecorders = YES;
-        restStep.stepDuration = restDuration;
-        restStep.minimumDuration = restDuration;
+        restStep.stepDuration = MAX(restDuration, 30.0);
+        restStep.minimumDuration = MAX(restDuration, 30.0);
         
         ORKWorkoutStep *step = [[ORKWorkoutStep alloc] initWithIdentifier:ORKWorkoutStepIdentifier
                                                               motionSteps:@[pocketStep, countdownStep, fitnessStep]

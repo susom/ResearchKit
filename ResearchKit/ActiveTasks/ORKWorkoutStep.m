@@ -128,8 +128,8 @@ ORKWorkoutResultIdentifier const ORKWorkoutResultIdentifierDistanceTraveled = @"
     // Set the before step - Before step only runs until heart rate is captured and watch is connected
     // (if applicable)
     ORKHeartRateCaptureStep *beforeStep = [restStep copyWithIdentifier:ORKWorkoutBeforeStepIdentifier];
-    beforeStep.minimumDuration = 0.0;
-    beforeStep.stepDuration = 0.0;
+    beforeStep.minimumDuration = 30.0;
+    beforeStep.stepDuration = 30.0;
     beforeStep.endCommand = nil;
     beforeStep.beforeWorkout = YES;
     
