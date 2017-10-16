@@ -93,6 +93,7 @@
     }
     self.locationManager.pausesLocationUpdatesAutomatically = NO;
     self.locationManager.delegate = self;
+    self.locationManager.allowsBackgroundLocationUpdates = self.continuesInBackground;
     
     if (!self.locationManager) {
         NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain
