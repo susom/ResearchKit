@@ -102,6 +102,36 @@ ORK_CLASS_AVAILABLE
  */
 @property (nonatomic, assign) double vectorMagnitude;
 
+/**
+ X value of the acceleration event.
+ */
+@property (nonatomic, assign) double accelX;
+
+/**
+ Y value of the acceleration event.
+ */
+@property (nonatomic, assign) double accelY;
+
+/**
+ Z value of the acceleration event.
+ */
+@property (nonatomic, assign) double accelZ;
+
+/**
+ X value of the rotation event.
+ */
+@property (nonatomic, assign) double gyroX;
+
+/**
+ Y value of the rotation event.
+ */
+@property (nonatomic, assign) double gyroY;
+
+/**
+ Z value of the rotation event.
+ */
+@property (nonatomic, assign) double gyroZ;
+
 @end
 
 NS_ASSUME_NONNULL_END
