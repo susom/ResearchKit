@@ -54,6 +54,8 @@
     NSTimer *_stimulusTimer;
     NSTimer *_timeoutTimer;
     NSTimeInterval _stimulusTimestamp;
+    NSTimeInterval _thresholdTimestamp;
+    int _samplesSinceStimulus;
     BOOL _validResult;
     BOOL _timedOut;
     BOOL _shouldIndicateFailure;
@@ -61,6 +63,8 @@
     BOOL _testEnded;
     NSMutableArray<NSNumber*>* tests;
     BOOL go;
+    int _noGoCount;
+    int _consecutiveNoGoCount;
 }
 
 - (instancetype)initWithStep:(ORKStep *)step {
@@ -81,28 +85,13 @@ static const NSTimeInterval OutcomeAnimationDuration = 0.3;
     [self configureTitle];
     _results = [NSMutableArray new];
     _samples = [NSMutableArray new];
-    go = true;
     
-    arc4random_stir();
-    
-    // Generate the type of tests we are going to display
-    // Always do go first, and make sure there is at least 1 no-go
-    tests = [NSMutableArray array];
-    [tests addObject:[NSNumber numberWithBool:YES]];
-    while (tests.count < [self gonogoTimeStep].numberOfAttempts) {
-        [tests addObject:[NSNumber numberWithBool:((float)arc4random_uniform(RAND_MAX) / RAND_MAX) < 0.667]];
-    }
-    
-    // Check to make sure we have a no go
-    BOOL hasNoGo = [tests containsObject:@NO];
-    
-    // If none of the test are a 'no go', put a 'no go' in the array in a random position
-    // unless the array is size 1 since we always want the first test to be a 'go'
-    if (!hasNoGo && tests.count > 1) {
-        [tests setObject:@NO atIndexedSubscript:arc4random_uniform((uint32_t)tests.count - 1) + 1];
-    }
+    srand48(time(NULL));
     
     go = [self getNextTestType];
+    
+    _noGoCount = 0;
+    _consecutiveNoGoCount = 0;
     
     _gonogoContentView = [[ORKGoNoGoContentView alloc] initWithColor:go ? self.view.tintColor : UIColor.greenColor];
     [_gonogoContentView setStimulusHidden:YES];
@@ -138,6 +127,9 @@ static const NSTimeInterval OutcomeAnimationDuration = 0.3;
 #pragma mark - ORKActiveStepViewController
 
 - (void)start {
+    _stimulusTimestamp = 0;
+    _thresholdTimestamp = 0;
+    _samplesSinceStimulus = 0;
     [_samples removeAllObjects];
     [super start];
     [self startStimulusTimer];
@@ -146,6 +138,7 @@ static const NSTimeInterval OutcomeAnimationDuration = 0.3;
 #if TARGET_IPHONE_SIMULATOR
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     if (event.type == UIEventSubtypeMotionShake) {
+        _thresholdTimestamp = [NSProcessInfo processInfo].systemUptime;
         [self attemptDidFinish];
     }
 }
@@ -189,16 +182,31 @@ static const NSTimeInterval OutcomeAnimationDuration = 0.3;
 
 - (void)deviceMotionRecorderDidUpdateWithMotion:(CMDeviceMotion *)motion {
     CMAcceleration v = motion.userAcceleration;
+    CMRotationRate g = motion.rotationRate;
     double vectorMagnitude = sqrt(((v.x * v.x) + (v.y * v.y) + (v.z * v.z)));
     
     if (self.started && _samples != nil) {
         ORKGoNoGoSample *sample = [ORKGoNoGoSample new];
         sample.timestamp = [NSProcessInfo processInfo].systemUptime;
         sample.vectorMagnitude = vectorMagnitude;
+        sample.accelX = v.x;
+        sample.accelY = v.y;
+        sample.accelZ = v.z;
+        sample.gyroX  = g.x;
+        sample.gyroY  = g.y;
+        sample.gyroZ  = g.z;
         [_samples addObject:sample];
     }
     
-    if (vectorMagnitude > [self gonogoTimeStep].thresholdAcceleration) {
+    if (_stimulusTimestamp > 0) {
+        _samplesSinceStimulus++;
+    }
+    
+    if (vectorMagnitude > [self gonogoTimeStep].thresholdAcceleration && _thresholdTimestamp == 0) {
+        _thresholdTimestamp = [NSProcessInfo processInfo].systemUptime;
+    }
+    
+    if (_samplesSinceStimulus > 100 && _thresholdTimestamp > 0) {
         [self stopRecorders];
     }
 }
@@ -225,8 +233,11 @@ static const NSTimeInterval OutcomeAnimationDuration = 0.3;
         }
     }
     
+    int total = (int)[self gonogoTimeStep].numberOfAttempts;
+    int step = MIN(total, successCount + 1);
+    
     NSString *format = ORKLocalizedString(@"GONOGO_TASK_ATTEMPTS_FORMAT", nil);
-    NSString *text = [NSString localizedStringWithFormat:format, ORKLocalizedStringFromNumber(@(successCount + 1)), ORKLocalizedStringFromNumber(@([self gonogoTimeStep].numberOfAttempts))];
+    NSString *text = [NSString localizedStringWithFormat:format, ORKLocalizedStringFromNumber(@(step)), ORKLocalizedStringFromNumber(@([self gonogoTimeStep].numberOfAttempts))];
     
     if (errorCount > 0) {
         NSString *errorsFormat = ORKLocalizedString(@"GONOGO_TASK_ERRORS_FORMAT", nil);
@@ -253,7 +264,8 @@ static const NSTimeInterval OutcomeAnimationDuration = 0.3;
         
         if (successCount == [self gonogoTimeStep].numberOfAttempts) {
             _testEnded = YES;
-            [self finish];
+            [self configureTitle];
+            [self performSelector:@selector(finish) withObject:nil afterDelay:2.5];
         } else {
             // If the user cancels the test, there may be animations active,
             // and the animation complete block will start the next test
@@ -286,8 +298,6 @@ static const NSTimeInterval OutcomeAnimationDuration = 0.3;
     }
     
     // Create a result
-    NSTimeInterval now = [NSProcessInfo processInfo].systemUptime;
-    
     NSMutableArray *samples = [[NSMutableArray alloc] init];
     
     // Copy all samples which happen after stimulus is displayed and until threshold is reached
@@ -305,7 +315,10 @@ static const NSTimeInterval OutcomeAnimationDuration = 0.3;
     ORKGoNoGoResult *gonogoResult = [[ORKGoNoGoResult alloc] initWithIdentifier:uniqueStep];
     gonogoResult.timestamp = _stimulusTimestamp;
     gonogoResult.samples = [samples copy];
-    gonogoResult.timeToThreshold = now - _stimulusTimestamp;
+    gonogoResult.timeToThreshold = go ? _thresholdTimestamp - _stimulusTimestamp : 0;
+    if (go) {
+        NSAssert(_thresholdTimestamp - _stimulusTimestamp > 0, @"GoNoGo test had negative reaction time");
+    }
     gonogoResult.go = go;
     gonogoResult.incorrect = incorrect;
     [_results addObject:gonogoResult];
@@ -322,13 +335,35 @@ static const NSTimeInterval OutcomeAnimationDuration = 0.3;
 }
 
 - (BOOL)getNextTestType {
-    if (tests.count > 0) {
-        BOOL res = [[tests firstObject] boolValue];
-        [tests removeObjectAtIndex:0];
-        return res;
-    } else {
-        return ((float)arc4random_uniform(RAND_MAX) / RAND_MAX) < 0.667;
+    // Never allow more than 2 no go in a row
+    if (_consecutiveNoGoCount == 2) {
+        _consecutiveNoGoCount = 0;
+        return YES;
     }
+    
+    // Make sure there is always a no go
+    int successCount = 0;
+    for (ORKGoNoGoResult* res in _results) {
+        if (res.incorrect == NO) {
+            successCount++;
+        }
+    }
+    
+    if (successCount == [self gonogoTimeStep].numberOfAttempts - 1) {
+        if (_noGoCount == 0) {
+            _noGoCount++;
+            return NO;
+        }
+    }
+    
+    BOOL testType = drand48() < 0.667;
+    if (!testType)
+    {
+        _consecutiveNoGoCount++;
+        _noGoCount++;
+    }
+    
+    return testType;
 }
 
 - (void)resetAfterDelay:(NSTimeInterval)delay {

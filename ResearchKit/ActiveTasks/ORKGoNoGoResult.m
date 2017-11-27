@@ -39,6 +39,12 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     ORK_ENCODE_DOUBLE(aCoder, timestamp);
     ORK_ENCODE_DOUBLE(aCoder, vectorMagnitude);
+    ORK_ENCODE_DOUBLE(aCoder, accelX);
+    ORK_ENCODE_DOUBLE(aCoder, accelY);
+    ORK_ENCODE_DOUBLE(aCoder, accelZ);
+    ORK_ENCODE_DOUBLE(aCoder, gyroX);
+    ORK_ENCODE_DOUBLE(aCoder, gyroY);
+    ORK_ENCODE_DOUBLE(aCoder, gyroZ);
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -46,6 +52,12 @@
     if (self) {
         ORK_DECODE_DOUBLE(aDecoder, timestamp);
         ORK_DECODE_DOUBLE(aDecoder, vectorMagnitude);
+        ORK_DECODE_DOUBLE(aDecoder, accelX);
+        ORK_DECODE_DOUBLE(aDecoder, accelY);
+        ORK_DECODE_DOUBLE(aDecoder, accelZ);
+        ORK_DECODE_DOUBLE(aDecoder, gyroX);
+        ORK_DECODE_DOUBLE(aDecoder, gyroY);
+        ORK_DECODE_DOUBLE(aDecoder, gyroZ);
     }
     return self;
 }
@@ -62,11 +74,19 @@
     __typeof(self) castObject = object;
     
     return ((self.timestamp == castObject.timestamp) &&
-            (self.vectorMagnitude == castObject.vectorMagnitude));
+            (self.vectorMagnitude == castObject.vectorMagnitude) &&
+            (self.accelX == castObject.accelX) &&
+            (self.accelY == castObject.accelY) &&
+            (self.accelZ == castObject.accelZ) &&
+            (self.gyroX == castObject.gyroX) &&
+            (self.gyroY == castObject.gyroY) &&
+            (self.gyroZ == castObject.gyroZ));
 }
 
 - (NSUInteger)hash {
-    return super.hash ^ [NSNumber numberWithDouble:self.timestamp].hash ^ [NSNumber numberWithDouble:self.vectorMagnitude].hash;
+    return super.hash ^ [NSNumber numberWithDouble:self.timestamp].hash ^ [NSNumber numberWithDouble:self.vectorMagnitude].hash ^
+                [NSNumber numberWithDouble:self.accelX].hash ^ [NSNumber numberWithDouble:self.accelY].hash ^ [NSNumber numberWithDouble:self.accelZ].hash ^
+                [NSNumber numberWithDouble:self.gyroX].hash ^ [NSNumber numberWithDouble:self.gyroY].hash ^ [NSNumber numberWithDouble:self.gyroZ].hash;
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
