@@ -316,7 +316,7 @@ static const NSTimeInterval OutcomeAnimationDuration = 0.3;
     gonogoResult.timestamp = _stimulusTimestamp;
     gonogoResult.samples = [samples copy];
     gonogoResult.timeToThreshold = go ? _thresholdTimestamp - _stimulusTimestamp : 0;
-    if (go) {
+    if (go && !incorrect) {
         NSAssert(_thresholdTimestamp - _stimulusTimestamp > 0, @"GoNoGo test had negative reaction time");
     }
     gonogoResult.go = go;
