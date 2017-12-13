@@ -202,11 +202,17 @@ static const NSTimeInterval OutcomeAnimationDuration = 0.3;
         _samplesSinceStimulus++;
     }
     
-    if (vectorMagnitude > [self gonogoTimeStep].thresholdAcceleration && _thresholdTimestamp == 0) {
+    if (vectorMagnitude > [self gonogoTimeStep].thresholdAcceleration && _thresholdTimestamp == 0 && _stimulusTimestamp > 0) {
         _thresholdTimestamp = [NSProcessInfo processInfo].systemUptime;
     }
     
+    // stop recorders after collecting 100 samples for sucessful test
     if (_samplesSinceStimulus > 100 && _thresholdTimestamp > 0) {
+        [self stopRecorders];
+    }
+    
+    // if the user jumps the gun, stop the recorders right away
+    if (vectorMagnitude > [self gonogoTimeStep].thresholdAcceleration && _stimulusTimestamp == 0) {
         [self stopRecorders];
     }
 }
