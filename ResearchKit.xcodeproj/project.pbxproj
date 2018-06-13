@@ -95,7 +95,7 @@
 		24A4DA111B8D0F21009C797A /* ORKPasscodeStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A4DA0F1B8D0F21009C797A /* ORKPasscodeStepView.m */; };
 		24A4DA141B8D1115009C797A /* ORKPasscodeStep.h in Headers */ = {isa = PBXBuildFile; fileRef = 24A4DA121B8D1115009C797A /* ORKPasscodeStep.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		24A4DA151B8D1115009C797A /* ORKPasscodeStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A4DA131B8D1115009C797A /* ORKPasscodeStep.m */; };
-		24A4DA181B8D13FE009C797A /* ORKPasscodeStepViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 24A4DA161B8D13FE009C797A /* ORKPasscodeStepViewController.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		24A4DA181B8D13FE009C797A /* ORKPasscodeStepViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 24A4DA161B8D13FE009C797A /* ORKPasscodeStepViewController.h */; };
 		24A4DA191B8D13FE009C797A /* ORKPasscodeStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A4DA171B8D13FE009C797A /* ORKPasscodeStepViewController.m */; };
 		24BC5CEE1BC345D900846B43 /* ORKLoginStep.h in Headers */ = {isa = PBXBuildFile; fileRef = 24BC5CEC1BC345D900846B43 /* ORKLoginStep.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		24BC5CEF1BC345D900846B43 /* ORKLoginStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BC5CED1BC345D900846B43 /* ORKLoginStep.m */; };
@@ -402,7 +402,7 @@
 		86C40DF01A8D7C5C00081FAC /* UIResponder+ResearchKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C40BEA1A8D7C5C00081FAC /* UIResponder+ResearchKit.m */; };
 		86C40DF21A8D7C5C00081FAC /* ORKConsentReviewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 86C40BEC1A8D7C5C00081FAC /* ORKConsentReviewController.h */; };
 		86C40DF41A8D7C5C00081FAC /* ORKConsentReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C40BED1A8D7C5C00081FAC /* ORKConsentReviewController.m */; };
-		86C40DF61A8D7C5C00081FAC /* ORKSignatureStepViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 86C40BEE1A8D7C5C00081FAC /* ORKSignatureStepViewController.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		86C40DF61A8D7C5C00081FAC /* ORKSignatureStepViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 86C40BEE1A8D7C5C00081FAC /* ORKSignatureStepViewController.h */; };
 		86C40DF81A8D7C5C00081FAC /* ORKSignatureStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C40BEF1A8D7C5C00081FAC /* ORKSignatureStepViewController.m */; };
 		86C40DFA1A8D7C5C00081FAC /* MovieTintShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 86C40BF01A8D7C5C00081FAC /* MovieTintShader.fsh */; };
 		86C40DFC1A8D7C5C00081FAC /* MovieTintShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 86C40BF11A8D7C5C00081FAC /* MovieTintShader.vsh */; };
@@ -457,7 +457,7 @@
 		95E11E561D73396300BF865B /* ORKShoulderRangeOfMotionStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E11E541D73396300BF865B /* ORKShoulderRangeOfMotionStepViewController.m */; };
 		B11C54991A9EEF8800265E61 /* ORKConsentSharingStep.h in Headers */ = {isa = PBXBuildFile; fileRef = B11C54961A9EEF8800265E61 /* ORKConsentSharingStep.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B11C549B1A9EEF8800265E61 /* ORKConsentSharingStep.m in Sources */ = {isa = PBXBuildFile; fileRef = B11C54971A9EEF8800265E61 /* ORKConsentSharingStep.m */; };
-		B11C549F1A9EF4A700265E61 /* ORKConsentSharingStepViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B11C549C1A9EF4A700265E61 /* ORKConsentSharingStepViewController.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		B11C549F1A9EF4A700265E61 /* ORKConsentSharingStepViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B11C549C1A9EF4A700265E61 /* ORKConsentSharingStepViewController.h */; };
 		B11C54A11A9EF4A700265E61 /* ORKConsentSharingStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B11C549D1A9EF4A700265E61 /* ORKConsentSharingStepViewController.m */; };
 		B12EA0151B0D73A500F9F554 /* ORKToneAudiometryPracticeStep.h in Headers */ = {isa = PBXBuildFile; fileRef = B12EA0131B0D73A500F9F554 /* ORKToneAudiometryPracticeStep.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		B12EA0161B0D73A500F9F554 /* ORKToneAudiometryPracticeStep.m in Sources */ = {isa = PBXBuildFile; fileRef = B12EA0141B0D73A500F9F554 /* ORKToneAudiometryPracticeStep.m */; };
@@ -1777,6 +1777,7 @@
 				FF405E2F1E5393DB00002C19 /* ResearchKit (watchOS) */,
 				3FFF183F1829DB1D00167070 /* Frameworks */,
 				3FFF183E1829DB1D00167070 /* Products */,
+				F8B8FBB820D198B700930D7E /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2812,6 +2813,14 @@
 				D42FEFB71AF7557000A124F8 /* ORKImageCaptureView.m */,
 			);
 			name = "Image Capture Step";
+			sourceTree = "<group>";
+		};
+		F8B8FBB820D198B700930D7E /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				FB30E8571C7D030F0005AD25 /* ORKTextButton_Internal.h */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		FA7A9D2C1B083D90005A2BEA /* Formatters */ = {
