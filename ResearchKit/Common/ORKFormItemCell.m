@@ -205,6 +205,7 @@ static const CGFloat HorizontalMargin = 15.0;
 }
 
 - (void)prepareForReuse {
+    [super prepareForReuse];
     self.hasChangedAnswer = NO;
 }
 

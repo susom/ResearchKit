@@ -175,7 +175,7 @@ ORKWorkoutResultIdentifier const ORKWorkoutResultIdentifierDistanceTraveled = @"
 }
 
 - (ORKStep *)stepAfterStepWithIdentifier:(NSString *)identifier withResult:(ORKTaskResult *)result {
-    ORKStepResult *stepResult = [result stepResultForStepIdentifier:identifier];
+    //ORKStepResult *stepResult = [result stepResultForStepIdentifier:identifier];
     if ([identifier isEqualToString:ORKWorkoutOutdoorInstructionStepIdentifier]) {
         return [self.pageTask stepWithIdentifier:ORKWorkoutBeforeCountdownStepIdentifier];
     } else {

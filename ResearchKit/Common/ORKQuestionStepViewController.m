@@ -197,7 +197,7 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
             } else {
                 ORKQuestionStepCellHolderView *cellHolderView = [ORKQuestionStepCellHolderView new];
                 cellHolderView.delegate = self;
-                cellHolderView.cell = [self answerCellForTableView:nil];
+                cellHolderView.cell = [self answerCellForTableView:self.tableView];
                 [NSLayoutConstraint activateConstraints:
                  [cellHolderView.cell suggestedCellHeightConstraintsForView:self.parentViewController.view]];
                 cellHolderView.answer = [self answer];
