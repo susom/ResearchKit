@@ -51,7 +51,7 @@ ORK_CLASS_AVAILABLE
 /**
  * Expose method for custom UI functionality
  */
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 
 /**
  * Allow subclasses to check or override continue button enabled functionality
