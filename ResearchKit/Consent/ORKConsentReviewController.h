@@ -30,6 +30,7 @@
 
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 #import "ORKConsentDocument.h"
 #import <ResearchKit/ResearchKit_Private.h>
 #import "ORKSignatureView.h"
@@ -51,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithHTML:(NSString *)html delegate:(id<ORKConsentReviewControllerDelegate>)delegate;
 
-@property (nonatomic, strong, nullable) UIWebView *webView;
+@property (nonatomic, strong, nullable) WKWebView *webView;
 
 @property (nonatomic, weak, nullable) id<ORKConsentReviewControllerDelegate> delegate;
 

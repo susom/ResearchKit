@@ -38,7 +38,7 @@
 #import "ORKVerticalContainerView_Internal.h"
 
 
-@interface ORKConsentReviewController () <UIWebViewDelegate>
+@interface ORKConsentReviewController () <WKNavigationDelegate>
 
 @end
 
@@ -70,11 +70,12 @@
     
     self.view.backgroundColor = ORKColor(ORKBackgroundColorKey);
     
-    _webView = [UIWebView new];
+    WKWebViewConfiguration *webViewConfiguration = [WKWebViewConfiguration new];
+    _webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:webViewConfiguration];
     [_webView loadHTMLString:_htmlString baseURL:ORKCreateRandomBaseURL()];
     _webView.backgroundColor = ORKColor(ORKBackgroundColorKey);
     _webView.scrollView.backgroundColor = ORKColor(ORKBackgroundColorKey);
-    _webView.delegate = self;
+    _webView.navigationDelegate = self;
     [_webView setClipsToBounds:YES];
     _webView.translatesAutoresizingMaskIntoConstraints = NO;
     _toolbar.translatesAutoresizingMaskIntoConstraints = NO;
@@ -147,12 +148,17 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    if (navigationType != UIWebViewNavigationTypeOther) {
-        [[UIApplication sharedApplication] openURL:request.URL];
-        return NO;
+- (void)webView:(WKWebView *) __unused webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+    if (navigationAction.navigationType == WKNavigationTypeOther)
+    {
+        decisionHandler(WKNavigationActionPolicyAllow);
     }
-    return YES;
+    else {
+        [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:@{} completionHandler:^(BOOL __unused success) {
+            decisionHandler(WKNavigationActionPolicyCancel);
+        }];
+    }
 }
 
 @end
