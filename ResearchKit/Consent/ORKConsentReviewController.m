@@ -41,7 +41,7 @@
 
 
 static const CGFloat iPadStepTitleLabelFontSize = 50.0;
-@interface ORKConsentReviewController () <UIWebViewDelegate, UIScrollViewDelegate>
+@interface ORKConsentReviewController () <WKNavigationDelegate, UIScrollViewDelegate>
 
 @end
 
@@ -89,14 +89,15 @@ static const CGFloat iPadStepTitleLabelFontSize = 50.0;
         [self.navigationController.navigationBar setBarTintColor:self.view.backgroundColor];
     }
     
-    _webView = [UIWebView new];
+    WKWebViewConfiguration *webViewConfiguration = [WKWebViewConfiguration new];
+    _webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:webViewConfiguration];
     [_webView loadHTMLString:_htmlString baseURL:ORKCreateRandomBaseURL()];
     _webView.backgroundColor = ORKColor(ORKConsentBackgroundColorKey);
     _webView.scrollView.backgroundColor = ORKColor(ORKConsentBackgroundColorKey);
     if (!_agreeButton.isEnabled) {
         _webView.scrollView.delegate = self;
     }
-    _webView.delegate = self;
+    _webView.navigationDelegate = self;
     [_webView setClipsToBounds:YES];
     _webView.translatesAutoresizingMaskIntoConstraints = NO;
     _toolbar.translatesAutoresizingMaskIntoConstraints = NO;
@@ -215,12 +216,17 @@ static const CGFloat iPadStepTitleLabelFontSize = 50.0;
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    if (navigationType != UIWebViewNavigationTypeOther) {
-        [[UIApplication sharedApplication] openURL:request.URL];
-        return NO;
+- (void)webView:(WKWebView *) __unused webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+    if (navigationAction.navigationType == WKNavigationTypeOther)
+    {
+        decisionHandler(WKNavigationActionPolicyAllow);
     }
-    return YES;
+    else {
+        [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:@{} completionHandler:^(BOOL __unused success) {
+            decisionHandler(WKNavigationActionPolicyCancel);
+        }];
+    }
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
