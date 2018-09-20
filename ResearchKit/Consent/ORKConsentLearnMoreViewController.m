@@ -85,17 +85,16 @@
     
     
     _webView.navigationDelegate = self;
+    [self.view addSubview:_webView];
+    
+    _webView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self setUpConstraints];
     
     if (_contentURL) {
         [_webView loadRequest:[NSURLRequest requestWithURL:_contentURL]];
     } else {
         [_webView loadHTMLString:self.content baseURL:ORKCreateRandomBaseURL()];
     }
-    
-    [self.view addSubview:_webView];
-    
-    _webView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self setUpConstraints];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
 }
