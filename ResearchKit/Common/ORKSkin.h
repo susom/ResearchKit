@@ -109,6 +109,7 @@ typedef NS_ENUM(NSInteger, ORKScreenMetric) {
 };
 
 typedef NS_ENUM(NSInteger, ORKScreenType) {
+    ORKScreenTypeiPhoneXR,
     ORKScreenTypeiPhoneX,
     ORKScreenTypeiPhone6Plus,
     ORKScreenTypeiPhone6,

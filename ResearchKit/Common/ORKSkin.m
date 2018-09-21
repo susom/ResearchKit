@@ -95,6 +95,7 @@ const CGSize ORKiPhone5ScreenSize = (CGSize){320, 568};
 const CGSize ORKiPhone6ScreenSize = (CGSize){375, 667};
 const CGSize ORKiPhone6PlusScreenSize = (CGSize){414, 736};
 const CGSize ORKiPhoneXScreenSize = (CGSize){375, 812};
+const CGSize ORKiPhoneXRScreenSize = (CGSize){414, 896};
 const CGSize ORKiPadScreenSize = (CGSize){768, 1024};
 
 ORKScreenType ORKGetScreenTypeForBounds(CGRect bounds) {
@@ -110,6 +111,8 @@ ORKScreenType ORKGetScreenTypeForBounds(CGRect bounds) {
         screenType = ORKScreenTypeiPhone6Plus;
     } else if (maximumDimension < ORKiPhoneXScreenSize.height + 1) {
         screenType = ORKScreenTypeiPhoneX;
+    } else if (maximumDimension < ORKiPhoneXRScreenSize.height + 1) {
+        screenType = ORKScreenTypeiPhoneXR;
     } else {
         screenType = ORKScreenTypeiPad;
     }
@@ -135,37 +138,37 @@ const CGFloat ORKScreenMetricMaxDimension = 10000.0;
 
 CGFloat ORKGetMetricForScreenType(ORKScreenMetric metric, ORKScreenType screenType) {
     static  const CGFloat metrics[ORKScreenMetric_COUNT][ORKScreenType_COUNT] = {
-        //   iPhoneX, iPhone 6+,  iPhone 6,  iPhone 5,  iPhone 4,      iPad
-        {        128,       128,       128,       100,       100,       218},      // ORKScreenMetricTopToCaptionBaseline
-        {         35,        35,        35,        32,        24,        35},      // ORKScreenMetricFontSizeHeadline
-        {         38,        38,        38,        32,        28,        38},      // ORKScreenMetricMaxFontSizeHeadline
-        {         30,        30,        30,        30,        24,        30},      // ORKScreenMetricFontSizeSurveyHeadline
-        {         32,        32,        32,        32,        28,        32},      // ORKScreenMetricMaxFontSizeSurveyHeadline
-        {         17,        17,        17,        17,        16,        17},      // ORKScreenMetricFontSizeSubheadline
-        {         62,        62,        62,        51,        51,        62},      // ORKScreenMetricCaptionBaselineToFitnessTimerTop
-        {         62,        62,        62,        43,        43,        62},      // ORKScreenMetricCaptionBaselineToTappingLabelTop
-        {         36,        36,        36,        32,        32,        36},      // ORKScreenMetricCaptionBaselineToInstructionBaseline
-        {         30,        30,        30,        28,        24,        30},      // ORKScreenMetricInstructionBaselineToLearnMoreBaseline
-        {         44,        44,        44,        20,        14,        44},      // ORKScreenMetricLearnMoreBaselineToStepViewTop
-        {         40,        40,        40,        30,        14,        40},      // ORKScreenMetricLearnMoreBaselineToStepViewTopWithNoLearnMore
-        {         36,        36,        36,        20,        12,        36},      // ORKScreenMetricContinueButtonTopMargin
-        {         40,        40,        40,        20,        12,        40},      // ORKScreenMetricContinueButtonTopMarginForIntroStep
-        {          0,         0,         0,         0,         0,        80},      // ORKScreenMetricTopToIllustration
-        {         44,        44,        44,        40,        40,        44},      // ORKScreenMetricIllustrationToCaptionBaseline
-        {        198,       198,       198,       194,       152,       297},      // ORKScreenMetricIllustrationHeight
-        {        300,       300,       300,       176,       152,       300},      // ORKScreenMetricInstructionImageHeight
-        {        150,       150,       150,       146,       146,       150},      // ORKScreenMetricContinueButtonWidth
-        {        162,       162,       162,       120,       116,       240},      // ORKScreenMetricMinimumStepHeaderHeightForMemoryGame
-        {         60,        60,        60,        60,        44,        60},      // ORKScreenMetricTableCellDefaultHeight
-        {         55,        55,        55,        55,        44,        55},      // ORKScreenMetricTextFieldCellHeight
-        {         36,        36,        36,        36,        26,        36},      // ORKScreenMetricChoiceCellFirstBaselineOffsetFromTop,
-        {         24,        24,        24,        24,        18,        24},      // ORKScreenMetricChoiceCellLastBaselineToBottom,
-        {         24,        24,        24,        24,        24,        24},      // ORKScreenMetricChoiceCellLabelLastBaselineToLabelFirstBaseline,
-        {         30,        30,        30,        20,        20,        30},      // ORKScreenMetricLearnMoreButtonSideMargin
-        {         10,        10,        10,         0,         0,        10},      // ORKScreenMetricHeadlineSideMargin
-        {         44,        44,        44,        44,        44,        44},      // ORKScreenMetricToolbarHeight
-        {        350,       322,       274,       217,       217,       446},      // ORKScreenMetricVerticalScaleHeight
-        {        208,       208,       208,       208,       198,       256},      // ORKScreenMetricSignatureViewHeight
+        //  iPhoneXR,  iPhoneX, iPhone 6+,  iPhone 6,  iPhone 5,  iPhone 4,      iPad
+        {        128,       128,       128,       128,       100,       100,       218},      // ORKScreenMetricTopToCaptionBaseline
+        {         35,        35,        35,        35,        32,        24,        35},      // ORKScreenMetricFontSizeHeadline
+        {         38,        38,        38,        38,        32,        28,        38},      // ORKScreenMetricMaxFontSizeHeadline
+        {         30,        30,        30,        30,        30,        24,        30},      // ORKScreenMetricFontSizeSurveyHeadline
+        {         32,        32,        32,        32,        32,        28,        32},      // ORKScreenMetricMaxFontSizeSurveyHeadline
+        {         17,        17,        17,        17,        17,        16,        17},      // ORKScreenMetricFontSizeSubheadline
+        {         62,        62,        62,        62,        51,        51,        62},      // ORKScreenMetricCaptionBaselineToFitnessTimerTop
+        {         62,        62,        62,        62,        43,        43,        62},      // ORKScreenMetricCaptionBaselineToTappingLabelTop
+        {         36,        36,        36,        36,        32,        32,        36},      // ORKScreenMetricCaptionBaselineToInstructionBaseline
+        {         30,        30,        30,        30,        28,        24,        30},      // ORKScreenMetricInstructionBaselineToLearnMoreBaseline
+        {         44,        44,        44,        44,        20,        14,        44},      // ORKScreenMetricLearnMoreBaselineToStepViewTop
+        {         40,        40,        40,        40,        30,        14,        40},      // ORKScreenMetricLearnMoreBaselineToStepViewTopWithNoLearnMore
+        {         36,        36,        36,        36,        20,        12,        36},      // ORKScreenMetricContinueButtonTopMargin
+        {         40,        40,        40,        40,        20,        12,        40},      // ORKScreenMetricContinueButtonTopMarginForIntroStep
+        {          0,         0,         0,         0,         0,         0,        80},      // ORKScreenMetricTopToIllustration
+        {         44,        44,        44,        44,        40,        40,        44},      // ORKScreenMetricIllustrationToCaptionBaseline
+        {        198,       198,       198,       198,       194,       152,       297},      // ORKScreenMetricIllustrationHeight
+        {        300,       300,       300,       300,       176,       152,       300},      // ORKScreenMetricInstructionImageHeight
+        {        150,       150,       150,       150,       146,       146,       150},      // ORKScreenMetricContinueButtonWidth
+        {        162,       162,       162,       162,       120,       116,       240},      // ORKScreenMetricMinimumStepHeaderHeightForMemoryGame
+        {         60,        60,        60,        60,        60,        44,        60},      // ORKScreenMetricTableCellDefaultHeight
+        {         55,        55,        55,        55,        55,        44,        55},      // ORKScreenMetricTextFieldCellHeight
+        {         36,        36,        36,        36,        36,        26,        36},      // ORKScreenMetricChoiceCellFirstBaselineOffsetFromTop,
+        {         24,        24,        24,        24,        24,        18,        24},      // ORKScreenMetricChoiceCellLastBaselineToBottom,
+        {         24,        24,        24,        24,        24,        24,        24},      // ORKScreenMetricChoiceCellLabelLastBaselineToLabelFirstBaseline,
+        {         30,        30,        30,        30,        20,        20,        30},      // ORKScreenMetricLearnMoreButtonSideMargin
+        {         10,        10,        10,        10,         0,         0,        10},      // ORKScreenMetricHeadlineSideMargin
+        {         44,        44,        44,        44,        44,        44,        44},      // ORKScreenMetricToolbarHeight
+        {        370,       350,       322,       274,       217,       217,       446},      // ORKScreenMetricVerticalScaleHeight
+        {        208,       208,       208,       208,       208,       198,       256},      // ORKScreenMetricSignatureViewHeight
     };
     return metrics[metric][screenType];
 }
@@ -202,6 +205,7 @@ CGFloat ORKStandardHorizMarginForView(UIView *view) {
         case ORKScreenTypeiPhone5:
         case ORKScreenTypeiPhone6:
         case ORKScreenTypeiPhoneX:
+        case ORKScreenTypeiPhoneXR:
         case ORKScreenTypeiPhone6Plus:
         default:
             margin = ORKStandardLeftMarginForTableViewCell(view);
