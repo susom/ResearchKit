@@ -579,7 +579,8 @@ encondingTable =
          },
          (@{
             PROPERTY(answerFormat, ORKAnswerFormat, NSObject, YES, nil, nil),
-            PROPERTY(placeholder, NSString, NSObject, YES, nil, nil)
+            PROPERTY(placeholder, NSString, NSObject, YES, nil, nil),
+            PROPERTY(question, NSString, NSObject, YES, nil, nil)
             })),
    ENTRY(ORKInstructionStep,
          ^id(NSDictionary *dict, ORKESerializationPropertyGetter getter) {
