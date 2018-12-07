@@ -168,14 +168,6 @@ NSString * const ORKWatchHeartRateKey = @"bpm_watch";
         }
     }
     
-    // Tell the device to use the max frame rate.
-    [captureDevice lockForConfiguration:nil];
-    captureDevice.torchMode=AVCaptureTorchModeOn;
-    captureDevice.activeFormat = currentFormat;
-    captureDevice.activeVideoMinFrameDuration = CMTimeMake(1, ORKHeartRateFramesPerSecond);
-    captureDevice.activeVideoMaxFrameDuration = CMTimeMake(1, ORKHeartRateFramesPerSecond);
-    [captureDevice unlockForConfiguration];
-    
     // Set the output
     AVCaptureVideoDataOutput* videoOutput = [[AVCaptureVideoDataOutput alloc] init];
     
@@ -195,6 +187,14 @@ NSString * const ORKWatchHeartRateKey = @"bpm_watch";
     
     // Start the video session
     [_session startRunning];
+    
+    // Tell the device to use the max frame rate.
+    [captureDevice lockForConfiguration:nil];
+    captureDevice.activeFormat = currentFormat;
+    captureDevice.activeVideoMinFrameDuration = CMTimeMake(1, ORKHeartRateFramesPerSecond);
+    captureDevice.activeVideoMaxFrameDuration = CMTimeMake(1, ORKHeartRateFramesPerSecond);
+    captureDevice.torchMode = AVCaptureTorchModeOn;
+    [captureDevice unlockForConfiguration];
     
 #endif
 
