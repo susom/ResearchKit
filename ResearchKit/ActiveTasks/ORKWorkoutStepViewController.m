@@ -179,7 +179,7 @@ NSString * const ORKWorkoutWatchHeartRateKey = @"bpm_watch";
 - (ORKStepViewController *)stepViewControllerForStep:(ORKStep *)step {
     ORKStepViewController *stepViewController = [super stepViewControllerForStep:step];
     if ([stepViewController isKindOfClass:[ORKFitnessStepViewController class]]) {
-        ((ORKFitnessStepViewController *)stepViewController).usesWatch = (self.state | ORKWorkoutStepWatchStateRunning);
+        ((ORKFitnessStepViewController *)stepViewController).usesWatch = (self.state & ORKWorkoutStepWatchStateRunning);
     }
     return stepViewController;
 }
