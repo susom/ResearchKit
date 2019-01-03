@@ -58,7 +58,7 @@
     WKWebViewConfiguration *wkConfiguration = [[WKWebViewConfiguration alloc] init];
     self.webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:wkConfiguration];
     self.webView.navigationDelegate = self;
-    NSString *contentURLString = [NSString stringWithFormat:@"%@/authorize/?redirect_uri=%@&client_id=%@&hide_signup=true&select_profile=true&scope=%@", [self connectStep].baseURL, [self connectStep].redirectURI, [self connectStep].clientId, [self connectStep].scopes];
+    NSString *contentURLString = [NSString stringWithFormat:@"%@/authorize/?redirect_uri=%@&response_type=code&client_id=%@&select_profile=true&scope=%@", [self connectStep].baseURL, [self connectStep].redirectURI, [self connectStep].clientId, [self connectStep].scopes];
     NSURL *contentURL = [NSURL URLWithString:contentURLString];
     NSURLRequest *nsRequest=[NSURLRequest requestWithURL:contentURL];
     [self.webView loadRequest:nsRequest];

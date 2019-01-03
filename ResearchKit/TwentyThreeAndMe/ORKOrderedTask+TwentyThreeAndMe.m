@@ -71,7 +71,7 @@ static void ORKStepArrayAddStep(NSMutableArray *array, ORKStep *step) {
     {
         ORKTwentyThreeAndMeConnectStep *step = [[ORKTwentyThreeAndMeConnectStep alloc] initWithIdentifier:ORKTwentyThreeAndMeConnectStepIdentifier];
         step.baseURL = baseURLOverride ? baseURLOverride : @"https://api.23andme.com";
-        step.redirectURI = @"http://localhost:5000/receive_code/&response_type=code";
+        step.redirectURI = @"http://localhost:5000/receive_code/";
         step.clientId = clientId;
         step.clientSecret = clientSecret;
         step.scopes = [scopes stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
