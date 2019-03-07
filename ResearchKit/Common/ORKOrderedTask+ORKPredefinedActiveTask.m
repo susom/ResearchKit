@@ -2649,6 +2649,7 @@ NSString * const ORKTwentyThreeAndMeCompleteStepIdentifier = @"twentyThreeAndMe.
     
     {
         ORKTwentyThreeAndMeIntroStep *step = [[ORKTwentyThreeAndMeIntroStep alloc] initWithIdentifier:ORKTwentyThreeAndMeIntroStepIdentifier];
+        step.title = ORKLocalizedString(@"TWENTYTHREEANDME_TASK_TITLE", nil);
         step.investigatorDisplayName = investigatorDisplayName;
         step.studyDisplayName = studyDisplayName;
         step.studyContactEmail = studyContactEmail;
@@ -2657,6 +2658,7 @@ NSString * const ORKTwentyThreeAndMeCompleteStepIdentifier = @"twentyThreeAndMe.
     
     {
         ORKTwentyThreeAndMeConnectStep *step = [[ORKTwentyThreeAndMeConnectStep alloc] initWithIdentifier:ORKTwentyThreeAndMeConnectStepIdentifier];
+        step.title = ORKLocalizedString(@"TWENTYTHREEANDME_TASK_TITLE", nil);
         step.baseURL = baseURLOverride ? baseURLOverride : @"https://api.23andme.com";
         step.redirectURI = @"http://localhost:5000/receive_code/";
         step.clientId = clientId;
@@ -2667,6 +2669,7 @@ NSString * const ORKTwentyThreeAndMeCompleteStepIdentifier = @"twentyThreeAndMe.
     
     {
         ORKTwentyThreeAndMeCompleteStep *step = [[ORKTwentyThreeAndMeCompleteStep alloc] initWithIdentifier:ORKTwentyThreeAndMeCompleteStepIdentifier];
+        step.title = ORKLocalizedString(@"TWENTYTHREEANDME_TASK_TITLE", nil);
         step.studyDisplayName = studyDisplayName;
         step.studyContactEmail = studyContactEmail;
         ORKStepArrayAddStep(steps, step);

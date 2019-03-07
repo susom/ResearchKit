@@ -33,10 +33,16 @@
 #import "ORKHelpers_Internal.h"
 #import "ORKSkin.h"
 #import "ORKTwentyThreeAndMeConnectResult.h"
+#import "ORKStepViewController_Internal.h"
+#import "ORKNavigationContainerView_Internal.h"
 
-@interface ORKTwentyThreeAndMeConnectStepViewController ()<WKNavigationDelegate>
+@interface ORKTwentyThreeAndMeConnectStepViewController ()<WKNavigationDelegate> {
+    NSArray<NSLayoutConstraint *> *_constraints;
+}
 
 @property (nonatomic, strong) WKWebView *webView;
+
+@property (nonatomic, strong, readonly) ORKNavigationContainerView *navigationFooterView;
 
 @property (strong, nonatomic) NSMutableData *receivedData;
 
@@ -63,6 +69,8 @@
     NSURLRequest *nsRequest=[NSURLRequest requestWithURL:contentURL];
     [self.webView loadRequest:nsRequest];
     [self.view addSubview:self.webView];
+    [self setNavigationFooterView];
+    [self setupConstraints];
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
@@ -70,6 +78,40 @@
     if ([UIApplication sharedApplication].isNetworkActivityIndicatorVisible) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }
+}
+
+- (void)setNavigationFooterView {
+    if (!_navigationFooterView) {
+        _navigationFooterView = [ORKNavigationContainerView new];
+    }
+    _navigationFooterView.cancelButtonItem = self.cancelButtonItem;
+    _navigationFooterView.hidden = self.isBeingReviewed;
+    [_navigationFooterView updateContinueAndSkipEnabled];
+    [self.view addSubview:_navigationFooterView];
+}
+
+- (void)setupConstraints {
+    if (_constraints) {
+        [NSLayoutConstraint deactivateConstraints:_constraints];
+    }
+    _constraints = nil;
+    
+    UIView *viewForiPad = [self viewForiPadLayoutConstraints];
+    
+    _webView.translatesAutoresizingMaskIntoConstraints = NO;
+    _navigationFooterView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    UIView *containerView = viewForiPad ? : self.view;
+    _constraints = @[
+        [_webView.topAnchor constraintEqualToAnchor:containerView.topAnchor],
+        [_webView.leadingAnchor constraintEqualToAnchor:containerView.leadingAnchor],
+        [_webView.trailingAnchor constraintEqualToAnchor:containerView.trailingAnchor],
+        [_webView.bottomAnchor constraintEqualToAnchor:_navigationFooterView.topAnchor],
+        [_navigationFooterView.leadingAnchor constraintEqualToAnchor:containerView.leadingAnchor],
+        [_navigationFooterView.trailingAnchor constraintEqualToAnchor:containerView.trailingAnchor],
+        [_navigationFooterView.bottomAnchor constraintEqualToAnchor:containerView.bottomAnchor],
+    ];
+    [NSLayoutConstraint activateConstraints:_constraints];
 }
 
 #pragma mark - ORKStepResult

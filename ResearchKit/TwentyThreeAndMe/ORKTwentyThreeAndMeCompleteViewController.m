@@ -66,6 +66,7 @@
     [super viewDidLoad];
     
     ORKTwentyThreeAndMeCompleteStep *completeStep = [self completeStep];
+    self.title = completeStep.title;
     NSString *studyDisplayName = completeStep.studyDisplayName;
     NSString *studyContactEmail = completeStep.studyContactEmail;
     
