@@ -571,6 +571,7 @@
 "TOUCH_ABILITY_ROTATION_TEXT" = "Please use two finger rotating gesture to readjust the arrow to align with dashed arrow.  Once completing and lifting up your fingers, arrow will disappear. Please await for cube and box to appear before next trial.";
 
 /* 23andMe connect task. */
+"TWENTYTHREEANDME_TASK_TITLE" = "23andMe";
 "TWENTYTHREEANDME_CONNECT_TASK_INTRO_1_TITLE" = "Sport Study + 23andMe";
 "TWENTYTHREEANDME_CONNECT_TASK_INTRO_1_TEXT" = "23andMe has partnered with this study's sponsor to better understand the relationship between genetics and sports injuries.";
 "TWENTYTHREEANDME_CONNECT_TASK_INTRO_1_DETAIL_TEXT" = "In order to participate in this study, you will need to authorize this app to access portions of your genetic data.";

@@ -60,6 +60,7 @@
     [super viewDidLoad];
     
     ORKTwentyThreeAndMeIntroStep *introStep = [self introStep];
+    self.title = introStep.title;
     self.investigatorDisplayName = introStep.investigatorDisplayName;
     self.studyDisplayName = introStep.studyDisplayName;
     self.studyContactEmail = introStep.studyContactEmail;
@@ -149,7 +150,7 @@
                                                             toItem:self.view
                                                          attribute:NSLayoutAttributeTop
                                                         multiplier:1.0
-                                                          constant:0.0]];
+                                                          constant:20.0]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pageViewController.view
                                                           attribute:NSLayoutAttributeLeading
                                                           relatedBy:NSLayoutRelationEqual
