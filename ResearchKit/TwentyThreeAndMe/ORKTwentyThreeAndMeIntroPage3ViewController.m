@@ -46,14 +46,14 @@
 
 - (void)contactStudyButtonPressed:(UIButton *)sender {
     NSString *contactStudyByMail = [NSString stringWithFormat:@"mailto:?to=%@&subject=%@&body=%@",
-        [self.studyContactEmail stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
-        [self.studyDisplayName stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
+        [self.studyContactEmail stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet],
+        [self.studyDisplayName stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet],
         @""];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:contactStudyByMail]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:contactStudyByMail] options:@{} completionHandler:NULL];
 }
 
 - (void)learnMoreButtonPressed:(UIButton *)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.23andme.com/service/"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.23andme.com/service/"] options:@{} completionHandler:NULL];
 }
 
 - (void)setupAppearance {

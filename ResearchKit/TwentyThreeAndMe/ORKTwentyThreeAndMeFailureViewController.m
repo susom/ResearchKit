@@ -54,10 +54,10 @@
 
 - (void)contactStudyButtonPressed:(UIButton *)sender {
     NSString *contactStudyByMail = [NSString stringWithFormat:@"mailto:?to=%@&subject=%@&body=%@",
-                                    [self.studyContactEmail stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
-                                    [self.studyDisplayName stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
+                                    [self.studyContactEmail stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet],
+                                    [self.studyDisplayName stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet],
                                     @""];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:contactStudyByMail]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:contactStudyByMail] options:@{} completionHandler:NULL];
 }
 
 - (void)setupAppearance {

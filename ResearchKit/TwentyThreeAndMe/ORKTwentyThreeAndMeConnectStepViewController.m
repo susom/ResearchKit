@@ -44,8 +44,6 @@
 
 @property (nonatomic, strong, readonly) ORKNavigationContainerView *navigationFooterView;
 
-@property (strong, nonatomic) NSMutableData *receivedData;
-
 @property (nonatomic, strong) NSString *authToken;
 
 @property (nonatomic, strong) NSString *refreshToken;
@@ -173,18 +171,45 @@
         }
         
         if (authCode) {
-            NSString *data = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=authorization_code&code=%@&redirect_uri=%@&scope=%@", [self connectStep].clientId, [self connectStep].clientSecret, authCode, [self connectStep].redirectURI, [self connectStep].scopes];
+            NSString *tokenData = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=authorization_code&code=%@&redirect_uri=%@&scope=%@", [self connectStep].clientId, [self connectStep].clientSecret, authCode, [self connectStep].redirectURI, [self connectStep].scopes];
             NSString *tokenURL = [NSString stringWithFormat:@"%@/token/", [self connectStep].baseURL];
-            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:tokenURL]];
-            [request setHTTPMethod:@"POST"];
-            [request setHTTPBody:[data dataUsingEncoding:NSUTF8StringEncoding]];
+            NSMutableURLRequest *tokenRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:tokenURL]];
+            [tokenRequest setHTTPMethod:@"POST"];
+            [tokenRequest setHTTPBody:[tokenData dataUsingEncoding:NSUTF8StringEncoding]];
             
-            self.receivedData = [[NSMutableData alloc] init];
-            NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-            [theConnection start];
+            NSURLSessionDataTask *dataTask = [NSURLSession.sharedSession dataTaskWithRequest:tokenRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable __unused response, NSError * _Nullable error) {
+                if (error) NSLog(@"%@", error);
+                if (!data) return;
+                
+                //NSLog( @"%@", data );
+                
+                // DEBUGGING for Parse Issues
+                const unsigned char *ptr = [data bytes];
+                NSString *jsonParsed = @"";
+                for(int i=0; i<[data length]; ++i) {
+                    unsigned char c = *ptr++;
+                    jsonParsed = [jsonParsed stringByAppendingFormat:@"%c", c];
+                }
+                //NSLog( @"Json Parsed: %@", jsonParsed );
+                
+                NSError *localError = nil;
+                NSDictionary *parsedData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&localError];
+                if( parsedData )
+                {
+                    self.authToken = parsedData[@"access_token"];
+                    self.refreshToken = parsedData[@"refresh_token"];
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self goForward];
+                });
+            }];
+            [dataTask resume];
         }
         else if (errorCode && [errorCode isEqualToString:@"access_denied"]) {
-            [self goForward];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self goForward];
+            });
         }
         else {
             // Unexpected Request. Drop on floor for now.
@@ -195,49 +220,6 @@
     else
     {
         decisionHandler(WKNavigationActionPolicyAllow);
-    }
-}
-
-#pragma mark - NSURLConnectionDelegate - Handles Code to Token Connection
-
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    if( self.receivedData )
-    {
-        [self.receivedData appendData:data];
-    }
-}
-
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"%@",error);
-    //Error
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    if( self.receivedData )
-    {
-        //NSLog( @"%@", self.receivedData );
-        
-        // DEBUGGING for Parse Issues
-        const unsigned char *ptr = [self.receivedData bytes];
-        NSString *jsonParsed = @"";
-        for(int i=0; i<[self.receivedData length]; ++i) {
-            unsigned char c = *ptr++;
-            jsonParsed = [jsonParsed stringByAppendingFormat:@"%c", c];
-        }
-        //NSLog( @"Json Parsed: %@", jsonParsed );
-        
-        NSError *localError = nil;
-        NSDictionary *parsedData = [NSJSONSerialization JSONObjectWithData:self.receivedData options:NSJSONReadingAllowFragments error:&localError];
-        if( parsedData )
-        {
-            self.authToken = parsedData[@"access_token"];
-            self.refreshToken = parsedData[@"refresh_token"];
-        }
-        
-        [self goForward];
     }
 }
 
