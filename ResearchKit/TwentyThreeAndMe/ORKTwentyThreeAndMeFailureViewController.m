@@ -62,111 +62,19 @@
 
 - (void)setupAppearance {
     //--------------------
-    // Style
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    //--------------------
     // Gene Pill Image View
     UIImage *genePillImage = [UIImage imageNamed:@"failure_chromosome_purple" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
     UIImageView *genePillImageView = [[UIImageView alloc] initWithImage:genePillImage];
-    [self.view addSubview:genePillImageView];
-    genePillImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:genePillImageView
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTop
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:genePillImageView
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    
-    //--------------------
-    // Text Content View
-    UIView *textContentView = [[UIView alloc] init];
-    [self.view addSubview:textContentView];
-    textContentView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:textContentView
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:textContentView
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:textContentView
-                                                          attribute:NSLayoutAttributeCenterY
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterY
-                                                         multiplier:1.0
-                                                           constant:-20.0]];
+    genePillImageView.contentMode = UIViewContentModeRight;
     
     //--------------------
     // Title Label
     UILabel *titleLabel = [UILabel t23HeaderLabelWithText:@"Try again"];
-    [textContentView addSubview:titleLabel];
-    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [textContentView addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
-                                                                attribute:NSLayoutAttributeTop
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:textContentView
-                                                                attribute:NSLayoutAttributeTop
-                                                               multiplier:1.0
-                                                                 constant:0.0]];
-    [textContentView addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
-                                                                attribute:NSLayoutAttributeLeading
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:textContentView
-                                                                attribute:NSLayoutAttributeLeading
-                                                               multiplier:1.0
-                                                                 constant:15.0]];
-    [textContentView addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
-                                                                attribute:NSLayoutAttributeTrailing
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:textContentView
-                                                                attribute:NSLayoutAttributeTrailing
-                                                               multiplier:1.0
-                                                                 constant:-15.0]];
     
     //--------------------
     // Description Label
     NSString *descriptionLabelText = [NSString stringWithFormat:@"Sorry, we weren’t able to enroll you in the genetic component of %@. Please try again, or contact %@ if you have any questions.", self.studyDisplayName, self.studyDisplayName];
     UILabel *descriptionLabel = [UILabel t23BodyLabelWithText:descriptionLabelText];
-    [textContentView addSubview:descriptionLabel];
-    descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [textContentView addConstraint:[NSLayoutConstraint constraintWithItem:descriptionLabel
-                                                                attribute:NSLayoutAttributeTop
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:titleLabel
-                                                                attribute:NSLayoutAttributeBottom
-                                                               multiplier:1.0
-                                                                 constant:20.0]];
-    [textContentView addConstraint:[NSLayoutConstraint constraintWithItem:descriptionLabel
-                                                                attribute:NSLayoutAttributeLeading
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:textContentView
-                                                                attribute:NSLayoutAttributeLeading
-                                                               multiplier:1.0
-                                                                 constant:15.0]];
-    [textContentView addConstraint:[NSLayoutConstraint constraintWithItem:descriptionLabel
-                                                                attribute:NSLayoutAttributeTrailing
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:textContentView
-                                                                attribute:NSLayoutAttributeTrailing
-                                                               multiplier:1.0
-                                                                 constant:-15.0]];
     
     UIButton *contactStudyButton = [[UIButton alloc] init];
     NSString *contactStudyText = [NSString stringWithFormat:@"Contact %@", self.studyDisplayName];
@@ -175,78 +83,52 @@
     UIColor *t23BlueColor = [UIColor colorWithRed:53.0/255.0 green:149.0/255.0 blue:214.0/255.0 alpha:1.0];
     [contactStudyButton setTitleColor:t23BlueColor forState:UIControlStateNormal];
     contactStudyButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
-    [textContentView addSubview:contactStudyButton];
     contactStudyButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [contactStudyButton addConstraint:[NSLayoutConstraint constraintWithItem:contactStudyButton
-                                                                   attribute:NSLayoutAttributeHeight
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:nil
-                                                                   attribute:NSLayoutAttributeNotAnAttribute
-                                                                  multiplier:1.0
-                                                                    constant:45.0]];
-    [textContentView addConstraint:[NSLayoutConstraint constraintWithItem:contactStudyButton
-                                                                attribute:NSLayoutAttributeTop
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:descriptionLabel
-                                                                attribute:NSLayoutAttributeBottom
-                                                               multiplier:1.0
-                                                                 constant:-10.0]];
-    [textContentView addConstraint:[NSLayoutConstraint constraintWithItem:contactStudyButton
-                                                                attribute:NSLayoutAttributeLeading
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:textContentView
-                                                                attribute:NSLayoutAttributeLeading
-                                                               multiplier:1.0
-                                                                 constant:15.0]];
-    [textContentView addConstraint:[NSLayoutConstraint constraintWithItem:contactStudyButton
-                                                                attribute:NSLayoutAttributeBottom
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:textContentView
-                                                                attribute:NSLayoutAttributeBottom
-                                                               multiplier:1.0
-                                                                 constant:0.0]];
+    contactStudyButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [contactStudyButton.heightAnchor constraintEqualToConstant:45.0].active = YES;
     
     //--------------------
     // Try Again Button
     UIButton *tryAgainButton = [UIButton t23ButtonWithText:@"Try again" andHasBorder:YES];
-    [self.view addSubview:tryAgainButton];
     [tryAgainButton addTarget:self action:@selector(tryAgainButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    tryAgainButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:tryAgainButton
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1.0
-                                                           constant:0.0]];
     
     //--------------------
     // Decline Button
     UIButton *declineButton = [UIButton t23ButtonWithText:@"Decline" andHasBorder:NO];
-    [self.view addSubview:declineButton];
     [declineButton addTarget:self action:@selector(declineButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    declineButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:declineButton
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:tryAgainButton
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:5.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:declineButton
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:declineButton
-                                                          attribute:NSLayoutAttributeBottom
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:-10.0]];
+    
+    UIStackView *middleStackView = [[UIStackView alloc] initWithArrangedSubviews:@[
+        titleLabel,
+        descriptionLabel,
+        contactStudyButton
+    ]];
+    middleStackView.axis = UILayoutConstraintAxisVertical;
+    middleStackView.layoutMargins = UIEdgeInsetsMake(0, 15.0, 0, 15.0);
+    middleStackView.layoutMarginsRelativeArrangement = YES;
+    middleStackView.spacing = 20.0;
+    [middleStackView setCustomSpacing:-10.0 afterView:descriptionLabel];
+    
+    UIStackView *bottomStackView = [[UIStackView alloc] initWithArrangedSubviews:@[
+        tryAgainButton,
+        declineButton
+    ]];
+    bottomStackView.axis = UILayoutConstraintAxisVertical;
+    bottomStackView.alignment = UIStackViewAlignmentCenter;
+    
+    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[
+        genePillImageView,
+        middleStackView,
+        bottomStackView
+    ]];
+    stackView.translatesAutoresizingMaskIntoConstraints = NO;
+    stackView.axis = UILayoutConstraintAxisVertical;
+    stackView.distribution = UIStackViewDistributionEqualSpacing;
+    stackView.alignment = UIStackViewAlignmentFill;
+    [self.view addSubview:stackView];
+    [self.view.topAnchor constraintEqualToAnchor:stackView.topAnchor].active = YES;
+    [self.view.safeAreaLayoutGuide.bottomAnchor constraintEqualToAnchor:stackView.bottomAnchor].active = YES;
+    [self.view.leadingAnchor constraintEqualToAnchor:stackView.leadingAnchor].active = YES;
+    [self.view.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor].active = YES;
 }
 
 @end

@@ -60,7 +60,6 @@
     [super viewDidLoad];
     
     ORKTwentyThreeAndMeIntroStep *introStep = [self introStep];
-    self.title = introStep.title;
     self.investigatorDisplayName = introStep.investigatorDisplayName;
     self.studyDisplayName = introStep.studyDisplayName;
     self.studyContactEmail = introStep.studyContactEmail;
@@ -116,10 +115,6 @@
 
 - (void)setupAppearance {
     //--------------------
-    // Style
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    //--------------------
     // Page View Controller Control Appearance
     UIPageControl *pageControl = nil;
     if( [UIPageControl instancesRespondToSelector:@selector(appearanceWhenContainedInInstancesOfClasses:)] ) {
@@ -130,7 +125,7 @@
     }
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:51.0/255.0 green:52.0/255.0 blue:53.0/255.0 alpha:1.0];
-    pageControl.backgroundColor = [UIColor whiteColor];
+    pageControl.backgroundColor = [UIColor clearColor];
     
     //--------------------
     // Page View Controller
@@ -144,27 +139,9 @@
     [self.pageViewController didMoveToParentViewController:self];
     
     self.pageViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pageViewController.view
-                                                         attribute:NSLayoutAttributeTop
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:self.view
-                                                         attribute:NSLayoutAttributeTop
-                                                        multiplier:1.0
-                                                          constant:20.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pageViewController.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pageViewController.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:0.0]];
+    [self.view.safeAreaLayoutGuide.topAnchor constraintEqualToAnchor:self.pageViewController.view.topAnchor constant:20.0].active = YES;
+    [self.view.leadingAnchor constraintEqualToAnchor:self.pageViewController.view.leadingAnchor].active = YES;
+    [self.view.trailingAnchor constraintEqualToAnchor:self.pageViewController.view.trailingAnchor].active = YES;
     
     //--------------------
     // Share Button
@@ -172,20 +149,8 @@
     [self.view addSubview:shareButton];
     [shareButton addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     shareButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:shareButton
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.pageViewController.view
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:shareButton
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1.0
-                                                           constant:0.0]];
+    [shareButton.topAnchor constraintEqualToAnchor:self.pageViewController.view.bottomAnchor].active = YES;
+    [shareButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
     
     //--------------------
     // Decline Button
@@ -193,30 +158,12 @@
     [self.view addSubview:declineButton];
     [declineButton addTarget:self action:@selector(declineButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     declineButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:declineButton
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:shareButton
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:declineButton
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1.0
-                                                           constant:0.0]];
+    [declineButton.topAnchor constraintEqualToAnchor:shareButton.bottomAnchor].active = YES;
+    [declineButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
     
     //--------------------
     // Bottom
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:declineButton
-                                                          attribute:NSLayoutAttributeBottom
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:0.0]];
+    [declineButton.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor].active = YES;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController

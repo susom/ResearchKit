@@ -30,19 +30,21 @@
 
 #import "ORKTwentyThreeAndMeConnectStepViewController.h"
 #import "ORKTwentyThreeAndMeConnectStep.h"
-#import "ORKHelpers_Internal.h"
-#import "ORKSkin.h"
 #import "ORKTwentyThreeAndMeConnectResult.h"
 #import "ORKStepViewController_Internal.h"
-#import "ORKNavigationContainerView_Internal.h"
 
-@interface ORKTwentyThreeAndMeConnectStepViewController ()<WKNavigationDelegate> {
-    NSArray<NSLayoutConstraint *> *_constraints;
+@interface ORKWebViewStepViewController () {
+    @protected
+    WKWebView *_webView;
+    NSString *_result;
 }
 
-@property (nonatomic, strong) WKWebView *webView;
+- (void)setupNavigationFooterView;
+- (void)setupConstraints;
 
-@property (nonatomic, strong, readonly) ORKNavigationContainerView *navigationFooterView;
+@end
+
+@interface ORKTwentyThreeAndMeConnectStepViewController ()
 
 @property (nonatomic, strong) NSString *authToken;
 
@@ -58,17 +60,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    WKWebViewConfiguration *wkConfiguration = [[WKWebViewConfiguration alloc] init];
-    self.webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:wkConfiguration];
-    self.webView.navigationDelegate = self;
-    NSString *contentURLString = [NSString stringWithFormat:@"%@/authorize/?redirect_uri=%@&response_type=code&client_id=%@&select_profile=true&scope=%@", [self connectStep].baseURL, [self connectStep].redirectURI, [self connectStep].clientId, [self connectStep].scopes];
-    NSURL *contentURL = [NSURL URLWithString:contentURLString];
-    NSURLRequest *nsRequest=[NSURLRequest requestWithURL:contentURL];
-    [self.webView loadRequest:nsRequest];
-    [self.view addSubview:self.webView];
-    [self setNavigationFooterView];
-    [self setupConstraints];
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
@@ -78,44 +69,33 @@
     }
 }
 
-- (void)setNavigationFooterView {
-    if (!_navigationFooterView) {
-        _navigationFooterView = [ORKNavigationContainerView new];
+- (void)stepDidChange {
+    _result = nil;
+    [_webView removeFromSuperview];
+    _webView = nil;
+    
+    if (self.step && [self isViewLoaded]) {
+        WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+        _webView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
+        _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _webView.navigationDelegate = self;
+        [self.view addSubview:_webView];
+        [self setupNavigationFooterView];
+        [self setupConstraints];
+        
+        NSString *contentURLString = [NSString stringWithFormat:@"%@/authorize/?redirect_uri=%@&response_type=code&client_id=%@&select_profile=true&scope=%@", [self connectStep].baseURL, [self connectStep].redirectURI, [self connectStep].clientId, [self connectStep].scopes];
+        NSURL *contentURL = [NSURL URLWithString:contentURLString];
+        NSURLRequest *nsRequest=[NSURLRequest requestWithURL:contentURL];
+        [_webView loadRequest:nsRequest];
     }
-    _navigationFooterView.cancelButtonItem = self.cancelButtonItem;
-    _navigationFooterView.hidden = self.isBeingReviewed;
-    [_navigationFooterView updateContinueAndSkipEnabled];
-    [self.view addSubview:_navigationFooterView];
-}
-
-- (void)setupConstraints {
-    if (_constraints) {
-        [NSLayoutConstraint deactivateConstraints:_constraints];
-    }
-    _constraints = nil;
-    
-    UIView *viewForiPad = [self viewForiPadLayoutConstraints];
-    
-    _webView.translatesAutoresizingMaskIntoConstraints = NO;
-    _navigationFooterView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    UIView *containerView = viewForiPad ? : self.view;
-    _constraints = @[
-        [_webView.topAnchor constraintEqualToAnchor:containerView.topAnchor],
-        [_webView.leadingAnchor constraintEqualToAnchor:containerView.leadingAnchor],
-        [_webView.trailingAnchor constraintEqualToAnchor:containerView.trailingAnchor],
-        [_webView.bottomAnchor constraintEqualToAnchor:_navigationFooterView.topAnchor],
-        [_navigationFooterView.leadingAnchor constraintEqualToAnchor:containerView.leadingAnchor],
-        [_navigationFooterView.trailingAnchor constraintEqualToAnchor:containerView.trailingAnchor],
-        [_navigationFooterView.bottomAnchor constraintEqualToAnchor:containerView.bottomAnchor],
-    ];
-    [NSLayoutConstraint activateConstraints:_constraints];
 }
 
 #pragma mark - ORKStepResult
 
 - (ORKStepResult *)result {
-    ORKStepResult *sResult = [super result];
+    ORKStepResult *sResult = [[ORKStepResult alloc] initWithStepIdentifier:self.step.identifier results:self.addedResults ? : @[]];
+    sResult.startDate = self.presentedDate ? : [NSDate date];
+    sResult.endDate = self.dismissedDate ? : [NSDate date];
     
     // "Now" is the end time of the result, which is either actually now,
     // or the last time we were in the responder chain.
@@ -136,12 +116,7 @@
 }
 
 #pragma mark - WebViewDelegate
-- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation{
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-}
-- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-}
+
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }

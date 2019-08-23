@@ -36,6 +36,6 @@
  *  StepViewController for Connecting to 23andMe auth with a wrapped webview
  */
 ORK_CLASS_AVAILABLE
-@interface ORKTwentyThreeAndMeConnectStepViewController : ORKStepViewController
+@interface ORKTwentyThreeAndMeConnectStepViewController : ORKWebViewStepViewController
 
 @end

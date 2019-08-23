@@ -46,181 +46,59 @@
 
 - (void)setupAppearance {
     //--------------------
-    // Style
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    //--------------------
     // 23andMe Logo Image View
     UIImage *logoImage = [UIImage imageNamed:@"intro_23andMe_logo" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
     UIImageView *logoImageView = [[UIImageView alloc] initWithImage:logoImage];
-    [self.view addSubview:logoImageView];
-    logoImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:logoImageView
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTop
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:logoImageView
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1.0
-                                                           constant:15.0]];
-    
-    //--------------------
-    // Spacer Above
-    UIView *spacerAboveDescription = [[UIView alloc] init];
-    [self.view addSubview:spacerAboveDescription];
-    spacerAboveDescription.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:spacerAboveDescription
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:logoImageView
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:spacerAboveDescription
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:spacerAboveDescription
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:0.0]];
+    logoImageView.contentMode = UIViewContentModeCenter;
     
     //--------------------
     // Description Label
     NSString *descriptionText = [NSString stringWithFormat:@"%@ is colaborating with 23andMe to collect genetic data for the %@ study", self.investigatorDisplayName, self.studyDisplayName];
     UILabel *descriptionLabel = [UILabel t23BodyLabelWithText:descriptionText];
-    [self.view addSubview:descriptionLabel];
-    descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:descriptionLabel
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:spacerAboveDescription
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:descriptionLabel
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1.0
-                                                           constant:15.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:descriptionLabel
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:-15.0]];
-    
-    //--------------------
-    // Spacer Below
-    UIView *spacerBelowDescription = [[UIView alloc] init];
-    [self.view addSubview:spacerBelowDescription];
-    spacerBelowDescription.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:spacerBelowDescription
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:descriptionLabel
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:spacerBelowDescription
-                                                          attribute:NSLayoutAttributeHeight
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:spacerAboveDescription
-                                                          attribute:NSLayoutAttributeHeight
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:spacerBelowDescription
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:spacerBelowDescription
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:0.0]];
     
     //--------------------
     // Gene Pill Image View
     UIImage *genePillImage = [UIImage imageNamed:@"intro_chromosome_green_striped" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
     UIImageView *genePillImageView = [[UIImageView alloc] initWithImage:genePillImage];
-    [self.view addSubview:genePillImageView];
-    genePillImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:genePillImageView
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:genePillImageView
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:spacerBelowDescription
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:0.0]];
+    genePillImageView.contentMode = UIViewContentModeRight;
     
     //--------------------
     // Divider View
     UIView *dividerView = [[UIView alloc] init];
     dividerView.backgroundColor = [UIColor colorWithRed:227.0/255.0 green:229.0/255.0 blue:230.0/255.0 alpha:1.0];
     [self.view addSubview:dividerView];
-    dividerView.translatesAutoresizingMaskIntoConstraints = NO;
-    [dividerView addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeHeight
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:nil
-                                                          attribute:NSLayoutAttributeNotAnAttribute
-                                                         multiplier:1.0
-                                                           constant:1.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:genePillImageView
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:24.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeBottom
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:0.0]];
+    [dividerView.heightAnchor constraintEqualToConstant:1.0].active = YES;
+    
+    UIStackView *descriptionStackView = [[UIStackView alloc] initWithArrangedSubviews:@[
+        descriptionLabel
+    ]];
+    descriptionStackView.layoutMargins = UIEdgeInsetsMake(0, 15.0, 0, 15.0);
+    descriptionStackView.layoutMarginsRelativeArrangement = YES;
+    UIStackView *topStackView = [[UIStackView alloc] initWithArrangedSubviews:@[
+        logoImageView,
+        descriptionStackView,
+        genePillImageView
+    ]];
+    topStackView.translatesAutoresizingMaskIntoConstraints = NO;
+    topStackView.axis = UILayoutConstraintAxisVertical;
+    topStackView.distribution = UIStackViewDistributionEqualSpacing;
+    topStackView.alignment = UIStackViewAlignmentFill;
+    [self.view addSubview:topStackView];
+    [topStackView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
+    [topStackView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    [topStackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
+    
+    UIStackView *bottomStackView = [[UIStackView alloc] initWithArrangedSubviews:@[
+        dividerView
+    ]];
+    bottomStackView.translatesAutoresizingMaskIntoConstraints = NO;
+    bottomStackView.axis = UILayoutConstraintAxisVertical;
+    bottomStackView.alignment = UIStackViewAlignmentFill;
+    [self.view addSubview:bottomStackView];
+    [bottomStackView.topAnchor constraintEqualToAnchor:topStackView.bottomAnchor constant:24.0].active = YES;
+    [bottomStackView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor].active = YES;
+    [bottomStackView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    [bottomStackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
 }
 
 @end

@@ -46,173 +46,65 @@
 
 - (void)setupAppearance {
     //--------------------
-    // Style
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    //--------------------
     // Title Label
     UILabel *titleLabel = [UILabel t23HeaderLabelWithText:@"About this study"];
-    [self.view addSubview:titleLabel];
-    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTop
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1.0
-                                                           constant:15.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:-15.0]];
     
     //--------------------
     // About Description Label
     NSString *aboutDescriptionText = [NSString stringWithFormat:@"In order to participate in this part of the study, you will need to authorize 23andMe to share portions of your genetic data with %@.", self.studyDisplayName];
     UILabel *aboutDescriptionLabel = [UILabel t23BodyLabelWithText:aboutDescriptionText];
-    [self.view addSubview:aboutDescriptionLabel];
-    aboutDescriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:aboutDescriptionLabel
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:titleLabel
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:20.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:aboutDescriptionLabel
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1.0
-                                                           constant:15.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:aboutDescriptionLabel
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:-15.0]];
     
     //--------------------
     // Eligibility Header Label
     UILabel *eligibilityHeaderLabel = [UILabel t23SubheaderLabelWithText:@"Eligibility"];
-    [self.view addSubview:eligibilityHeaderLabel];
-    eligibilityHeaderLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:eligibilityHeaderLabel
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:aboutDescriptionLabel
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:15.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:eligibilityHeaderLabel
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1.0
-                                                           constant:15.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:eligibilityHeaderLabel
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:-15.0]];
     
     //--------------------
     // Existing User Label
     UILabel *existingUserLabel = [UILabel t23BodyLabelWithText:@"Existing 23andMe users"];
-    [self.view addSubview:existingUserLabel];
-    existingUserLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:existingUserLabel
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:eligibilityHeaderLabel
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:10.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:existingUserLabel
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1.0
-                                                           constant:15.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:existingUserLabel
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:-15.0]];
     
     //--------------------
     // Gene Pill Image View
     UIImage *genePillImage = [UIImage imageNamed:@"intro_chromosome_green" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
     UIImageView *genePillImageView = [[UIImageView alloc] initWithImage:genePillImage];
-    [self.view addSubview:genePillImageView];
-    genePillImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:genePillImageView
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1.0
-                                                           constant:0.0]];
+    genePillImageView.contentMode = UIViewContentModeLeft;
     
     //--------------------
     // Divider View
     UIView *dividerView = [[UIView alloc] init];
     dividerView.backgroundColor = [UIColor colorWithRed:227.0/255.0 green:229.0/255.0 blue:230.0/255.0 alpha:1.0];
-    [self.view addSubview:dividerView];
-    dividerView.translatesAutoresizingMaskIntoConstraints = NO;
-    [dividerView addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeHeight
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:nil
-                                                          attribute:NSLayoutAttributeNotAnAttribute
-                                                         multiplier:1.0
-                                                           constant:1.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:genePillImageView
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:24.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeBottom
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:0.0]];
+    [dividerView.heightAnchor constraintEqualToConstant:1.0].active = YES;
+    
+    UIStackView *topStackView = [[UIStackView alloc] initWithArrangedSubviews:@[
+        titleLabel,
+        aboutDescriptionLabel,
+        eligibilityHeaderLabel,
+        existingUserLabel
+    ]];
+    topStackView.translatesAutoresizingMaskIntoConstraints = NO;
+    topStackView.axis = UILayoutConstraintAxisVertical;
+    topStackView.alignment = UIStackViewAlignmentFill;
+    topStackView.layoutMargins = UIEdgeInsetsMake(0, 15.0, 0, 15.0);
+    topStackView.layoutMarginsRelativeArrangement = YES;
+    topStackView.spacing = 15.0;
+    [self.view addSubview:topStackView];
+    [topStackView setCustomSpacing:20.0 afterView:titleLabel];
+    [topStackView setCustomSpacing:10.0 afterView:eligibilityHeaderLabel];
+    [topStackView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
+    [topStackView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    [topStackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
+    
+    UIStackView *bottomStackView = [[UIStackView alloc] initWithArrangedSubviews:@[
+        genePillImageView,
+        dividerView
+    ]];
+    bottomStackView.translatesAutoresizingMaskIntoConstraints = NO;
+    bottomStackView.axis = UILayoutConstraintAxisVertical;
+    bottomStackView.alignment = UIStackViewAlignmentFill;
+    bottomStackView.spacing = 24.0;
+    [self.view addSubview:bottomStackView];
+    [bottomStackView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor].active = YES;
+    [bottomStackView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    [bottomStackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
 }
 
 @end

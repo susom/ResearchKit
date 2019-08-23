@@ -59,99 +59,15 @@
 - (void)setupAppearance {
     //--------------------
     // Style
-    self.view.backgroundColor = [UIColor whiteColor];
     UIColor *t23BlueColor = [UIColor colorWithRed:53.0/255.0 green:149.0/255.0 blue:214.0/255.0 alpha:1.0];
-    
-    //--------------------
-    // Scroll View
-    UIScrollView *scrollView = [[UIScrollView alloc] init];
-    [self.view addSubview:scrollView];
-    scrollView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:scrollView
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTop
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:scrollView
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:scrollView
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:0.0]];
     
     //--------------------
     // - Title Label
     UILabel *titleLabel = [UILabel t23HeaderLabelWithText:@"About 23andMe"];
-    [scrollView addSubview:titleLabel];
-    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
-                                                           attribute:NSLayoutAttributeTop
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeTop
-                                                          multiplier:1.0
-                                                            constant:0.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
-                                                           attribute:NSLayoutAttributeLeading
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeLeading
-                                                          multiplier:1.0
-                                                            constant:15.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
-                                                           attribute:NSLayoutAttributeTrailing
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeTrailing
-                                                          multiplier:1.0
-                                                            constant:-15.0]];
-    
-    //--------------------
-    // - Scroll View Width Behavior
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
-                                                           attribute:NSLayoutAttributeWidth
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeWidth
-                                                          multiplier:1.0
-                                                            constant:-30.0]];
     
     //--------------------
     // - Mission Description Label
     UILabel *missionDescriptionLabel = [UILabel t23BodyLabelWithText:@"23andMe is a genetic service available directly to U.S. customers that includes reports that meet FDA standards for being scientifically and clinically valid. 23andMe helps people understand what’s in their DNA. The 23andMe Personal Genome Service includes more than 60 personalized genetic health, trait and ancestry reports."];
-    [scrollView addSubview:missionDescriptionLabel];
-    missionDescriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:missionDescriptionLabel
-                                                           attribute:NSLayoutAttributeTop
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:titleLabel
-                                                           attribute:NSLayoutAttributeBottom
-                                                          multiplier:1.0
-                                                            constant:20.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:missionDescriptionLabel
-                                                           attribute:NSLayoutAttributeLeading
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeLeading
-                                                          multiplier:1.0
-                                                            constant:15.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:missionDescriptionLabel
-                                                           attribute:NSLayoutAttributeTrailing
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeTrailing
-                                                          multiplier:1.0
-                                                            constant:-15.0]];
     
     //--------------------
     // - Learn More Button
@@ -161,56 +77,13 @@
     [learnMoreButton setTitle:learnMoreText forState:UIControlStateNormal];
     [learnMoreButton setTitleColor:t23BlueColor forState:UIControlStateNormal];
     learnMoreButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
-    [scrollView addSubview:learnMoreButton];
+    learnMoreButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     learnMoreButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [learnMoreButton addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreButton
-                                                                attribute:NSLayoutAttributeHeight
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:nil
-                                                                attribute:NSLayoutAttributeNotAnAttribute
-                                                               multiplier:1.0
-                                                                 constant:45.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreButton
-                                                           attribute:NSLayoutAttributeTop
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:missionDescriptionLabel
-                                                           attribute:NSLayoutAttributeBottom
-                                                          multiplier:1.0
-                                                            constant:0.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:learnMoreButton
-                                                           attribute:NSLayoutAttributeLeading
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeLeading
-                                                          multiplier:1.0
-                                                            constant:15.0]];
+    [learnMoreButton.heightAnchor constraintEqualToConstant:45.0].active = YES;
     
     //--------------------
     // - Questions Header Label
     UILabel *questionsHeaderLabel = [UILabel t23SubheaderLabelWithText:@"Questions?"];
-    [scrollView addSubview:questionsHeaderLabel];
-    questionsHeaderLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:questionsHeaderLabel
-                                                           attribute:NSLayoutAttributeTop
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:learnMoreButton
-                                                           attribute:NSLayoutAttributeBottom
-                                                          multiplier:1.0
-                                                            constant:10.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:questionsHeaderLabel
-                                                           attribute:NSLayoutAttributeLeading
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeLeading
-                                                          multiplier:1.0
-                                                            constant:15.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:questionsHeaderLabel
-                                                           attribute:NSLayoutAttributeTrailing
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeTrailing
-                                                          multiplier:1.0
-                                                            constant:-15.0]];
     
     //--------------------
     // - Contact Study Button
@@ -220,105 +93,56 @@
     [contactStudyButton setTitle:contactStudyText forState:UIControlStateNormal];
     [contactStudyButton setTitleColor:t23BlueColor forState:UIControlStateNormal];
     contactStudyButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
-    [scrollView addSubview:contactStudyButton];
+    contactStudyButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     contactStudyButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [contactStudyButton addConstraint:[NSLayoutConstraint constraintWithItem:contactStudyButton
-                                                           attribute:NSLayoutAttributeHeight
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:nil
-                                                           attribute:NSLayoutAttributeNotAnAttribute
-                                                          multiplier:1.0
-                                                            constant:45.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:contactStudyButton
-                                                           attribute:NSLayoutAttributeTop
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:questionsHeaderLabel
-                                                           attribute:NSLayoutAttributeBottom
-                                                          multiplier:1.0
-                                                            constant:-10.0]];
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:contactStudyButton
-                                                           attribute:NSLayoutAttributeLeading
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeLeading
-                                                          multiplier:1.0
-                                                            constant:15.0]];
-    
-    //--------------------
-    // - Bottom Constraint
-    [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:contactStudyButton
-                                                           attribute:NSLayoutAttributeBottom
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:scrollView
-                                                           attribute:NSLayoutAttributeBottom
-                                                          multiplier:1.0
-                                                            constant:0.0]];
+    [contactStudyButton.heightAnchor constraintEqualToConstant:45.0].active = YES;
 
     //--------------------
     // - Gene Pill Image View
-    if( CGRectGetHeight( [UIScreen mainScreen].bounds ) > 480.0 )
-    {
-        UIImage *genePillImage = [UIImage imageNamed:@"intro_chromosome_pink" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
-        UIImageView *genePillImageView = [[UIImageView alloc] initWithImage:genePillImage];
-        [scrollView addSubview:genePillImageView];
-        genePillImageView.translatesAutoresizingMaskIntoConstraints = NO;
-        [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:genePillImageView
-                                                               attribute:NSLayoutAttributeTop
-                                                               relatedBy:NSLayoutRelationEqual
-                                                                  toItem:contactStudyButton
-                                                               attribute:NSLayoutAttributeBottom
-                                                              multiplier:1.0
-                                                                constant:22.0]];
-        [scrollView addConstraint:[NSLayoutConstraint constraintWithItem:genePillImageView
-                                                               attribute:NSLayoutAttributeTrailing
-                                                               relatedBy:NSLayoutRelationEqual
-                                                                  toItem:scrollView
-                                                               attribute:NSLayoutAttributeTrailing
-                                                              multiplier:1.0
-                                                                constant:0.0]];
-    }
+    UIImage *genePillImage = [UIImage imageNamed:@"intro_chromosome_pink" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
+    UIImageView *genePillImageView = [[UIImageView alloc] initWithImage:genePillImage];
+    genePillImageView.contentMode = UIViewContentModeRight;
     
     //--------------------
     // Divider View
     UIView *dividerView = [[UIView alloc] init];
     dividerView.backgroundColor = [UIColor colorWithRed:227.0/255.0 green:229.0/255.0 blue:230.0/255.0 alpha:1.0];
-    [self.view addSubview:dividerView];
-    dividerView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:scrollView
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeBottom
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [dividerView addConstraint:[NSLayoutConstraint constraintWithItem:dividerView
-                                                          attribute:NSLayoutAttributeHeight
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:nil
-                                                          attribute:NSLayoutAttributeNotAnAttribute
-                                                         multiplier:1.0
-                                                           constant:1.0]];
+    [dividerView.heightAnchor constraintEqualToConstant:1.0].active = YES;
+    
+    UIStackView *topStackView = [[UIStackView alloc] initWithArrangedSubviews:@[
+        titleLabel,
+        missionDescriptionLabel,
+        learnMoreButton,
+        questionsHeaderLabel,
+        contactStudyButton
+    ]];
+    topStackView.translatesAutoresizingMaskIntoConstraints = NO;
+    topStackView.axis = UILayoutConstraintAxisVertical;
+    topStackView.alignment = UIStackViewAlignmentFill;
+    topStackView.layoutMargins = UIEdgeInsetsMake(0, 15.0, 0, 15.0);
+    topStackView.layoutMarginsRelativeArrangement = YES;
+    topStackView.spacing = 15.0;
+    [self.view addSubview:topStackView];
+    [topStackView setCustomSpacing:20.0 afterView:titleLabel];
+    [topStackView setCustomSpacing:0.0 afterView:missionDescriptionLabel];
+    [topStackView setCustomSpacing:10.0 afterView:learnMoreButton];
+    [topStackView setCustomSpacing:-10.0 afterView:questionsHeaderLabel];
+    [topStackView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
+    [topStackView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    [topStackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
+    
+    UIStackView *bottomStackView = [[UIStackView alloc] initWithArrangedSubviews:@[
+        genePillImageView,
+        dividerView
+    ]];
+    bottomStackView.translatesAutoresizingMaskIntoConstraints = NO;
+    bottomStackView.axis = UILayoutConstraintAxisVertical;
+    bottomStackView.alignment = UIStackViewAlignmentFill;
+    bottomStackView.spacing = 24.0;
+    [self.view addSubview:bottomStackView];
+    [bottomStackView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor].active = YES;
+    [bottomStackView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    [bottomStackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
 }
 
 @end
