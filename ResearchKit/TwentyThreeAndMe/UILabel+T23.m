@@ -30,6 +30,40 @@
 
 #import "UILabel+T23.h"
 
+@implementation UIColor (T23)
+
++ (UIColor *)t23GrayColor
+{
+    UIColor *lightModeColor = [UIColor colorWithRed:51.0/255.0 green:52.0/255.0 blue:53.0/255.0 alpha:1.0];
+    if (@available(iOS 13.0, *)) {
+        UIColor *darkModeColor = [UIColor colorWithRed:199.0/255.0 green:198.0/255.0 blue:197.0/255.0 alpha:1.0];
+        return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+            return traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight ? lightModeColor : darkModeColor;
+        }];
+    }
+    return lightModeColor;
+}
+
++ (UIColor *)t23LightGrayColor
+{
+    if (@available(iOS 13.0, *)) {
+        return [UIColor systemGray2Color];
+    } else {
+        return [UIColor lightGrayColor];
+    }
+}
+
++ (UIColor *)t23SeparatorColor
+{
+    if (@available(iOS 13.0, *)) {
+        return [UIColor separatorColor];
+    } else {
+        return [UIColor colorWithRed:227.0/255.0 green:229.0/255.0 blue:230.0/255.0 alpha:1.0];
+    }
+}
+
+@end
+
 @implementation UILabel (T23)
 
 + (UILabel *)t23HeaderLabelWithText:(NSString *)text
@@ -42,7 +76,7 @@
         label.font = [UIFont boldSystemFontOfSize:22.0];
     }
     label.numberOfLines = 1;
-    label.textColor = [UIColor colorWithRed:51.0/255.0 green:52.0/255.0 blue:53.0/255.0 alpha:1.0];
+    label.textColor = [UIColor t23GrayColor];
     label.text = text;
     label.textAlignment = NSTextAlignmentCenter;
     return label;
@@ -58,7 +92,7 @@
         label.font = [UIFont boldSystemFontOfSize:16.0];
     }
     label.numberOfLines = 1;
-    label.textColor = [UIColor colorWithRed:51.0/255.0 green:52.0/255.0 blue:53.0/255.0 alpha:1.0];
+    label.textColor = [UIColor t23GrayColor];
     label.text = text;
     label.textAlignment = NSTextAlignmentLeft;
     return label;
@@ -69,7 +103,7 @@
     UILabel *label = [[UILabel alloc] init];
     label.font = [UIFont systemFontOfSize:16.0];
     label.numberOfLines = 0;
-    label.textColor = [UIColor colorWithRed:51.0/255.0 green:52.0/255.0 blue:53.0/255.0 alpha:1.0];
+    label.textColor = [UIColor t23GrayColor];
     label.text = text;
     label.textAlignment = NSTextAlignmentLeft;
     return label;

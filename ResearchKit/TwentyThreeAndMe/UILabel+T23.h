@@ -30,6 +30,16 @@
 
 #import <UIKit/UIKit.h>
 
+@interface UIColor (T23)
+
++ (UIColor *)t23GrayColor;
+
++ (UIColor *)t23LightGrayColor;
+
++ (UIColor *)t23SeparatorColor;
+
+@end
+
 @interface UILabel (T23)
 
 + (UILabel *)t23HeaderLabelWithText:(NSString *)text;

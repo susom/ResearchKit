@@ -204,7 +204,7 @@ static CGFloat LineWidth = 1.0;
     CGRect trackRect = [self trackRectForBounds:bounds];
     CGFloat centerY = bounds.size.height / 2.0;
     
-    [[UIColor blackColor] set];
+    [ORKColor(ORKSignatureColorKey) set];
     
     if (_numberOfSteps > 0) {
         

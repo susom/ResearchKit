@@ -65,9 +65,9 @@
     //--------------------
     // Divider View
     UIView *dividerView = [[UIView alloc] init];
-    dividerView.backgroundColor = [UIColor colorWithRed:227.0/255.0 green:229.0/255.0 blue:230.0/255.0 alpha:1.0];
+    dividerView.backgroundColor = [UIColor t23SeparatorColor];
     [self.view addSubview:dividerView];
-    [dividerView.heightAnchor constraintEqualToConstant:1.0].active = YES;
+    [dividerView.heightAnchor constraintEqualToConstant:0.5].active = YES;
     
     UIStackView *descriptionStackView = [[UIStackView alloc] initWithArrangedSubviews:@[
         descriptionLabel

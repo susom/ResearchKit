@@ -35,6 +35,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Color used for border
+ORK_EXTERN NSString *const ORKBorderLineColorKey;
+
 /// Color used for toolbar
 ORK_EXTERN NSString *const ORKToolBarTintColorKey;
 

@@ -126,8 +126,8 @@
             [self addSubview:_rightRangeDescriptionLabel];
             
             if (textChoices) {
-                _leftRangeDescriptionLabel.textColor = [UIColor blackColor];
-                _rightRangeDescriptionLabel.textColor = [UIColor blackColor];
+                _leftRangeDescriptionLabel.textColor = ORKColor(ORKSignatureColorKey);
+                _rightRangeDescriptionLabel.textColor = ORKColor(ORKSignatureColorKey);
                 _leftRangeLabel.text = @"";
                 _rightRangeLabel.text = @"";
             }

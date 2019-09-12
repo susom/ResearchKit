@@ -285,11 +285,11 @@
         }
         _contentMaskLayer = [[CAShapeLayer alloc] init];
         
-        UIColor *fillColor = [UIColor ork_borderGrayColor];
+        UIColor *fillColor = ORKColor(ORKBackgroundColorKey);
         [_contentMaskLayer setFillColor:[fillColor CGColor]];
         
         CAShapeLayer *foreLayer = [CAShapeLayer layer];
-        [foreLayer setFillColor:[[UIColor whiteColor] CGColor]];
+        [foreLayer setFillColor:[ORKColor(ORKConsentBackgroundColorKey) CGColor]];
         foreLayer.zPosition = 0.0f;
         
         CAShapeLayer *lineLayer = [CAShapeLayer layer];

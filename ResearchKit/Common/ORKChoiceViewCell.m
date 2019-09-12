@@ -93,11 +93,11 @@ static const CGFloat LabelLeadingPadding = 10.0;
             _contentMaskLayer = nil;
         }
         _contentMaskLayer = [[CAShapeLayer alloc] init];
-        UIColor *fillColor = [UIColor ork_borderGrayColor];
+        UIColor *fillColor = ORKColor(ORKBackgroundColorKey);
         [_contentMaskLayer setFillColor:[fillColor CGColor]];
         
         CAShapeLayer *foreLayer = [CAShapeLayer layer];
-        [foreLayer setFillColor:[[UIColor whiteColor] CGColor]];
+        [foreLayer setFillColor:[ORKColor(ORKConsentBackgroundColorKey) CGColor]];
         foreLayer.zPosition = 0.0f;
         
         CAShapeLayer *lineLayer = [CAShapeLayer layer];
@@ -412,7 +412,7 @@ static const CGFloat LabelLeadingPadding = 10.0;
         if (_cellSelected) {
             _checkView.backgroundColor = self.tintColor;
             _checkView.image = [[UIImage imageNamed:@"checkmark" inBundle:ORKBundle() compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            _checkView.tintColor = UIColor.whiteColor;
+            _checkView.tintColor = ORKColor(ORKBackgroundColorKey);
         }
         else {
             _checkView.backgroundColor = UIColor.clearColor;

@@ -125,6 +125,7 @@
 
 + (NSString *)cssStyleSheet:(BOOL)mobile {
     NSMutableString *css = [@"@media print { .pagebreak { page-break-before: always; } }\n" mutableCopy];
+    [css appendString:@":root { color-scheme: light dark; }\n"];
     if (mobile) {
         [css appendString:@".header { margin-top: 36px ; margin-bottom: 30px; text-align: center; }\n"];
         [css appendString:@"body { margin-left: 0px; margin-right: 0px; }\n"];

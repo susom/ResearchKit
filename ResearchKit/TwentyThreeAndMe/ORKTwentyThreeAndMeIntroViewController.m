@@ -123,8 +123,8 @@
     else {
         pageControl = [UIPageControl appearance];
     }
-    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:51.0/255.0 green:52.0/255.0 blue:53.0/255.0 alpha:1.0];
+    pageControl.pageIndicatorTintColor = [UIColor t23LightGrayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor t23GrayColor];
     pageControl.backgroundColor = [UIColor clearColor];
     
     //--------------------

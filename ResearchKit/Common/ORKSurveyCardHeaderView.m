@@ -181,7 +181,7 @@ static const CGFloat HeadlineStackViewSpacing = 4.0;
         _headlineMaskLayer.path = [UIBezierPath bezierPathWithRoundedRect: _headlineView.bounds byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii: (CGSize){ORKCardDefaultCornerRadii, ORKCardDefaultCornerRadii}].CGPath;
         
         CAShapeLayer *foreLayer = [CAShapeLayer layer];
-        [foreLayer setFillColor:[[UIColor whiteColor] CGColor]];
+        [foreLayer setFillColor:[ORKColor(ORKConsentBackgroundColorKey) CGColor]];
         CGRect foreLayerBounds = CGRectMake(ORKCardDefaultBorderWidth, ORKCardDefaultBorderWidth, _headlineView.bounds.size.width - 2 * ORKCardDefaultBorderWidth, _headlineView.bounds.size.height - ORKCardDefaultBorderWidth);
         
         CGFloat foreLayerCornerRadii = ORKCardDefaultCornerRadii >= ORKCardDefaultBorderWidth ? ORKCardDefaultCornerRadii - ORKCardDefaultBorderWidth : ORKCardDefaultCornerRadii;
@@ -201,7 +201,7 @@ static const CGFloat HeadlineStackViewSpacing = 4.0;
             [_headlineMaskLayer addSublayer:lineLayer];
         }
         
-        [_headlineMaskLayer setFillColor:[[UIColor ork_borderGrayColor] CGColor]];
+        [_headlineMaskLayer setFillColor:[ORKColor(ORKBackgroundColorKey) CGColor]];
         [_headlineView.layer insertSublayer:_headlineMaskLayer atIndex:0];
     }
 }

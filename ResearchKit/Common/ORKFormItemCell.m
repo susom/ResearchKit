@@ -181,11 +181,11 @@ static const CGFloat HorizontalSpacer = 16.0;
         }
         _contentMaskLayer = [[CAShapeLayer alloc] init];
 
-        UIColor *fillColor = [UIColor ork_borderGrayColor];
+        UIColor *fillColor = ORKColor(ORKBackgroundColorKey);
         [_contentMaskLayer setFillColor:[fillColor CGColor]];
         
         CAShapeLayer *foreLayer = [CAShapeLayer layer];
-        [foreLayer setFillColor:[[UIColor whiteColor] CGColor]];
+        [foreLayer setFillColor:[ORKColor(ORKConsentBackgroundColorKey) CGColor]];
         foreLayer.zPosition = 0.0f;
         
         CAShapeLayer *lineLayer = [CAShapeLayer layer];
@@ -507,8 +507,8 @@ static const CGFloat HorizontalSpacer = 16.0;
 
 - (void)setEditingHighlight:(BOOL)editingHighlight {
     _editingHighlight = editingHighlight;
-    self.labelLabel.textColor = _editingHighlight ? [self tintColor] : [UIColor blackColor];
-    [self textField].textColor = _editingHighlight ? [self tintColor] : [UIColor blackColor];
+    self.labelLabel.textColor = _editingHighlight ? [self tintColor] : ORKColor(ORKSignatureColorKey);
+    [self textField].textColor = _editingHighlight ? [self tintColor] : ORKColor(ORKSignatureColorKey);
 }
 
 - (void)dealloc {
@@ -1031,7 +1031,7 @@ static const CGFloat HorizontalSpacer = 16.0;
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     if (textView.textColor == [self placeholderColor]) {
         textView.text = nil;
-        textView.textColor = [UIColor blackColor];
+        textView.textColor = ORKColor(ORKSignatureColorKey);
     }
     // Ask table view to adjust scrollview's position
     [self.delegate formItemCellDidBecomeFirstResponder:self];
@@ -1378,7 +1378,7 @@ static const CGFloat HorizontalSpacer = 16.0;
 
 - (void)setEditingHighlight:(BOOL)editingHighlight {
     _editingHighlight = editingHighlight;
-    [_selectionView setTextColor:( _editingHighlight ? [self tintColor] : [UIColor blackColor])];
+    [_selectionView setTextColor:( _editingHighlight ? [self tintColor] : ORKColor(ORKSignatureColorKey))];
 }
 
 - (void)locationSelectionViewDidBeginEditing:(ORKLocationSelectionView *)view {
