@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface ORKConsentSceneViewController ()
+@interface ORKConsentSceneViewController () <ORKStepViewLearnMoreItemDelegate>
 
 @property (nonatomic, readonly) ORKConsentSceneView *sceneView;
 

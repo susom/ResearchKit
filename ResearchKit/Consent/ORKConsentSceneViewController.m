@@ -39,6 +39,7 @@
 #import "ORKStepView_Private.h"
 #import "ORKStepContentView_Private.h"
 #import "ORKConsentLearnMoreViewController.h"
+#import "ORKLearnMoreInstructionStep.h"
 
 #import "ORKConsentDocument_Internal.h"
 #import "ORKConsentSection_Private.h"
@@ -127,6 +128,13 @@ static NSString *localizedLearnMoreForType(ORKConsentSectionType sectionType) {
     
     if (_section.content.length||_section.htmlContent.length || _section.contentURL) {
         NSLog(@"%@", localizedLearnMoreForType(_section.type));
+        NSString *learnMoreTitle = _learnMoreButtonTitle ? : localizedLearnMoreForType(_section.type);
+        ORKLearnMoreInstructionStep *learnMoreStep = [[ORKLearnMoreInstructionStep alloc] initWithIdentifier:learnMoreTitle];
+        learnMoreStep.text = _section.htmlContent;
+        ORKLearnMoreItem *learnMoreItem = [[ORKLearnMoreItem alloc] initWithText:learnMoreTitle learnMoreInstructionStep:learnMoreStep];
+        ORKBodyItem *bodyItem = [[ORKBodyItem alloc] initWithText:nil detailText:nil image:nil learnMoreItem:learnMoreItem bodyItemStyle:ORKBodyItemStyleText];
+        _sceneView.bodyItems = @[bodyItem];
+        _sceneView.delegate = self;
     }
     [self setupNavigationFooterView];
     [self setupConstraints];
@@ -214,7 +222,8 @@ static NSString *localizedLearnMoreForType(ORKConsentSectionType sectionType) {
 
 #pragma mark - Action
 
-- (IBAction)showContent:(id)sender {
+- (void)stepViewLearnMoreButtonPressed:(ORKLearnMoreInstructionStep *)learnMoreStep
+{
     ORKConsentLearnMoreViewController *viewController = nil;
     
     if (_section.contentURL) {
