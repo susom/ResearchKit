@@ -100,6 +100,7 @@
 #import <ResearchKit/ORKWaitStepViewController.h>
 #import <ResearchKit/ORKWebViewStepViewController.h>
 #import <ResearchKit/ORKTwentyThreeAndMeConnectTaskViewController.h>
+#import <ResearchKit/ORKNavigableStepViewController.h>
 
 #import <ResearchKit/ORKRecorder.h>
 
