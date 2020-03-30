@@ -214,6 +214,15 @@
         case UITouchPhaseStationary:
             phaseString = @"stationary";
             break;
+        case UITouchPhaseRegionEntered:
+            phaseString = @"regionEntered";
+            break;
+        case UITouchPhaseRegionMoved:
+            phaseString = @"regionMoved";
+            break;
+        case UITouchPhaseRegionExited:
+            phaseString = @"regionExited";
+            break;
     }
     
     return [NSString stringWithFormat:@"<%@: %p; phase: %@; timestamp: %.6f; location: (%@, %@)>", self.class.description, self, phaseString, self.timestamp, @(self.locationInWindow.x), @(self.locationInWindow.y)];
