@@ -419,7 +419,9 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
     
     UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil);
     // TODO: Remove reloadData later.
-    [_tableView reloadData];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_tableView reloadData];
+    });
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
