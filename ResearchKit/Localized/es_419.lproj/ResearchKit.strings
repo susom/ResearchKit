@@ -300,8 +300,8 @@
 "SPATIAL_SPAN_MEMORY_INTRO_TEXT_%@" = "Esta actividad mide tu memoria espacial a corto plazo al pedirte repetir el orden en que se encienden las imágenes de %@.";
 "SPATIAL_SPAN_MEMORY_TARGET_PLURAL" = "flores";
 "SPATIAL_SPAN_MEMORY_TARGET_STANDALONE" = "flores";
-"SPATIAL_SPAN_MEMORY_INTRO_2_TEXT_%@" = "Algunas imágenes de %@ se encenderán una a la vez. Toca las imágenes de %@ en el mismo orden en que se encendieron.";
-"SPATIAL_SPAN_MEMORY_INTRO_2_TEXT_REVERSE_%@" = "Algunas imágenes de %@ se encenderán una a la vez. Toca las imágenes de %@ en orden inverso al que se encendieron.";
+"SPATIAL_SPAN_MEMORY_INTRO_2_TEXT_%@%@" = "Algunas imágenes de %@ se encenderán una a la vez. Toca las imágenes de %@ en el mismo orden en que se encendieron.";
+"SPATIAL_SPAN_MEMORY_INTRO_2_TEXT_REVERSE_%@%@" = "Algunas imágenes de %@ se encenderán una a la vez. Toca las imágenes de %@ en orden inverso al que se encendieron.";
 "SPATIAL_SPAN_MEMORY_CALL_TO_ACTION" = "Para comenzar, toca Empezar y luego observa cuidadosamente.";
 "MEMORY_GAME_ITEM_COUNT_TITLE_%@" = "%@";
 "MEMORY_GAME_SCORE_TITLE" = "Puntuación";
@@ -379,8 +379,8 @@
 /* Hole peg test active task. */
 "HOLE_PEG_TEST_TITLE_%@" = "Prueba de las %@ estacas";
 "HOLE_PEG_TEST_INTRO_TEXT_%@" = "Esta actividad mide la funcionalidad de tus extremidades superiores pidiéndote que coloques una estaca en un hoyo. Se te pedirá que hagas esto %@ veces.";
-"HOLE_PEG_TEST_INTRO_TEXT_2_LEFT_HAND_FIRST_%@" = "Se probarán tanto tu mano izquierda como la derecha.\nDebes recoger la estaca tan rápido como te sea posible y ponerla en el hoyo; y una vez que hayas hecho eso %@ veces, debes quitarla otras %@ veces.";
-"HOLE_PEG_TEST_INTRO_TEXT_2_RIGHT_HAND_FIRST_%@" = "Se probarán tanto tu mano derecha como la izquierda.\nDebes recoger la estaca tan rápido como te sea posible y ponerla en el hoyo; y una vez que hayas hecho eso %@ veces, debes quitarla otras %@ veces.";
+"HOLE_PEG_TEST_INTRO_TEXT_2_LEFT_HAND_FIRST_%@%@" = "Se probarán tanto tu mano izquierda como la derecha.\nDebes recoger la estaca tan rápido como te sea posible y ponerla en el hoyo; y una vez que hayas hecho eso %@ veces, debes quitarla otras %@ veces.";
+"HOLE_PEG_TEST_INTRO_TEXT_2_RIGHT_HAND_FIRST_%@%@" = "Se probarán tanto tu mano derecha como la izquierda.\nDebes recoger la estaca tan rápido como te sea posible y ponerla en el hoyo; y una vez que hayas hecho eso %@ veces, debes quitarla otras %@ veces.";
 
 "HOLE_PEG_TEST_CALL_TO_ACTION" = "Toca Empezar para comenzar.";
 "HOLE_PEG_TEST_PLACE_INSTRUCTION_LEFT_HAND" = "Coloca la estaca en el hoyo usando tu mano izquierda.";

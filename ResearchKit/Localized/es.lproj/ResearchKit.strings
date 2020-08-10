@@ -332,8 +332,8 @@
 "SPATIAL_SPAN_MEMORY_INTRO_TEXT_%@" = "Esta actividad mide tu memoria espacial a corto plazo haciendo que repitas el orden en que se iluminan las %@.";
 "SPATIAL_SPAN_MEMORY_TARGET_PLURAL" = "flores";
 "SPATIAL_SPAN_MEMORY_TARGET_STANDALONE" = "flores";
-"SPATIAL_SPAN_MEMORY_INTRO_2_TEXT_%@" = "Las %@ se irán iluminando de una en una. Pulsa las %@ en el mismo orden en el que se han iluminado.";
-"SPATIAL_SPAN_MEMORY_INTRO_2_TEXT_REVERSE_%@" = "Las %@ se irán iluminando de una en una. Pulsa las %@ en orden inverso al que se han iluminado.";
+"SPATIAL_SPAN_MEMORY_INTRO_2_TEXT_%@%@" = "Las %@ se irán iluminando de una en una. Pulsa las %@ en el mismo orden en el que se han iluminado.";
+"SPATIAL_SPAN_MEMORY_INTRO_2_TEXT_REVERSE_%@%@" = "Las %@ se irán iluminando de una en una. Pulsa las %@ en orden inverso al que se han iluminado.";
 "SPATIAL_SPAN_MEMORY_CALL_TO_ACTION" = "Para comenzar, pulsa Empezar y observa con atención.";
 "MEMORY_GAME_ITEM_COUNT_TITLE_%@" = "%@";
 "MEMORY_GAME_SCORE_TITLE" = "Puntuación";
@@ -455,8 +455,8 @@
 /* Hole peg test active task. */
 "HOLE_PEG_TEST_TITLE_%@" = "Prueba de las %@ clavijas";
 "HOLE_PEG_TEST_INTRO_TEXT_%@" = "Esta actividad mide la capacidad funcional de tus extremidades superiores, para lo cual se te pedirá que introduzcas una clavija en un agujero %@ veces.";
-"HOLE_PEG_TEST_INTRO_TEXT_2_LEFT_HAND_FIRST_%@" = "La prueba debe realizarse tanto con la mano izquierda como con la derecha.\nHay que introducir la clavija lo más rápido posible en el orificio y, una vez que lo hayas hecho %@ veces, volver a extraerla %@ veces.";
-"HOLE_PEG_TEST_INTRO_TEXT_2_RIGHT_HAND_FIRST_%@" = "La prueba debe realizarse tanto con la mano derecha como con la izquierda.\nHay que introducir la clavija lo más rápido posible en el orificio y, una vez que lo hayas hecho %@ veces, volver a extraerla %@ veces.";
+"HOLE_PEG_TEST_INTRO_TEXT_2_LEFT_HAND_FIRST_%@%@" = "La prueba debe realizarse tanto con la mano izquierda como con la derecha.\nHay que introducir la clavija lo más rápido posible en el orificio y, una vez que lo hayas hecho %@ veces, volver a extraerla %@ veces.";
+"HOLE_PEG_TEST_INTRO_TEXT_2_RIGHT_HAND_FIRST_%@%@" = "La prueba debe realizarse tanto con la mano derecha como con la izquierda.\nHay que introducir la clavija lo más rápido posible en el orificio y, una vez que lo hayas hecho %@ veces, volver a extraerla %@ veces.";
 
 "HOLE_PEG_TEST_CALL_TO_ACTION" = "Pulsa Empezar para comenzar.";
 "HOLE_PEG_TEST_PLACE_INSTRUCTION_LEFT_HAND" = "Introduce la clavija en el agujero con la mano izquierda.";
