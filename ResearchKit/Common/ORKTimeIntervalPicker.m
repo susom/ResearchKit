@@ -90,6 +90,9 @@
         [_pickerView addTarget:self action:@selector(valueDidChange:) forControlEvents:UIControlEventValueChanged];
         [self setAnswerFormat:_answerFormat];
         [self setAnswer:_answer];
+        if (@available(iOS 14.0, *)) {
+            _pickerView.preferredDatePickerStyle = UIDatePickerStyleWheels;
+        }
     }
     return _pickerView;
 }
