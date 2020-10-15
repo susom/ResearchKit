@@ -101,9 +101,9 @@
     [self addSubview:_containerView];
 }
 
-- (void)setupHeaderViewWithTitle:(NSString *)title {
+- (void)setupHeaderViewWithTitle:(NSString *)title detailText:(nullable NSString *)detailText learnMoreView:(nullable ORKLearnMoreView *)learnMoreView progressText:(nullable NSString *)progressText hasMultipleChoiceFormItem:(BOOL)hasMultipleChoiceFormItem {
     if (!_cardHeaderView) {
-        _cardHeaderView = [[ORKSurveyCardHeaderView alloc] initWithTitle:title];
+        _cardHeaderView = [[ORKSurveyCardHeaderView alloc]initWithTitle:title detailText:detailText learnMoreView:learnMoreView progressText:progressText tagText:nil showBorder:NO hasMultipleChoiceItem:hasMultipleChoiceFormItem];
     }
     _cardHeaderView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:_cardHeaderView];
@@ -133,12 +133,12 @@
     [self setUpCellConstraints];
 }
 
--(void)useCardViewWithTitle:(NSString *)title {
+- (void)useCardViewWithTitle:(NSString *)title detailText:(NSString *)detailText learnMoreView:(ORKLearnMoreView *)learnMoreView progressText:(NSString *)progressText tagText:(NSString *)tagText hasMultipleChoiceFormItem:(BOOL)hasMultipleChoiceFormItem {
     _title = title;
     _useCardView = YES;
     _leftRightMargin = 0.0;
     [self setBackgroundColor:[UIColor clearColor]];
-    [self setupHeaderViewWithTitle:title];
+    [self setupHeaderViewWithTitle:title detailText:detailText learnMoreView:learnMoreView progressText:progressText hasMultipleChoiceFormItem:hasMultipleChoiceFormItem];
     [self setupConstraints];
 }
 
@@ -310,7 +310,11 @@
 
         [_contentMaskLayer addSublayer:foreLayer];
         [_contentMaskLayer addSublayer:lineLayer];
-        
+        if (@available(iOS 13.0, *)) {
+            _contentMaskLayer.fillColor = UIColor.separatorColor.CGColor;
+        } else {
+            _contentMaskLayer.fillColor = [UIColor ork_midGrayTintColor].CGColor;
+        }
         [_containerView.layer insertSublayer:_contentMaskLayer atIndex:0];
     }
 }

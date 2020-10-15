@@ -76,7 +76,6 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor blackColor];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
     _amslerGridView = [ORKAmslerGridContentView new];
     _amslerGridView.translatesAutoresizingMaskIntoConstraints = NO;
     self.activeStepView.activeCustomView = _amslerGridView;
@@ -91,7 +90,6 @@
     [_amslerGridView addSubview:_freehandDrawingView];
    
     UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
-    [panGestureRecognizer setMinimumNumberOfTouches:2];
     [self.activeStepView addGestureRecognizer:panGestureRecognizer];
     
     self.activeStepView.isAccessibilityElement = YES;

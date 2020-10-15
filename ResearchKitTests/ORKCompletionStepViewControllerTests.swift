@@ -39,7 +39,7 @@ class ORKCompletionStepViewControllerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        step = ORKInstructionStep(identifier: "STEP")
+        step = ORKCompletionStep(identifier: "STEP")
         result = ORKResult(identifier: "RESULT")
         completionController = ORKCompletionStepViewController(step: step, result: result)
         completionController.shouldShowContinueButton = true
@@ -56,13 +56,5 @@ class ORKCompletionStepViewControllerTests: XCTestCase {
     func testProperties() {
         XCTAssertEqual(completionController.shouldShowContinueButton, true)
         XCTAssertEqual(completionController.checkmarkColor, UIColor.blue)
-    }
-    
-    func testStepView() {
-        guard let contentView = completionController.stepView?.customContentView else {
-            XCTFail("UNABLE TO FIND STEPVIEW")
-            return
-        }
-        XCTAssertEqual(contentView.tintColor, UIColor.blue)
     }
 }

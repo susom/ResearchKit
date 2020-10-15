@@ -38,28 +38,202 @@
 
 static const CGFloat TopToProgressViewMinPadding = 10.0;
 
+@interface TestingInProgressView : UIView
+
+@property (nonatomic, assign, getter=isActive) BOOL active;
+
+- (void)setProgress:(double)progress;
+
+@end
+
+@implementation TestingInProgressView
+{
+    CAShapeLayer *_indicatorLayer;
+    UILabel *_textLabel;
+    NSNumberFormatter *percentageFormatter;
+}
+
+static const CGFloat TestingInProgressIndicatorRadius = 6.0;
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self _init];
+    }
+    return self;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self _init];
+    }
+    return self;
+}
+
+- (void)_init
+{
+    [self setupIndicatorLayer];
+    [self setupTextLabel];
+    
+    percentageFormatter = [NSNumberFormatter new];
+    percentageFormatter.numberStyle = NSNumberFormatterPercentStyle;
+    percentageFormatter.roundingIncrement = @(10);
+    percentageFormatter.roundingMode = NSNumberFormatterRoundHalfUp;
+    percentageFormatter.locale = [NSLocale currentLocale];
+}
+
+#define PULSE_OPACITY 1
+#define PULSE_SCALE 0
+- (void)setActive:(BOOL)active
+{
+    _active = active;
+    if (active)
+    {
+        const CFTimeInterval duration = 2.5;
+        
+#if PULSE_OPACITY
+        CAKeyframeAnimation *opacityAnimation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
+        opacityAnimation.keyTimes = @[@(0), @(0.50), @(1.0)];
+        opacityAnimation.values =   @[@(1), @(0.2), @(1)];
+        opacityAnimation.duration = duration;
+        opacityAnimation.repeatCount = CGFLOAT_MAX;
+        [_indicatorLayer addAnimation:opacityAnimation forKey:@"opacity"];
+        
+#endif
+        
+#if PULSE_SCALE
+        CAKeyframeAnimation *scaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale.xy"];
+        scaleAnimation.keyTimes = @[@(0), @(0.50), @(1.0)];
+        scaleAnimation.values =   @[@(1), @(0.4), @(1)];
+        scaleAnimation.duration = duration;
+        scaleAnimation.repeatCount = CGFLOAT_MAX;
+        [_indicatorLayer addAnimation:scaleAnimation forKey:@"scale"];
+#endif
+    }
+    else
+    {
+        [_indicatorLayer removeAllAnimations];
+    }
+}
+
+- (void)setProgress:(double)progress
+{
+    _textLabel.text = [NSString stringWithFormat:ORKLocalizedString(@"dBHL_TONE_AUDIOMETRY_TESTING_IN_PROGRESS_FMT", nil), [percentageFormatter stringFromNumber:@(progress)]];
+}
+
+- (void)setupTextLabel
+{
+    if (!_textLabel)
+    {
+        _textLabel = [[UILabel alloc] init];
+        _textLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _textLabel.textColor = [UIColor systemGrayColor];
+        UIFontDescriptor *descriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleHeadline
+                                                                compatibleWithTraitCollection:self.traitCollection];
+        _textLabel.font = [UIFont fontWithDescriptor:descriptor size:2 * TestingInProgressIndicatorRadius];
+        _textLabel.text = ORKLocalizedString(@"dBHL_TONE_AUDIOMETRY_TESTING_IN_PROGRESS", nil);
+        [self addSubview:_textLabel];
+        
+        [NSLayoutConstraint activateConstraints:@[
+            [_textLabel.topAnchor constraintEqualToAnchor:self.topAnchor],
+            [_textLabel.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
+            [_textLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:2 * TestingInProgressIndicatorRadius + 5.0],
+            [_textLabel.trailingAnchor constraintEqualToAnchor:self.trailingAnchor]
+        ]];
+    }
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    // Align the shape layer view to the edge of the
+    if (_indicatorLayer)
+    {
+        // Set the anchor point to be the left most edge of the circle
+        _indicatorLayer.position = CGPointMake(TestingInProgressIndicatorRadius, CGRectGetMidY(self.bounds));
+    }
+}
+
+- (void)setupIndicatorLayer
+{
+    if (!_indicatorLayer)
+    {
+        _indicatorLayer = [self newCircleLayerWithRadius:TestingInProgressIndicatorRadius];
+    }
+    
+    _indicatorLayer.fillColor = self.tintColor.CGColor;
+    [self.layer addSublayer:_indicatorLayer];
+}
+
+// Make sure this method begins with create/new to avoid the compiler complaining about the potential leak.
+- (CGPathRef)newCirclePathWithRadius:(CGFloat)radius
+{
+    CGPoint origin = CGPointZero;
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddArc(path, NULL, origin.x, origin.y, radius, 0, 2 * M_PI, YES);
+    CGPathCloseSubpath(path);
+
+    return path;
+}
+
+- (CAShapeLayer *)newCircleLayerWithRadius:(CGFloat)radius
+{
+    CAShapeLayer *circle = [CAShapeLayer layer];
+    CGPathRef path = [self newCirclePathWithRadius:radius];
+    circle.path = path;
+    CGPathRelease(path);
+    return circle;
+}
+
+@end
+
+@implementation ORKdBHLToneAudiometryButton
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.layer.borderWidth = 15.0;
+        self.layer.borderColor = UIColor.whiteColor.CGColor;
+        self.layer.shadowRadius = 10.0;
+        self.layer.shadowOpacity = 0.2;
+        self.layer.masksToBounds = NO;
+    }
+    return self;
+}
+
+- (void)updateBackgroundColor {
+    [super updateBackgroundColor];
+    self.layer.borderColor = UIColor.whiteColor.CGColor;
+}
+
+@end
+
 @implementation ORKdBHLToneAudiometryContentView {
     NSLayoutConstraint *_topToProgressViewConstraint;
+    UILabel *_progressLabel;
+    TestingInProgressView *_progressView;
 }
 
 - (instancetype)init {
     self = [super init];
     if (self) {
         
-        _progressView = [UIProgressView new];
+        _progressView = [[TestingInProgressView alloc] init];
+        _progressView.active = NO;
         _progressView.translatesAutoresizingMaskIntoConstraints = NO;
-        _progressView.progressTintColor = [self tintColor];
-        [_progressView setAlpha:0];
         [self addSubview:_progressView];
-        _tapButton = [[ORKRoundTappingButton alloc] init];
-        [_tapButton setDiameter:200];
+        _tapButton = [[ORKdBHLToneAudiometryButton alloc] init];
+        [_tapButton setDiameter:150];
         _tapButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [_tapButton setTitle:ORKLocalizedString(@"TAP_BUTTON_TITLE", nil) forState:UIControlStateNormal];
         _tapButton.accessibilityTraits = UIAccessibilityTraitButton | UIAccessibilityTraitAllowsDirectInteraction;
 
         [self addSubview:_tapButton];
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        
+
         [self setUpConstraints];
     }
     
@@ -73,17 +247,14 @@ static const CGFloat TopToProgressViewMinPadding = 10.0;
     }
 }
 
-- (void)tintColorDidChange {
-    [super tintColorDidChange];
-    self.progressView.progressTintColor = [self tintColor];
-}
-
-- (void)setProgress:(CGFloat)progress
-           animated:(BOOL)animated {
-    [self.progressView setProgress:progress animated:animated];
-    [UIView animateWithDuration:animated ? 0.2 : 0 animations:^{
-        [self.progressView setAlpha:(progress == 0) ? 0 : 1];
-    }];
+- (void)setProgress:(CGFloat)progress animated:(BOOL)animated
+{
+    if (![_progressView isActive])
+    {
+        [_progressView setActive:YES];
+    }
+    
+    [_progressView setProgress:progress];
 }
 
 - (void)finishStep:(ORKActiveStepViewController *)viewController {

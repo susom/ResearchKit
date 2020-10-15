@@ -86,6 +86,10 @@
 - (void)setAnswer:(id)answer {
     _answer = answer;
     
+    if (answer == [ORKDontKnowAnswer answer]) {
+        return;
+    }
+    
     if ([self isTimeOfDay]) {
         ORKTimeOfDayAnswerFormat *timeOfDayAnswerFormat = (ORKTimeOfDayAnswerFormat *)self.answerFormat;
         [self setMinuteInterval:timeOfDayAnswerFormat.minuteInterval];
@@ -213,12 +217,16 @@
 - (void)valueDidChange:(id)sender {
     _date = _pickerView.date;
     
-    if ([self isTimeOfDay]) {
-        NSDateComponents *answer = ORKTimeOfDayComponentsFromDate([_pickerView date]);
-        _answer = answer;
-    } else {
-        NSDate *dateAnswer = _date;
-        _answer = dateAnswer;
+    if (self.answer != [ORKDontKnowAnswer answer]) {
+        
+        if ([self isTimeOfDay]) {
+            NSDateComponents *answer = ORKTimeOfDayComponentsFromDate([_pickerView date]);
+            _answer = answer;
+        } else {
+            NSDate *dateAnswer = _date;
+            _answer = dateAnswer;
+        }
+        
     }
     
     if ([self.pickerDelegate respondsToSelector:@selector(picker:answerDidChangeTo:)]) {

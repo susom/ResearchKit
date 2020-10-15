@@ -156,9 +156,9 @@ typedef NS_ENUM(NSInteger, ORKConsentReviewPhase) {
     return button;
 }
 
-- (void)updateNavLeftBarButtonItem {
+- (void)updateBarButtonItems {
     if (_currentPageIndex == 0) {
-        [super updateNavLeftBarButtonItem];
+        [super updateBarButtonItems];
     } else {
         self.navigationItem.leftBarButtonItem = [self goToPreviousPageButtonItem];
     }
@@ -169,7 +169,7 @@ typedef NS_ENUM(NSInteger, ORKConsentReviewPhase) {
         return;
     }
     
-    [self updateNavLeftBarButtonItem];
+    [self updateBarButtonItems];
 }
 
 static NSString *const _NameFormIdentifier = @"nameForm";
@@ -207,9 +207,12 @@ static NSString *const _FamilyNameIdentifier = @"family";
     givenNameFormItem.optional = NO;
     familyNameFormItem.optional = NO;
     
-    NSArray *formItems = @[givenNameFormItem, familyNameFormItem];
-    if (ORKCurrentLocalePresentsFamilyNameFirst()) {
-        formItems = @[familyNameFormItem, givenNameFormItem];
+    ORKFormItem *sectionTitleFormItem = [[ORKFormItem alloc] initWithSectionTitle:ORKLocalizedString(@"CONSENT_NAME_SECTION_TITLE", nil)];
+    
+    NSArray *formItems = @[sectionTitleFormItem, givenNameFormItem, familyNameFormItem];
+    if (ORKCurrentLocalePresentsFamilyNameFirst())
+    {
+        formItems = @[sectionTitleFormItem, familyNameFormItem, givenNameFormItem];
     }
     
     [formStep setFormItems:formItems];
@@ -382,7 +385,7 @@ static NSString *const _SignatureStepIdentifier = @"signatureStep";
     UIViewController *viewController = [self viewControllerForIndex:page];
     
     if (!viewController) {
-        ORK_Log_Debug(@"No view controller!");
+        ORK_Log_Debug("No view controller!");
         return;
     }
     

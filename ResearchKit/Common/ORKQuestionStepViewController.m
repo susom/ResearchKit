@@ -33,6 +33,8 @@
 
 #import "ORKChoiceViewCell_Internal.h"
 #import "ORKQuestionStepView.h"
+#import "ORKLearnMoreView.h"
+#import "ORKLearnMoreStepViewController.h"
 #import "ORKStepHeaderView_Internal.h"
 #import "ORKSurveyAnswerCellForScale.h"
 #import "ORKSurveyAnswerCellForNumber.h"
@@ -40,6 +42,7 @@
 #import "ORKSurveyAnswerCellForPicker.h"
 #import "ORKSurveyAnswerCellForImageSelection.h"
 #import "ORKSurveyAnswerCellForLocation.h"
+#import "ORKSurveyAnswerCellForSES.h"
 #import "ORKTableContainerView.h"
 #import "ORKSurveyCardHeaderView.h"
 #import "ORKTextChoiceCellGroup.h"
@@ -66,13 +69,13 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
     ORKQuestionSection_COUNT
 };
 
+static const CGFloat DelayBeforeAutoScroll = 0.25;
 
-@interface ORKQuestionStepViewController () <UITableViewDataSource, UITableViewDelegate, ORKSurveyAnswerCellDelegate, ORKTextChoiceCellGroupDelegate, ORKChoiceOtherViewCellDelegate, ORKTableContainerViewDelegate> {
+@interface ORKQuestionStepViewController () <UITableViewDataSource, UITableViewDelegate, ORKSurveyAnswerCellDelegate, ORKTextChoiceCellGroupDelegate, ORKChoiceOtherViewCellDelegate, ORKTableContainerViewDelegate, ORKLearnMoreViewDelegate> {
     id _answer;
     
     ORKTableContainerView *_tableContainer;
     ORKStepContentView *_headerView;
-    ORKNavigationContainerView *_navigationFooterView;
     ORKAnswerDefaultSource *_defaultSource;
     
     NSCalendar *_savedSystemCalendar;
@@ -161,7 +164,7 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
         _questionView = nil;
 
         if ([self.questionStep formatRequiresTableView] && !_customQuestionView) {
-            _tableContainer = [ORKTableContainerView new];
+            _tableContainer = [[ORKTableContainerView alloc] initWithStyle:UITableViewStyleGrouped pinNavigationContainer:NO];
             
             // Create a new one (with correct style)
             _tableView = _tableContainer.tableView;
@@ -178,7 +181,11 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
             _headerView = _tableContainer.stepContentView;
             if (self.questionStep.useCardView) {
                 _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-                [_tableView setBackgroundColor:ORKColor(ORKBackgroundColorKey)];
+                if (@available(iOS 13.0, *)) {
+                    [_tableView setBackgroundColor:UIColor.systemGroupedBackgroundColor];
+                } else {
+                    [_tableView setBackgroundColor:ORKColor(ORKBackgroundColorKey)];
+                }
                 [self.taskViewController.navigationBar setBarTintColor:[_tableView backgroundColor]];
                 [self.view setBackgroundColor:[_tableView backgroundColor]];
             }
@@ -187,7 +194,8 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
             _headerView.titleIconImage = self.step.iconImage;
             _headerView.stepTitle = self.step.title;
             _headerView.stepText = self.step.text;
-            _headerView.stepDetailText = self.step.detailText;
+            // TODO:- we are currently not setting detailText to _headerView because we are restricting detailText to be displayed only inside ORKSurveyCardHeaderView, might wanna rethink this later. Please use the text property on ORKQuestionStep for adding extra information.
+            _headerView.stepHeaderTextAlignment = self.step.headerTextAlignment;
             _headerView.bodyItems = self.step.bodyItems;
             _tableContainer.stepTopContentImageContentMode = self.step.imageContentMode;
             _navigationFooterView.optional = self.step.optional;
@@ -203,8 +211,21 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
             }
             [self setupConstraints:_tableContainer];
             [_tableContainer setNeedsLayout];
+            
+            // Question steps should always force the navigation controller to be scrollable
+            // therefore we should always remove the styling.
+            [_navigationFooterView removeStyling];
         } else if (self.step) {
             _questionView = [ORKQuestionStepView new];
+            ORKQuestionStep *questionStep = (ORKQuestionStep *)self.step;
+            
+            if (questionStep && questionStep.questionType == ORKQuestionTypeScale) {
+                id<ORKScaleAnswerFormatProvider> formatProvider = (id<ORKScaleAnswerFormatProvider>)[questionStep impliedAnswerFormat];
+                
+                if (formatProvider && [formatProvider isVertical]) {
+                   [_questionView placeNavigationContainerInsideScrollView];
+                }
+            }
             
             ORKQuestionStep *step = [self questionStep];
             _navigationFooterView = _questionView.navigationFooterView;
@@ -215,7 +236,6 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
             [_navigationFooterView updateContinueAndSkipEnabled];
             
             [self.view addSubview:_questionView];
-            
             if (_customQuestionView) {
                 _questionView.questionCustomView = _customQuestionView;
                 _customQuestionView.delegate = self;
@@ -230,10 +250,36 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
                 _cellHolderView.answer = [self answer];
                 _cellHolderView.userInteractionEnabled = !self.readOnlyMode;
                 if (self.questionStep.useCardView) {
-                    [_questionView setBackgroundColor:ORKColor(ORKBackgroundColorKey)];
+                    if (@available(iOS 13.0, *)) {
+                        [_questionView setBackgroundColor:UIColor.systemGroupedBackgroundColor];
+                    } else {
+                        [_questionView setBackgroundColor:ORKColor(ORKBackgroundColorKey)];
+                    }
                     [self.taskViewController.navigationBar setBarTintColor:[_questionView backgroundColor]];
                     [self.view setBackgroundColor:[_questionView backgroundColor]];
-                    [_cellHolderView useCardViewWithTitle:self.questionStep.question];
+                    ORKLearnMoreView *learnMoreView;
+                    NSString *sectionProgressText = nil;
+                    
+                    if (self.step.showsProgress) {
+                        if ([self.delegate respondsToSelector:@selector(stepViewControllerTotalProgressInfoForStep:currentStep:)]) {
+                            ORKTaskTotalProgress progressInfo = [self.delegate stepViewControllerTotalProgressInfoForStep:self currentStep:self.step];
+                            if (progressInfo.stepShouldShowTotalProgress) {
+                                sectionProgressText = [NSString localizedStringWithFormat:ORKLocalizedString(@"FORM_ITEM_PROGRESS", nil) ,ORKLocalizedStringFromNumber(@(progressInfo.currentStepStartingProgressPosition)), ORKLocalizedStringFromNumber(@(progressInfo.total))];
+                            }
+                        }
+                    }
+                    
+                    if (self.questionStep.learnMoreItem) {
+                        learnMoreView = [ORKLearnMoreView learnMoreViewWithItem:self.questionStep.learnMoreItem];
+                        learnMoreView.delegate = self;
+                    }
+                    
+                    BOOL hasMultipleChoiceFormItem = NO;
+                    if (self.questionStep.impliedAnswerFormat != nil && self.questionStep.impliedAnswerFormat.questionType == ORKQuestionTypeMultipleChoice) {
+                        hasMultipleChoiceFormItem = YES;
+                    }
+                    
+                    [_cellHolderView useCardViewWithTitle:self.questionStep.question detailText:self.step.detailText learnMoreView:learnMoreView progressText:sectionProgressText tagText:self.questionStep.tagText hasMultipleChoiceFormItem:hasMultipleChoiceFormItem];
                 }
                 _questionView.questionCustomView = _cellHolderView;
             }
@@ -264,7 +310,6 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
         _navigationFooterView.skipButtonItem = self.skipButtonItem;
         _navigationFooterView.continueEnabled = [self continueButtonEnabled];
         _navigationFooterView.continueButtonItem = self.continueButtonItem;
-        _navigationFooterView.cancelButtonItem = self.cancelButtonItem;
     }
 }
 
@@ -272,6 +317,7 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
     [super viewDidLayoutSubviews];
     if (_tableContainer) {
         [_tableContainer sizeHeaderToFit];
+        [_tableContainer resizeFooterToFit];
     }
 }
 
@@ -321,6 +367,8 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
     
     [self stepDidChange];
     
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (BOOL)showValidityAlertWithMessage:(NSString *)text {
@@ -364,9 +412,21 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
     if (!scheduledRefresh) {
         [self refreshDefaults];
     }
-    //    TODO: Remove if unnecessary.
-    [_tableContainer sizeHeaderToFit];
-    [_tableContainer layoutIfNeeded];
+    
+    if (_tableContainer) {
+        [_tableContainer sizeHeaderToFit];
+        [_tableContainer resizeFooterToFit];
+        [_tableContainer layoutIfNeeded];
+    }
+    
+    if (_tableView) {
+        [_tableView reloadData];
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)answerDidChange {
@@ -392,7 +452,7 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
                 [self defaultAnswerDidChange];
             });
         } else {
-            ORK_Log_Warning(@"Error fetching default: %@", error);
+            ORK_Log_Error("Error fetching default: %@", error);
         }
     }];
 }
@@ -409,15 +469,10 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    // Delay creating the date picker until the view has appeared (to avoid animation stutter)
-    ORKSurveyAnswerCellForPicker *cell = (ORKSurveyAnswerCellForPicker *)[(ORKQuestionStepCellHolderView *)_questionView.questionCustomView cell];
-    if ([cell isKindOfClass:[ORKSurveyAnswerCellForPicker class]]) {
-        [cell loadPicker];
-    }
-    
     _visible = YES;
     
     UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil);
+
     // TODO: Remove reloadData later.
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [_tableView reloadData];
@@ -467,11 +522,6 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
     [self updateButtonStates];
 }
 
-
-- (void)setCancelButtonItem:(UIBarButtonItem *)cancelButtonItem {
-    [super setCancelButtonItem:cancelButtonItem];
-    _navigationFooterView.cancelButtonItem = cancelButtonItem;
-}
 
 - (void)setSkipButtonItem:(UIBarButtonItem *)skipButtonItem {
     [super setSkipButtonItem:skipButtonItem];
@@ -593,7 +643,32 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
 // Not to use `ImmediateNavigation` when current step already has an answer.
 // So user is able to review the answer when it is present.
 - (BOOL)isStepImmediateNavigation {
-    return [self.questionStep isFormatImmediateNavigation] && [self hasAnswer] == NO && !self.isBeingReviewed;
+    // FIXME: - add explicit property in QuestionStep to dictate this behavior
+//    return [self.questionStep isFormatImmediateNavigation] && [self hasAnswer] == NO && !self.isBeingReviewed;
+    return NO;
+}
+
+#pragma mark NSNotification methods
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    
+    CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGRect convertedKeyboardFrame = [self.view convertRect:keyboardFrame fromView:nil];
+    
+    if (CGRectGetMaxY(_currentFirstResponderCell.frame) >= CGRectGetMinY(convertedKeyboardFrame)) {
+        
+        [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, CGRectGetHeight(convertedKeyboardFrame) - CGRectGetHeight(_currentFirstResponderCell.frame), 0)];
+        
+        NSIndexPath *currentFirstResponderCellIndex = [self.tableView indexPathForCell:_currentFirstResponderCell];
+        
+        if (currentFirstResponderCellIndex) {
+            [self.tableView scrollToRowAtIndexPath:currentFirstResponderCellIndex atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        }
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    [self.tableView setContentInset:UIEdgeInsetsZero];
 }
 
 #pragma mark - ORKQuestionStepCustomViewDelegate
@@ -610,8 +685,31 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
     if ([self questionStep].useCardView && [self questionStep].question) {
-        return [[ORKSurveyCardHeaderView alloc] initWithTitle:self.questionStep.question];
+        ORKLearnMoreView *learnMoreView;
+        NSString *sectionProgressText = nil;
+        BOOL hasMultipleChoiceFormItem = NO;
+        
+        if (self.step.showsProgress) {
+            if ([self.delegate respondsToSelector:@selector(stepViewControllerTotalProgressInfoForStep:currentStep:)]) {
+                ORKTaskTotalProgress progressInfo = [self.delegate stepViewControllerTotalProgressInfoForStep:self currentStep:self.step];
+                if (progressInfo.stepShouldShowTotalProgress) {
+                    sectionProgressText = [NSString localizedStringWithFormat:ORKLocalizedString(@"FORM_ITEM_PROGRESS", nil) ,ORKLocalizedStringFromNumber(@(section + progressInfo.currentStepStartingProgressPosition)), ORKLocalizedStringFromNumber(@(progressInfo.total))];
+                }
+            }
+        }
+        
+        if (self.questionStep.learnMoreItem) {
+            learnMoreView = [ORKLearnMoreView learnMoreViewWithItem:self.questionStep.learnMoreItem];
+            learnMoreView.delegate = self;
+        }
+        
+        if (self.questionStep.impliedAnswerFormat != nil && self.questionStep.impliedAnswerFormat.questionType == ORKQuestionTypeMultipleChoice) {
+            hasMultipleChoiceFormItem = YES;
+        }
+
+        return [[ORKSurveyCardHeaderView alloc] initWithTitle:self.questionStep.question detailText:self.questionStep.detailText  learnMoreView:learnMoreView progressText:sectionProgressText tagText:self.questionStep.tagText showBorder:NO hasMultipleChoiceItem:hasMultipleChoiceFormItem];
     }
     return nil;
 }
@@ -649,7 +747,8 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
                                @(ORKQuestionTypeWeight) : [ORKSurveyAnswerCellForPicker class],
                                @(ORKQuestionTypeMultiplePicker) : [ORKSurveyAnswerCellForPicker class],
                                @(ORKQuestionTypeInteger): [ORKSurveyAnswerCellForNumber class],
-                               @(ORKQuestionTypeLocation): [ORKSurveyAnswerCellForLocation class]};
+                               @(ORKQuestionTypeLocation): [ORKSurveyAnswerCellForLocation class],
+                               @(ORKQuestionTypeSES): [ORKSurveyAnswerCellForSES class]};
     });
     
     // SingleSelectionPicker Cell && Other Cells
@@ -765,6 +864,11 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
     }
 }
 
+- (void)setShouldPresentInReview:(BOOL)shouldPresentInReview {
+    [super setShouldPresentInReview:shouldPresentInReview];
+    [_navigationFooterView setHidden:YES];
+}
+
 #pragma mark - UITableViewDelegate
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -784,8 +888,11 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    [_choiceCellGroup didSelectCellAtIndexPath:indexPath];
+    if (_choiceCellGroup.answerFormat.style == ORKChoiceAnswerStyleSingleChoice && ![self hasAnswer]) {
+         [self.tableView scrollRectToVisible:[self.tableView convertRect:self.tableView.tableFooterView.bounds fromView:self.tableView.tableFooterView] animated:YES];
+     }
     
+    [_choiceCellGroup didSelectCellAtIndexPath:indexPath];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -885,8 +992,10 @@ static NSString *const _ORKOriginalAnswerRestoreKey = @"originalAnswer";
     
     if (immediateNavigation) {
         // Proceed as continueButton tapped
-        ORKSuppressPerformSelectorWarning(
-                                          [self.continueButtonItem.target performSelector:self.continueButtonItem.action withObject:self.continueButtonItem];);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, DelayBeforeAutoScroll * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            ORKSuppressPerformSelectorWarning(
+                                              [self.continueButtonItem.target performSelector:self.continueButtonItem.action withObject:self.continueButtonItem];);
+        });
     }
 }
 
@@ -920,5 +1029,11 @@ static NSString *const _ORKOriginalAnswerRestoreKey = @"originalAnswer";
 //    if (_navigationFooterView.skipButton != nil) {
 //        [elements addObject:self.continueSkipContainer.skipButton];
 //    }
+
+#pragma mark - ORKLearnViewDelegate
+
+- (void)learnMoreButtonPressedWithStep:(ORKLearnMoreInstructionStep *)learnMoreStep {
+    [self.taskViewController learnMoreButtonPressedWithStep:learnMoreStep fromStepViewController:self];
+}
 
 @end

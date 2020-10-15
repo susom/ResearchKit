@@ -29,6 +29,7 @@
  */
 
 
+#import <ResearchKit/ORKDefines.h>
 #import <ResearchKit/ORKTypes.h>
 
 #import <ResearchKit/ORKStep.h>
@@ -54,9 +55,15 @@
 #import <ResearchKit/ORKVisualConsentStep.h>
 #import <ResearchKit/ORKWaitStep.h>
 #import <ResearchKit/ORKVideoInstructionStep.h>
+#import <ResearchKit/ORKFrontFacingCameraStep.h>
 #import <ResearchKit/ORKWebViewStep.h>
+#import <ResearchKit/ORKCustomStep.h>
 #import <ResearchKit/ORKEnvironmentSPLMeterStep.h>
 #import <ResearchKit/ORKLearnMoreInstructionStep.h>
+#import <ResearchKit/ORKSecondaryTaskStep.h>
+#import <ResearchKit/ORKRequestPermissionsStep.h>
+#import <ResearchKit/ORK3DModelStep.h>
+
 
 #import <ResearchKit/ORKTask.h>
 #import <ResearchKit/ORKOrderedTask.h>
@@ -71,6 +78,7 @@
 #import <ResearchKit/ORKActiveTaskResult.h>
 #import <ResearchKit/ORKCollectionResult.h>
 #import <ResearchKit/ORKConsentSignatureResult.h>
+#import <ResearchKit/ORKFrontFacingCameraStepResult.h>
 #import <ResearchKit/ORKPasscodeResult.h>
 #import <ResearchKit/ORKQuestionResult.h>
 #import <ResearchKit/ORKSignatureResult.h>
@@ -78,10 +86,12 @@
 #import <ResearchKit/ORKWebViewStepResult.h>
 #import <ResearchKit/ORKEnvironmentSPLMeterResult.h>
 #import <ResearchKit/ORKResultPredicate.h>
+#import <ResearchKit/ORKUSDZModelManagerResult.h>
 
 #import <ResearchKit/ORKTextButton.h>
 #import <ResearchKit/ORKBorderedButton.h>
 #import <ResearchKit/ORKContinueButton.h>
+#import <ResearchKit/ORKPlaybackButton.h>
 
 #import <ResearchKit/ORKStepViewController.h>
 #import <ResearchKit/ORKActiveStepViewController.h>
@@ -101,6 +111,8 @@
 #import <ResearchKit/ORKWebViewStepViewController.h>
 #import <ResearchKit/ORKTwentyThreeAndMeConnectTaskViewController.h>
 #import <ResearchKit/ORKNavigableStepViewController.h>
+#import <ResearchKit/ORKReviewViewController.h>
+#import <ResearchKit/ORKCustomStepViewController.h>
 
 #import <ResearchKit/ORKRecorder.h>
 
@@ -132,5 +144,10 @@
 #import <ResearchKit/ORKTouchAbilityScrollTrial.h>
 #import <ResearchKit/ORKTouchAbilityPinchTrial.h>
 #import <ResearchKit/ORKTouchAbilityRotationTrial.h>
+
+#import <ResearchKit/ORK3DModelManager.h>
+#import <ResearchKit/ORKUSDZModelManager.h>
+#import <ResearchKit/ORKPermissionType.h>
+#import <ResearchKit/ORKHealthKitPermissionType.h>
 
 #import <ResearchKit/ORKDeprecated.h>
