@@ -51,6 +51,7 @@
 "CONSENT_SECTION_TIME_COMMITMENT" = "Time Commitment";
 "CONSENT_SECTION_WITHDRAWING" = "Withdrawing";
 "CONSENT_LEARN_MORE_TITLE" = "Learn More";
+"CONSENT_NAME_SECTION_TITLE" = "Enter your name";
 
 /* Consent section learn more */
 "LEARN_MORE_DATA_GATHERING" = "Learn more about how data is gathered";
