@@ -217,16 +217,8 @@ static const CGFloat DelayBeforeAutoScroll = 0.25;
             [_navigationFooterView removeStyling];
         } else if (self.step) {
             _questionView = [ORKQuestionStepView new];
-            ORKQuestionStep *questionStep = (ORKQuestionStep *)self.step;
             
-            if (questionStep && questionStep.questionType == ORKQuestionTypeScale) {
-                id<ORKScaleAnswerFormatProvider> formatProvider = (id<ORKScaleAnswerFormatProvider>)[questionStep impliedAnswerFormat];
-                
-                if (formatProvider && [formatProvider isVertical]) {
-                   [_questionView placeNavigationContainerInsideScrollView];
-                }
-            }
-            
+            [_questionView placeNavigationContainerInsideScrollView];
             ORKQuestionStep *step = [self questionStep];
             _navigationFooterView = _questionView.navigationFooterView;
             [self setNavigationFooterButtonItems];
