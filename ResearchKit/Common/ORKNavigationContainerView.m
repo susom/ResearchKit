@@ -348,6 +348,13 @@ static const CGFloat activityIndicatorPadding = 24.0;
                                         multiplier:1.0
                                           constant:topSpacing],
             [NSLayoutConstraint constraintWithItem:_continueButton
+                                         attribute:NSLayoutAttributeHeight
+                                         relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                            toItem:nil
+                                         attribute:NSLayoutAttributeNotAnAttribute
+                                        multiplier:1.0
+                                          constant:skipButtonHeight],
+            [NSLayoutConstraint constraintWithItem:_continueButton
                                          attribute:NSLayoutAttributeLeft
                                          relatedBy:NSLayoutRelationEqual
                                             toItem:self.safeAreaLayoutGuide

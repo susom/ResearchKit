@@ -34,12 +34,14 @@
         [_contentView removeFromSuperview];
         _contentView = nil;
     }
+    
     _contentView = contentView;
     self.stepView.customContentView = _contentView;
     self.stepView.customContentFillsAvailableSpace = YES;
     [self.stepView.navigationFooterView.continueButton setHidden:self.continueButtonHidden];
     [self.stepView.navigationFooterView.cancelButton setHidden:self.cancelButtonHidden];
     self.stepView.stepTitle = self.step.title;
+    [self.stepView pinNavigationContainerToBottom];
 }
 
 - (BOOL)contentFillsAvailableSpace
